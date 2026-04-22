@@ -1,1 +1,25 @@
+# 1. 忽略所有 .开头 的隐藏文件（.env、.cache、.idea 等）
+.*
+
+# 2. 不要忽略 .gitignore 本身
+!.gitignore
+
+# 3. 忽略特定文件
+.stfolder
+.env
+config.ini
+secret.txt
+
+# 4. 忽略整个目录
+node_modules/
+dist/
+build/
+logs/
+
+# 5. 忽略后缀
+*.log
+*.tmp
+*.bak
+*.pyc 
 *.jpg.hwbk
+
