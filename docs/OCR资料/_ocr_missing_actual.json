@@ -1,0 +1,1222 @@
+{
+  "summary": {
+    "创游世界引擎更新说明内容截图": {
+      "total": 23,
+      "mentioned": 23,
+      "missing": []
+    },
+    "基础写脚本界面截图": {
+      "total": 63,
+      "mentioned": 63,
+      "missing": []
+    },
+    "官方教程文档截图": {
+      "total": 258,
+      "mentioned": 138,
+      "missing": [
+        {
+          "code": "105858",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_105858.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "105949",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_105949.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110103",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110103.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110124",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110124.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110154",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110154.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110157",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110157.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110314",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110314.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110326",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110326.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110349",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110349.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110407",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110407.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110421",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110421.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110454",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110454.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110457",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110457.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110514",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110514.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110517",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110517.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110557",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110557.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "110607",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110607.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "111249",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_111249.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112132",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112132.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112144",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112144.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112217",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112217.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112239",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112239.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112305",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112305.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112325",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112325.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112346",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112346.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112409",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112409.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112451",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112451.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112526",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112526.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112529",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112529.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112601",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112601.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112619",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112619.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112636",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112636.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112649",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112649.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112830",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112830.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112857",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112857.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112935",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112935.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112946",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112946.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "112958",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112958.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113011",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113011.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113022",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113022.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113036",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113036.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113049",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113049.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113059",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113059.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113112",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113112.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113124",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113124.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113136",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113136.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113151",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113151.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113200",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113200.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113212",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113212.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113221",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113221.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113255",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113255.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113306",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113306.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113318",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113318.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113330",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113330.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113343",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113343.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113356",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113356.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113409",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113409.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113434",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113434.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113446",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113446.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113457",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113457.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113511",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113511.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113523",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113523.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113534",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113534.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113551",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113551.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113605",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113605.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113624",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113624.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113650",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113650.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113702",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113702.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113712",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113712.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113725",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113725.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113738",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113738.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113753",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113753.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113805",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113805.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113821",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113821.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113832",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113832.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113840",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113840.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113844",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113844.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113854",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113854.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113906",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113906.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113918",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113918.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113929",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113929.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113943",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113943.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "113955",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113955.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114004",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114004.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114012",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114012.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114026",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114026.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114039",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114039.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114050",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114050.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114108",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114108.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114119",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114119.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114133",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114133.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114213",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114213.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114225",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114225.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114239",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114239.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114250",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114250.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "114312",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114312.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115705",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115705.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115715",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115715.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115729",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115729.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115740",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115740.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115754",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115754.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115813",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115813.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115833",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115833.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115851",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115851.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115909",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115909.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115922",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115922.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115940",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115940.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "115954",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115954.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120017",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120017.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120035",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120035.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120310",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120310.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120333",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120333.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120343",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120343.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120356",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120356.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120411",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120411.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120422",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120422.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120443",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120443.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120456",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120456.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120507",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120507.jpg",
+          "dir": "官方教程文档截图"
+        },
+        {
+          "code": "120527",
+          "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120527.jpg",
+          "dir": "官方教程文档截图"
+        }
+      ]
+    }
+  },
+  "missing": [
+    {
+      "code": "105858",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_105858.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "105949",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_105949.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110103",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110103.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110124",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110124.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110154",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110154.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110157",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110157.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110314",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110314.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110326",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110326.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110349",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110349.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110407",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110407.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110421",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110421.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110454",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110454.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110457",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110457.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110514",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110514.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110517",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110517.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110557",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110557.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "110607",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_110607.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "111249",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_111249.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112132",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112132.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112144",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112144.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112217",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112217.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112239",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112239.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112305",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112305.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112325",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112325.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112346",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112346.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112409",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112409.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112451",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112451.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112526",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112526.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112529",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112529.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112601",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112601.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112619",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112619.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112636",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112636.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112649",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112649.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112830",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112830.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112857",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112857.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112935",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112935.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112946",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112946.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "112958",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_112958.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113011",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113011.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113022",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113022.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113036",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113036.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113049",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113049.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113059",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113059.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113112",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113112.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113124",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113124.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113136",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113136.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113151",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113151.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113200",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113200.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113212",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113212.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113221",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113221.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113255",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113255.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113306",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113306.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113318",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113318.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113330",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113330.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113343",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113343.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113356",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113356.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113409",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113409.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113434",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113434.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113446",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113446.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113457",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113457.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113511",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113511.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113523",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113523.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113534",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113534.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113551",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113551.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113605",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113605.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113624",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113624.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113650",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113650.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113702",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113702.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113712",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113712.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113725",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113725.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113738",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113738.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113753",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113753.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113805",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113805.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113821",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113821.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113832",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113832.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113840",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113840.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113844",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113844.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113854",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113854.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113906",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113906.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113918",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113918.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113929",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113929.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113943",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113943.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "113955",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_113955.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114004",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114004.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114012",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114012.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114026",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114026.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114039",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114039.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114050",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114050.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114108",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114108.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114119",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114119.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114133",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114133.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114213",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114213.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114225",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114225.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114239",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114239.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114250",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114250.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "114312",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_114312.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115705",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115705.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115715",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115715.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115729",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115729.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115740",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115740.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115754",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115754.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115813",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115813.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115833",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115833.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115851",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115851.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115909",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115909.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115922",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115922.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115940",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115940.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "115954",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_115954.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120017",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120017.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120035",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120035.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120310",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120310.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120333",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120333.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120343",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120343.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120356",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120356.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120411",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120411.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120422",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120422.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120443",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120443.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120456",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120456.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120507",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120507.jpg",
+      "dir": "官方教程文档截图"
+    },
+    {
+      "code": "120527",
+      "file": "/storage/emulated/0/创游世界资料汇总/资料/官方教程文档截图/Screenshot_20260418_120527.jpg",
+      "dir": "官方教程文档截图"
+    }
+  ]
+}
