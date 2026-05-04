@@ -4,11 +4,13 @@
 # 2. 不要忽略 .gitignore 本身
 !.gitignore
 
-# 3. 忽略特定文件
+# 3. 忽略特定文件 / 同步残留 / 本地备份
 .stfolder
+.stfolder.removed-*
 .env
 config.ini
 secret.txt
+.backup
 
 # 4. 忽略整个目录
 node_modules/
@@ -20,7 +22,5 @@ logs/
 *.log
 *.tmp
 *.bak
-*.pyc 
-*.jpg.hwbk
-
+*.pyc
 *.jpg.hwbk
