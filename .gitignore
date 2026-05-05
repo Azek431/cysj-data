@@ -1,26 +1,77 @@
-# 1. 忽略所有 .开头 的隐藏文件（.env、.cache、.idea 等）
-.*
-
-# 2. 不要忽略 .gitignore 本身
-!.gitignore
-
-# 3. 忽略特定文件 / 同步残留 / 本地备份
-.stfolder
-.stfolder.removed-*
-.env
-config.ini
-secret.txt
-.backup
-
-# 4. 忽略整个目录
+# =========================
+# Dependencies
+# =========================
 node_modules/
+.pnpm-store/
+
+# =========================
+# VitePress / Vite
+# =========================
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+.vitepress/cache/
+.vitepress/dist/
 dist/
 build/
-logs/
 
-# 5. 忽略后缀
+# =========================
+# Logs
+# =========================
+logs/
 *.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+config.ini
+secret.txt
+*.local
+
+# =========================
+# Syncthing
+# =========================
+.stfolder/
+.stfolder.removed-*
+.sync/
+.sync-conflict-*
+*.sync-conflict-*
 *.tmp
+docs/_conflicts/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+
+# =========================
+# OS / Editor
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+.vscode/
+.idea/
+
+# =========================
+# Backup / temporary files
+# =========================
+.backup/
+backup/
 *.bak
+*.tmp
+*.temp
+*.old
+*.orig
 *.pyc
 *.jpg.hwbk
+
+# =========================
+# Optional: generated files
+# =========================
+.cache/
+.temp/
