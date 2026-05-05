@@ -4,11 +4,32 @@ export default defineConfig({
   title: 'Azek 创游世界引擎文档',
   description: '由 @Azek431 搭建的创游世界引擎资料库与开发文档',
 
+  head: [
+    ['meta', { name: 'keywords', content: '创游世界, 游戏引擎, 文档, 教程, 脚本, API, OCR资料' }],
+    ['meta', { name: 'author', content: 'Azek431' }],
+    ['meta', { name: 'robots', content: 'index, follow' }],
+    ['link', { rel: 'icon', href: '/logo.png' }]
+  ],
+
   cleanUrls: true,
   ignoreDeadLinks: true,
 
   themeConfig: {
     logo: "logo.png",
+
+    lastUpdated: true,
+    repo: 'Azek431/cysj-data',
+    editLink: {
+      pattern: 'https://github.com/Azek431/cysj-data/edit/main/docs/:path',
+      text: '在 GitHub 上编辑此页'
+    },
+
+    docFooter: {
+      prev: '上一页',
+      next: '下一页'
+    },
+    outlineTitle: '本页目录',
+    sidebarMenuLabel: '目录',
 
     nav: [
       { text: '首页', link: '/' },
@@ -17,7 +38,8 @@ export default defineConfig({
       { text: '脚本系统', link: '/脚本系统/脚本界面与积木知识索引' },
       { text: '项目设计', link: '/项目设计/项目设计导航' },
       { text: 'OCR资料', link: '/OCR资料/OCR资料导航' },
-      { text: '维护', link: '/维护与报告/维护与报告导航' }
+      { text: '维护', link: '/维护与报告/维护与报告导航' },
+      { text: '关于', link: '/关于' }
     ],
 
     sidebar: [
@@ -28,7 +50,8 @@ export default defineConfig({
           { text: '首页', link: '/' },
           { text: '新手阅读路线', link: '/总索引与导航/新手阅读路线' },
           { text: '知识库总导航', link: '/总索引与导航/创游世界知识库总导航' },
-          { text: 'docs 目录分类对照表', link: '/总索引与导航/docs 目录分类对照表' }
+          { text: 'docs 目录分类对照表', link: '/总索引与导航/docs 目录分类对照表' },
+          { text: '关于', link: '/关于' }
         ]
       },
       {
@@ -110,14 +133,18 @@ export default defineConfig({
           { text: '知识库文档状态总表', link: '/元信息/知识库文档状态总表' },
           { text: '知识标签体系总表', link: '/元信息/知识标签体系总表' },
           { text: '知识条目统一元数据规范', link: '/元信息/知识条目统一元数据规范' },
+          { text: '页面模板与标准化文档结构', link: '/元信息/页面模板' },
           { text: '资料库深入研究报告', link: '/元信息/创游世界资料库深入研究报告' }
         ]
-      },
+      }, 
       {
         text: '维护与报告',
         collapsed: true,
         items: [
           { text: '维护与报告导航', link: '/维护与报告/维护与报告导航' },
+          { text: '社区贡献与维护指南', link: '/维护与报告/社区贡献与维护指南' },
+          { text: '合规与版权声明', link: '/维护与报告/合规与版权声明' },
+          { text: '站点部署与运维方案', link: '/维护与报告/站点部署与运维方案' },
           { text: '资料规范与状态总览', link: '/维护与报告/资料规范与状态总览' },
           { text: '维护流程说明', link: '/维护与报告/维护流程说明' },
           { text: '维护检查清单', link: '/维护与报告/维护检查清单' },
@@ -137,8 +164,19 @@ export default defineConfig({
     ],
 
     footer: {
-      message: '由 Azek431 整理与维护',
-      copyright: 'Copyright © 2026 Azek431'
+      message: '由 Azek431 整理与维护 | 基于 MIT 许可证开源',
+      copyright: 'Copyright © 2026 Azek431 | 内容仅供学习参考，请遵守相关法律法规'
     }
+  },
+
+  vite: {
+    build: {
+      outDir: '../site-dist',
+      emptyOutDir: true
+    }
+  },
+
+  markdown: {
+    lineNumbers: true
   }
 })

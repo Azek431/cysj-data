@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://cysjdocs.dpdns.org/</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://cysjdocs.dpdns.org/总索引与导航/新手阅读路线</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://cysjdocs.dpdns.org/总索引与导航/创游世界知识库总导航</loc>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://cysjdocs.dpdns.org/OCR资料/OCR资料导航</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://cysjdocs.dpdns.org/维护与报告/维护与报告导航</loc>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://cysjdocs.dpdns.org/关于</loc>
+    <priority>0.80</priority>
+  </url>
+</urlset>
