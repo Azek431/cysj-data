@@ -1,0 +1,48 @@
+# 不同步 Syncthing 本地规则本身，避免覆盖其他设备规则
+.stignore
+
+# Syncthing 残留
+.stfolder.removed-*
+.stversions/
+
+# 依赖和构建产物
+node_modules/
+.pnpm-store/
+docs/.vitepress/cache/
+docs/.vitepress/dist/
+.vitepress/cache/
+.vitepress/dist/
+dist/
+build/
+
+# 日志和临时文件
+logs/
+*.log
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 编辑器本地配置
+.idea/
+.vscode/
+
+# 隐私配置
+.env
+.env.*
+!.env.example
+config.ini
+secret.txt
+*.local
+
+# 本地备份
+.backup/
+backup/
+*.jpg.hwbk
+
