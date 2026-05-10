@@ -5,9 +5,22 @@ export default defineConfig({
   description: '由 @Azek431 搭建的创游世界引擎资料库与开发文档',
 
   head: [
-    ['meta', { name: 'keywords', content: '创游世界, 游戏引擎, 文档, 教程, 脚本, API, OCR资料' }],
+    ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
+    ['meta', { name: 'theme-color', content: '#2563eb' }],
+    ['meta', { name: 'keywords', content: '创游世界, 游戏引擎, 文档, 教程, 脚本, API, OCR资料, 资源库' }],
     ['meta', { name: 'author', content: 'Azek431' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'Azek 创游世界引擎文档' }],
+    ['meta', { property: 'og:description', content: '系统化整理创游世界引擎脚本、UI、项目设计、OCR 证据与维护规范的知识库。' }],
+    ['meta', { property: 'og:url', content: 'https://cysjdocs.dpdns.org/' }],
+    ['meta', { property: 'og:image', content: 'https://cysjdocs.dpdns.org/logo.png' }],
+    ['meta', { property: 'og:site_name', content: '创游世界资料库' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:site', content: '@Azek431' }],
+    ['meta', { name: 'twitter:title', content: 'Azek 创游世界引擎文档' }],
+    ['meta', { name: 'twitter:description', content: '系统化整理创游世界引擎脚本、UI、项目设计、OCR 证据与维护规范的知识库。' }],
+    ['link', { rel: 'canonical', href: 'https://cysjdocs.dpdns.org/' }],
     ['link', { rel: 'icon', href: '/logo.png' }]
   ],
 
