@@ -1,10 +1,19 @@
 {
   "devDependencies": {
+    "prettier": "^3.8.3",
     "vitepress": "1.6.4"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
-  }
+    "docs:preview": "vitepress preview docs",
+    "docs:dev:host": "vitepress dev docs --host 0.0.0.0 --port 5173",
+    "docs:preview:host": "vitepress preview docs --host 0.0.0.0 --port 4173",
+    "docs:clean": "node scripts/clean-docs.mjs",
+    "docs:fresh": "pnpm run docs:clean && pnpm run docs:build"
+  },
+  "name": "cysj-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "创游世界资料库与 VitePress 文档站"
 }
