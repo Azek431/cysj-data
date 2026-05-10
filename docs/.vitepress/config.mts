@@ -4,6 +4,8 @@ export default defineConfig({
   title: 'Azek 创游世界引擎文档',
   description: '由 @Azek431 搭建的创游世界引擎资料库与开发文档',
 
+  lastUpdated: true,
+
   head: [
     ['meta', { name: 'keywords', content: '创游世界, 游戏引擎, 文档, 教程, 脚本, API, OCR资料' }],
     ['meta', { name: 'author', content: 'Azek431' }],
@@ -17,7 +19,6 @@ export default defineConfig({
   themeConfig: {
     logo: "logo.png",
 
-    lastUpdated: true,
     repo: 'Azek431/cysj-data',
     editLink: {
       pattern: 'https://github.com/Azek431/cysj-data/edit/main/docs/:path',
@@ -136,7 +137,7 @@ export default defineConfig({
           { text: '页面模板与标准化文档结构', link: '/元信息/页面模板' },
           { text: '资料库深入研究报告', link: '/元信息/创游世界资料库深入研究报告' }
         ]
-      }, 
+      },
       {
         text: '维护与报告',
         collapsed: true,
