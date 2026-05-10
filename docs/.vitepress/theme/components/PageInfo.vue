@@ -7,33 +7,50 @@ const { page, frontmatter } = useData();
 const wordCount = ref(0);
 const readingTime = ref(0);
 
-const isHome = computed(() => frontmatter.value.layout === "home");
-const title = computed(
-  () => frontmatter.value.title || page.value.title || "未命名文档",
-);
-const description = computed(() => frontmatter.value.description || "");
+const showPageInfo = computed(() => {
+  return (
+    frontmatter.value.layout !== "home" && frontmatter.value.meta !== false
+  );
+});
 
-const author = computed(
-  () => frontmatter.value.editor || frontmatter.value.author || "Azek431",
-);
-const authorUrl = computed(
-  () =>
+const title = computed(() => {
+  return frontmatter.value.title || page.value.title || "未命名文档";
+});
+
+const description = computed(() => {
+  return (
+    frontmatter.value.description ||
+    "这是一篇创游世界资料库文档，正在持续整理、校对与优化中。"
+  );
+});
+
+const author = computed(() => {
+  return frontmatter.value.editor || frontmatter.value.author || "Azek431";
+});
+
+const authorUrl = computed(() => {
+  return (
     frontmatter.value.editorUrl ||
     frontmatter.value.authorUrl ||
-    "https://github.com/Azek431",
-);
-const authorGithub = computed(
-  () => frontmatter.value.editorGithub || "https://github.com/Azek431",
-);
-const authorEmail = computed(() => frontmatter.value.editorEmail || "");
+    "https://github.com/Azek431"
+  );
+});
+
+const authorGithub = computed(() => {
+  return frontmatter.value.editorGithub || "https://github.com/Azek431";
+});
+
+const authorEmail = computed(() => {
+  return frontmatter.value.editorEmail || "";
+});
 
 const status = computed(() => frontmatter.value.status || "持续维护");
-const difficulty = computed(() => frontmatter.value.difficulty || "");
+const difficulty = computed(() => frontmatter.value.difficulty || "未标注");
 const evidence = computed(
-  () => frontmatter.value.evidence || frontmatter.value.source || "",
+  () => frontmatter.value.evidence || frontmatter.value.source || "资料整理",
 );
-const category = computed(() => frontmatter.value.category || "");
-const version = computed(() => frontmatter.value.version || "");
+const category = computed(() => frontmatter.value.category || "知识库文档");
+const version = computed(() => frontmatter.value.version || "v0.1.x");
 
 const tags = computed(() => {
   const value = frontmatter.value.tags;
@@ -80,8 +97,9 @@ const statusType = computed(() => {
     value.includes("完成") ||
     value.includes("稳定") ||
     value.includes("已复核")
-  )
+  ) {
     return "success";
+  }
 
   return "info";
 });
@@ -93,7 +111,8 @@ const evidenceType = computed(() => {
   if (value.includes("待验证") || value.includes("E4")) return "warning";
   if (value.includes("OCR") || value.includes("截图") || value.includes("E2"))
     return "purple";
-  if (value.includes("归纳") || value.includes("E3")) return "info";
+  if (value.includes("归纳") || value.includes("E3") || value.includes("社区"))
+    return "info";
 
   return "neutral";
 });
@@ -110,98 +129,110 @@ onMounted(() => {
 </script>
 
 <template>
-  <section v-if="!isHome && frontmatter.meta !== false" class="cysj-page-info">
-    <div class="cysj-page-info__glow"></div>
+  <section v-if="showPageInfo" class="cysj-page-info cysj-page-info--v4">
+    <div class="cysj-page-info__ambient ambient-one"></div>
+    <div class="cysj-page-info__ambient ambient-two"></div>
 
-    <div class="cysj-page-info__head">
-      <div>
-        <p class="cysj-page-info__kicker">文档档案</p>
+    <div class="cysj-page-info__top">
+      <div class="cysj-page-info__main">
+        <div class="cysj-page-info__badge">Knowledge Profile</div>
         <h2 class="cysj-page-info__title">{{ title }}</h2>
+        <p class="cysj-page-info__desc">{{ description }}</p>
       </div>
 
-      <span class="cysj-page-info__status" :class="`is-${statusType}`">
+      <div class="cysj-page-info__state" :class="`is-${statusType}`">
+        <span class="cysj-page-info__state-dot"></span>
         {{ status }}
-      </span>
+      </div>
     </div>
 
-    <p v-if="description" class="cysj-page-info__desc">
-      {{ description }}
-    </p>
+    <div class="cysj-page-info__metrics">
+      <div class="cysj-page-info__metric is-author">
+        <span class="cysj-page-info__icon">👤</span>
+        <div>
+          <span class="cysj-page-info__label">维护者</span>
 
-    <div class="cysj-page-info__grid">
-      <div class="cysj-page-info__item is-author">
-        <span class="cysj-page-info__label">维护者</span>
-
-        <span class="cysj-author">
-          <a
-            class="cysj-author__link"
-            :href="authorUrl"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {{ author }}
-            <span>↗</span>
-          </a>
-
-          <span class="cysj-author__card">
-            <strong>维护者信息</strong>
-
-            <a :href="authorGithub" target="_blank" rel="noreferrer">
-              GitHub：Azek431
+          <span class="cysj-author">
+            <a
+              class="cysj-author__link"
+              :href="authorUrl"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {{ author }}
+              <span>↗</span>
             </a>
 
-            <a v-if="authorEmail" :href="`mailto:${authorEmail}`">
-              邮箱：{{ authorEmail }}
-            </a>
+            <span class="cysj-author__card">
+              <strong>维护者信息</strong>
+
+              <a :href="authorGithub" target="_blank" rel="noreferrer">
+                GitHub：Azek431
+              </a>
+
+              <a v-if="authorEmail" :href="`mailto:${authorEmail}`">
+                邮箱：{{ authorEmail }}
+              </a>
+
+              <span v-if="!authorEmail" class="cysj-author__hint">
+                可通过 GitHub Issue 联系维护者
+              </span>
+            </span>
           </span>
-        </span>
+        </div>
       </div>
 
-      <div class="cysj-page-info__item">
-        <span class="cysj-page-info__label">最后更新</span>
-        <span class="cysj-page-info__value">{{ updated || "待补充" }}</span>
+      <div class="cysj-page-info__metric">
+        <span class="cysj-page-info__icon">🕒</span>
+        <div>
+          <span class="cysj-page-info__label">最后更新</span>
+          <span class="cysj-page-info__value">{{ updated || "待补充" }}</span>
+        </div>
       </div>
 
-      <div class="cysj-page-info__item">
-        <span class="cysj-page-info__label">阅读时长</span>
-        <span class="cysj-page-info__value">
-          <template v-if="readingTime">约 {{ readingTime }} 分钟</template>
-          <template v-else>计算中</template>
-        </span>
+      <div class="cysj-page-info__metric">
+        <span class="cysj-page-info__icon">⏱️</span>
+        <div>
+          <span class="cysj-page-info__label">阅读时长</span>
+          <span class="cysj-page-info__value">
+            <template v-if="readingTime">约 {{ readingTime }} 分钟</template>
+            <template v-else>计算中</template>
+          </span>
+        </div>
       </div>
 
-      <div class="cysj-page-info__item">
-        <span class="cysj-page-info__label">文档字数</span>
-        <span class="cysj-page-info__value">
-          <template v-if="wordCount">约 {{ wordCount }} 字</template>
-          <template v-else>计算中</template>
-        </span>
+      <div class="cysj-page-info__metric">
+        <span class="cysj-page-info__icon">📄</span>
+        <div>
+          <span class="cysj-page-info__label">文档规模</span>
+          <span class="cysj-page-info__value">
+            <template v-if="wordCount">约 {{ wordCount }} 字</template>
+            <template v-else>计算中</template>
+          </span>
+        </div>
       </div>
+    </div>
 
-      <div v-if="difficulty" class="cysj-page-info__item">
-        <span class="cysj-page-info__label">阅读难度</span>
-        <span class="cysj-page-info__value">{{ difficulty }}</span>
-      </div>
+    <div class="cysj-page-info__facts">
+      <span class="cysj-fact">
+        <span>难度</span>
+        <strong>{{ difficulty }}</strong>
+      </span>
 
-      <div v-if="category" class="cysj-page-info__item">
-        <span class="cysj-page-info__label">所属分类</span>
-        <span class="cysj-page-info__value">{{ category }}</span>
-      </div>
+      <span class="cysj-fact">
+        <span>分类</span>
+        <strong>{{ category }}</strong>
+      </span>
 
-      <div v-if="version" class="cysj-page-info__item">
-        <span class="cysj-page-info__label">适用版本</span>
-        <span class="cysj-page-info__value">{{ version }}</span>
-      </div>
+      <span class="cysj-fact">
+        <span>版本</span>
+        <strong>{{ version }}</strong>
+      </span>
 
-      <div v-if="evidence" class="cysj-page-info__item">
-        <span class="cysj-page-info__label">证据等级</span>
-        <span
-          class="cysj-page-info__value evidence"
-          :class="`is-${evidenceType}`"
-        >
-          {{ evidence }}
-        </span>
-      </div>
+      <span class="cysj-fact evidence" :class="`is-${evidenceType}`">
+        <span>证据</span>
+        <strong>{{ evidence }}</strong>
+      </span>
     </div>
 
     <div v-if="tags.length" class="cysj-page-info__tags">
