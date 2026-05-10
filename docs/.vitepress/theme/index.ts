@@ -3,6 +3,8 @@ import DefaultTheme from "vitepress/theme";
 import Layout from "./Layout.vue";
 import "./custom.css";
 import "./styles/polish.css";
+import "./styles/polish-v3.css";
+import "./styles/polish-v4.css";
 
 export default {
   extends: DefaultTheme,
