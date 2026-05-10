@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://cysjdocs.dpdns.org/sitemap.xml
-Host: cysjdocs.dpdns.org
