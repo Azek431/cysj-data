@@ -89,7 +89,7 @@ features:
 
 - GitHub 仓库： [Azek431/cysj-data](https://github.com/Azek431/cysj-data)
 - 作者：[Azek431](https://github.com/Azek431)
-- QQ交流群: [1097265516](https://qun.qq.com/universal-share/share?ac=1&authKey=USG%2FBESUCOPRP8cywby61ZZazAn3UK3FusDtxaZNhr%2B6NbQH20Kf5qVwg5F2xUEo&busi_data=eyJncm91cENvZGUiOiIxMDk3MjY1NTE2IiwidG9rZW4iOiJkTHUzeWhHdncxQXR3VlFXcHliSFRub3NtQmhQb0hPV3ZLaVdTSnZwWHdPNmxnaGhFMWd6emhBWkNWRFJmUHdSIiwidWluIjoiMjk4MjE1NDAzOCJ9&data=WeBgo6JkqHglZ6ZiyPRw2AdKOiVgoloe9Mt7wd_JJzl3qXlGCSR7KYN_BvlXM7HqgBNVP_yKNnBI1hiB21lxTQ&svctype=4&tempid=h5_group_info)
+- QQ交流群: [1097265516](https://qm.qq.com/q/W1pECegQEy)
 - Azek TG 主频道: [@AzekMain](https://t.me/AzekMain)
 - 协作入口：`docs/维护与报告/社区贡献与维护指南.md`
 - 站点说明：`docs/关于.md`

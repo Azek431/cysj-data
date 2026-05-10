@@ -324,9 +324,10 @@
 
 ## 🤝 联系方式
 
-- 作者：Azek
-- GitHub：[@Azek431](https://github.com/Azek431)
+- 作者：[@Azek431](https://github.com/Azek431)
+- GitHub：[Azek431/cysj-data](https://github.com/Azek431/cysj-data)
 - QQ交流群：[1097265516](https://qm.qq.com/q/G1efYX432C)
+- Azek TG 主频道: [@AzekMain](https://t.me/AzekMain)
 
 ## ⭐ 支持
 
