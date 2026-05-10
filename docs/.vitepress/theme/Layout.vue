@@ -2,7 +2,6 @@
 import DefaultTheme from "vitepress/theme";
 import PageInfo from "./components/PageInfo.vue";
 import PageActions from "./components/PageActions.vue";
-import SiteTools from "./components/SiteTools.vue";
 
 const { Layout } = DefaultTheme;
 </script>
@@ -11,10 +10,6 @@ const { Layout } = DefaultTheme;
   <Layout>
     <template #doc-top>
       <PageInfo />
-    </template>
-
-    <template #aside-outline-before>
-      <SiteTools />
     </template>
 
     <template #doc-bottom>

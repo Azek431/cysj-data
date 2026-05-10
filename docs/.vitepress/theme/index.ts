@@ -5,6 +5,7 @@ import "./custom.css";
 import "./styles/polish.css";
 import "./styles/polish-v3.css";
 import "./styles/polish-v4.css";
+import "./styles/minimal-doc-ui.css";
 
 export default {
   extends: DefaultTheme,

@@ -1,0 +1,190 @@
+/* =========================================================
+   CYSJ Minimal Doc UI
+   目标：更像专业文档站，减少视觉干扰，突出正文阅读
+   ========================================================= */
+
+/* 隐藏旧版大卡片残留，避免旧样式影响 */
+.cysj-page-info--v4,
+.cysj-actions--v4,
+.cysj-tools,
+.cysj-tools--v4 {
+  display: none !important;
+}
+
+/* =========================
+   文档顶部一行式元信息
+   ========================= */
+
+.cysj-doc-meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0 0 18px;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-3);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.cysj-doc-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.cysj-doc-meta-item + .cysj-doc-meta-item::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: var(--vp-c-text-3);
+  opacity: 0.42;
+}
+
+.cysj-doc-meta-label {
+  color: var(--vp-c-text-2);
+  font-weight: 650;
+}
+
+.cysj-doc-meta-line a {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cysj-doc-meta-line a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* =========================
+   底部轻量参与维护栏
+   ========================= */
+
+.cysj-doc-actions-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 42px;
+  padding: 14px 0 4px;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+.cysj-doc-actions-text {
+  min-width: 0;
+}
+
+.cysj-doc-actions-text strong {
+  display: inline-block;
+  margin-right: 8px;
+  color: var(--vp-c-text-1);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.cysj-doc-actions-text span {
+  color: var(--vp-c-text-3);
+  font-size: 13px;
+}
+
+.cysj-doc-actions-buttons {
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cysj-doc-actions-buttons a,
+.cysj-doc-actions-buttons button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 5px 11px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.16s ease,
+    border-color 0.16s ease,
+    background 0.16s ease,
+    transform 0.16s ease;
+}
+
+.cysj-doc-actions-buttons a:hover,
+.cysj-doc-actions-buttons button:hover {
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* =========================
+   正文进一步减负
+   ========================= */
+
+.vp-doc {
+  line-height: 1.85;
+}
+
+.vp-doc h1 {
+  letter-spacing: -0.035em;
+}
+
+.vp-doc h2 {
+  margin-top: 44px;
+}
+
+.vp-doc p {
+  color: var(--vp-c-text-2);
+}
+
+/* 首页卡片保留一点高级感，但降低压迫感 */
+.VPFeature {
+  border-radius: 18px !important;
+  box-shadow: none !important;
+}
+
+.VPFeature:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================
+   移动端
+   ========================= */
+
+@media (max-width: 700px) {
+  .cysj-doc-meta-line {
+    gap: 4px 10px;
+    font-size: 12px;
+  }
+
+  .cysj-doc-meta-item + .cysj-doc-meta-item::before {
+    display: none;
+  }
+
+  .cysj-doc-actions-line {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cysj-doc-actions-buttons {
+    width: 100%;
+  }
+
+  .cysj-doc-actions-buttons a,
+  .cysj-doc-actions-buttons button {
+    flex: 1;
+  }
+}
