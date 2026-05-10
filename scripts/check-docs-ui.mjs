@@ -7,6 +7,8 @@ const requiredFiles = [
   "docs/.vitepress/theme/components/PageInfo.vue",
   "docs/.vitepress/theme/components/PageActions.vue",
   "docs/.vitepress/theme/styles/polish-v3.css",
+  "docs/.vitepress/theme/styles/polish-v4.css",
+  "docs/.vitepress/theme/styles/minimal-doc-ui.css",
   "docs/public/llms.txt",
 ];
 
@@ -26,9 +28,7 @@ for (const file of requiredFiles) {
 try {
   const tracked = execSync(
     "git ls-files docs/.vitepress/dist docs/.vitepress/cache docs/.vitepress/.temp site-dist node_modules",
-    {
-      encoding: "utf8",
-    },
+    { encoding: "utf8" },
   ).trim();
 
   if (tracked) {
