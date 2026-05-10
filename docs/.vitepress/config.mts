@@ -169,13 +169,6 @@ export default defineConfig({
     }
   },
 
-  vite: {
-    build: {
-      outDir: '../site-dist',
-      emptyOutDir: true
-    }
-  },
-
   markdown: {
     lineNumbers: true
   }
