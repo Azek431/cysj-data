@@ -1,0 +1,16 @@
+# 创游世界资料库
+
+这是一个非官方创游世界资料整理项目，面向学习、研究、资料归档与 AI 检索。
+
+站点入口：
+- 首页：https://cysjdocs.dpdns.org/
+- 知识库总索引：https://cysjdocs.dpdns.org/知识库总索引
+- 新手阅读路线：https://cysjdocs.dpdns.org/总索引与导航/新手阅读路线
+- 脚本系统：https://cysjdocs.dpdns.org/脚本系统/脚本界面与积木知识索引
+- OCR 资料：https://cysjdocs.dpdns.org/OCR资料/OCR资料导航
+- 维护与报告：https://cysjdocs.dpdns.org/维护与报告/维护与报告导航
+
+说明：
+- 本站不是创游世界官方文档。
+- 部分内容来自截图 OCR、社区观察、个人整理和专题归纳。
+- 标记为“待验证”的内容不应视为官方结论。
