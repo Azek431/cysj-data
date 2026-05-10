@@ -80,6 +80,25 @@
 
 ---
 
+## 💻 本地运行
+
+如果你希望在本地预览知识库站点，请执行：
+
+```bash
+pnpm install
+pnpm run docs:dev
+```
+
+静态构建命令：
+
+```bash
+pnpm run docs:build
+```
+
+构建结果将输出到 `docs/.vitepress/dist`，适用于 Cloudflare Pages 或其它静态站点托管服务。
+
+---
+
 <a id="仓库结构"></a>
 
 ## 🗂️ 仓库结构
