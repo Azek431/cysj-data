@@ -6,10 +6,10 @@ const { page, site } = useData()
 const wordCount = ref(0)
 const readingTime = ref(0)
 
-const author = computed(() => page.value.frontmatter.author || site.value.author || 'Azek431')
-const created = computed(() => page.value.frontmatter.date || page.value.frontmatter.created || '')
-const updated = computed(() => page.value.frontmatter.updated || page.value.lastUpdated || '')
-const summary = computed(() => page.value.frontmatter.description || page.value.description || '')
+const author = computed(() => page.value?.frontmatter?.author || site.value.author || 'Azek431')
+const created = computed(() => page.value?.frontmatter?.date || page.value?.frontmatter?.created || '')
+const updated = computed(() => page.value?.frontmatter?.updated || page.value?.lastUpdated || '')
+const summary = computed(() => page.value?.frontmatter?.description || page.value?.description || '')
 
 onMounted(() => {
   const content = document.querySelector('.markdown')
@@ -23,10 +23,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="page.value.frontmatter.layout !== 'home'" class="page-info-card">
+  <div v-if="page.value?.frontmatter?.layout !== 'home'" class="page-info-card">
     <div class="page-info-grid">
       <div class="page-info-label">页面标题</div>
-      <div class="page-info-value">{{ page.value.title || '未命名页面' }}</div>
+      <div class="page-info-value">{{ page.value?.title || '未命名页面' }}</div>
       <div class="page-info-label">作者</div>
       <div class="page-info-value">{{ author }}</div>
       <div class="page-info-label">写作日期</div>

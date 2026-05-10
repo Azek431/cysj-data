@@ -7,16 +7,16 @@ const route = useRoute()
 const copied = ref(false)
 
 const repo = computed(() => site.value.repo || 'Azek431/cysj-data')
-const currentPath = computed(() => page.value.relativePath || '')
+const currentPath = computed(() => page.value?.relativePath || '')
 const currentUrl = computed(() => typeof window !== 'undefined' ? window.location.href : '')
 const editUrl = computed(() => `https://github.com/${repo.value}/edit/main/docs/${currentPath.value}`)
 const issueUrl = computed(() => {
-  const title = encodeURIComponent(`[文档反馈] ${page.value.title || route.path}`)
+  const title = encodeURIComponent(`[文档反馈] ${page.value?.title || route.path}`)
   const body = encodeURIComponent(`页面：${route.path}\n\n请描述你的反馈或建议：\n`)
   return `https://github.com/${repo.value}/issues/new?title=${title}&body=${body}&labels=feedback`
 })
 const discussUrl = computed(() => {
-  const title = encodeURIComponent(`[文档问题] ${page.value.title || route.path}`)
+  const title = encodeURIComponent(`[文档问题] ${page.value?.title || route.path}`)
   const body = encodeURIComponent(`页面：${route.path}\n\n问题描述：\n`)
   return `https://github.com/${repo.value}/issues/new?title=${title}&body=${body}&labels=documentation`
 })
