@@ -6,11 +6,21 @@ const { page, site } = useData()
 const route = useRoute()
 const copied = ref(false)
 
-const repo = computed(() => site.value.repo || 'Azek431/cysj-data')
-const currentPath = computed(() => page.value?.relativePath || '')
-const editUrl = computed(() => `https://github.com/${repo.value}/edit/main/docs/${currentPath.value}`)
+// read repo from themeConfig first, then site-level fallback
+const repo = computed(() => {
+  const tc = site.value?.themeConfig || {}
+  return tc.repo || site.value?.repo || 'Azek431/cysj-data'
+})
+
+const currentPath = computed(() => page.value?.relativePath || page.value?.path || '')
+const editUrl = computed(() => {
+  const p = currentPath.value ? `docs/${currentPath.value}` : ''
+  return `https://github.com/${repo.value}/edit/main/${p}`
+})
+
 const issueUrl = computed(() => {
-  const title = encodeURIComponent(`[文档反馈] ${page.value?.title || route.path}`)
+  const pageTitle = page.value?.frontmatter?.title || page.value?.title || route.path
+  const title = encodeURIComponent(`[文档反馈] ${pageTitle}`)
   const body = encodeURIComponent(`页面：${route.path}\n\n请描述你的反馈或建议：\n`)
   return `https://github.com/${repo.value}/issues/new?title=${title}&body=${body}&labels=feedback`
 })
