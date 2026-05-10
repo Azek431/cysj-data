@@ -42,7 +42,7 @@ export default defineConfig({
       next: '下一页'
     },
     outlineTitle: '本页目录',
-    sidebarMenuLabel: '目录',
+    sidebarMenuLabel: '章节导航',
 
     nav: [
       { text: '首页', link: '/' },
