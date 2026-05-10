@@ -1,22 +1,45 @@
-# =========================
-# Dependencies
-# =========================
+# =========================================================
+# Dependencies / package manager
+# 依赖目录：不要同步、不要提交，换设备后用 pnpm install 重新生成
+# =========================================================
 node_modules/
 .pnpm-store/
 
-# =========================
-# VitePress / Vite
-# =========================
+# =========================================================
+# VitePress / Vite generated files
+# VitePress 缓存、临时文件、构建产物：不提交
+# 你的文档站点目录是 docs，所以重点是 docs/.vitepress/*
+# =========================================================
 docs/.vitepress/cache/
 docs/.vitepress/dist/
+docs/.vitepress/.temp/
+
 .vitepress/cache/
 .vitepress/dist/
+.vitepress/.temp/
+
 dist/
 build/
+site-dist/
+cysjdocs-dist/
 
-# =========================
+# =========================================================
+# Keep important VitePress source files
+# 保留 VitePress 配置、主题、public 静态资源
+# 这些文件 Cloudflare Pages 构建时需要
+# =========================================================
+!docs/.vitepress/
+!docs/.vitepress/config.*
+!docs/.vitepress/theme/
+!docs/.vitepress/theme/**
+!docs/public/
+!docs/public/**
+!.node-version
+
+# =========================================================
 # Logs
-# =========================
+# 日志文件：不提交
+# =========================================================
 logs/
 *.log
 npm-debug.log*
@@ -24,9 +47,10 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# =========================
-# Environment / Secrets
-# =========================
+# =========================================================
+# Environment / secrets
+# 环境变量和敏感配置：不提交
+# =========================================================
 .env
 .env.*
 !.env.example
@@ -34,22 +58,23 @@ config.ini
 secret.txt
 *.local
 
-# =========================
+# =========================================================
 # Syncthing
-# =========================
+# Syncthing 同步标记、历史版本、冲突文件：不提交
+# 注意：这里不忽略 .stignore，因为你可能希望多设备共享同一套忽略规则
+# =========================================================
 .stfolder/
 .stfolder.removed-*
+.stversions/
 .sync/
 .sync-conflict-*
 *.sync-conflict-*
-*.tmp
 docs/_conflicts/
-docs/.vitepress/cache/
-docs/.vitepress/dist/
 
-# =========================
-# OS / Editor
-# =========================
+# =========================================================
+# OS / editor files
+# 系统和编辑器配置：不提交
+# =========================================================
 .DS_Store
 Thumbs.db
 desktop.ini
@@ -57,9 +82,10 @@ desktop.ini
 .vscode/
 .idea/
 
-# =========================
+# =========================================================
 # Backup / temporary files
-# =========================
+# 备份、临时文件、旧文件：不提交
+# =========================================================
 .backup/
 backup/
 *.bak
@@ -70,8 +96,10 @@ backup/
 *.pyc
 *.jpg.hwbk
 
-# =========================
-# Optional: generated files
-# =========================
+# =========================================================
+# General cache / temp
+# 通用缓存目录：不提交
+# =========================================================
 .cache/
 .temp/
+
