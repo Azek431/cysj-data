@@ -1,13 +1,15 @@
-# 不同步 Syncthing 本地规则本身，避免覆盖其他设备规则
+# 每台设备使用自己的忽略规则，避免互相覆盖
 .stignore
 
-# Syncthing 残留
+# Syncthing 版本/残留
 .stfolder.removed-*
 .stversions/
 
-# 依赖和构建产物
+# 依赖目录：可重新安装，不需要备份
 node_modules/
 .pnpm-store/
+
+# VitePress / Vite 缓存和构建产物：可重新生成
 docs/.vitepress/cache/
 docs/.vitepress/dist/
 .vitepress/cache/
@@ -29,11 +31,11 @@ logs/
 Thumbs.db
 desktop.ini
 
-# 编辑器本地配置
+# 编辑器缓存/本地配置
 .idea/
 .vscode/
 
-# 隐私配置
+# 敏感配置：如果你确实想备份，可以删掉这一段
 .env
 .env.*
 !.env.example
@@ -41,8 +43,7 @@ config.ini
 secret.txt
 *.local
 
-# 本地备份
+# 本地备份残留
 .backup/
 backup/
 *.jpg.hwbk
-
