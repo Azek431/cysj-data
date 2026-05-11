@@ -2,7 +2,7 @@
 import { computed, ref } from "vue";
 import { useData, useRoute } from "vitepress";
 
-const { page } = useData();
+const { page, site } = useData();
 const route = useRoute();
 const copied = ref(false);
 
@@ -32,12 +32,16 @@ const copyLink = async () => {
   }
 };
 
-const links = [
+const repoUrl = computed(() => {
+  return `https://github.com/${site.value?.themeConfig?.repo || 'Azek431/cysj-data'}`;
+});
+
+const links = computed(() => [
   {
     icon: "🏠",
     text: "GitHub 仓库",
     desc: "查看源码、历史提交和项目结构",
-    href: "https://github.com/Azek431/cysj-data",
+    href: repoUrl.value,
   },
   {
     icon: "🧭",
@@ -57,7 +61,7 @@ const links = [
     desc: "查看资料库维护与版本变化",
     href: "/维护与报告/更新日志入口导航",
   },
-];
+]);
 </script>
 
 <template>
