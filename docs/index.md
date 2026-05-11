@@ -4,7 +4,7 @@ title: 创游世界引擎文档
 description: Azek431/cysj-data 配套知识库与文档站，面向创游世界用户的可导航、可追溯、可检索知识库。
 author: Azek431
 date: 2026-05-10
-updated: 2026-05-10
+updated: 2026-05-11
 keywords:
   - 创游世界
   - 文档
@@ -14,7 +14,7 @@ keywords:
   - 知识库
 
 hero:
-  name: Azek 创游世界引擎文档
+  name: 创游世界引擎文档
   text: 让创游世界知识库变得更清晰、更可搜索、更易贡献
   tagline: 系统整理创游世界引擎脚本、UI、项目设计、OCR 证据、版本演进与社区维护方案。
   actions:

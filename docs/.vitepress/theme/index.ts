@@ -11,3 +11,4 @@ export default {
   extends: DefaultTheme,
   Layout,
 } satisfies Theme;
+import "./styles/page-meta-compact.css";

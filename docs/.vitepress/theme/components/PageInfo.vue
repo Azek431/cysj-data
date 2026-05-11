@@ -1,106 +1,192 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
-import { useData } from "vitepress";
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
+import { useData, useRoute } from "vitepress";
 
-const { page, frontmatter } = useData();
+const { page, site } = useData();
+const route = useRoute();
 
 const wordCount = ref(0);
 const readingTime = ref(0);
 
-const showMeta = computed(() => {
-  return (
-    frontmatter.value.layout !== "home" && frontmatter.value.meta !== false
-  );
-});
+let timer: ReturnType<typeof setTimeout> | undefined;
 
 const author = computed(() => {
-  return frontmatter.value.editor || frontmatter.value.author || "Azek431";
-});
-
-const authorUrl = computed(() => {
   return (
-    frontmatter.value.editorUrl ||
-    frontmatter.value.authorUrl ||
-    "https://github.com/Azek431"
+    page.value?.frontmatter?.author ||
+    page.value?.frontmatter?.editor ||
+    site.value?.themeConfig?.author ||
+    "Azek431"
   );
 });
 
-const formatDate = (value: unknown) => {
+const rawCreated = computed(() => {
+  return (
+    page.value?.frontmatter?.date || page.value?.frontmatter?.created || ""
+  );
+});
+
+const rawUpdated = computed(() => {
+  return page.value?.frontmatter?.updated || page.value?.lastUpdated || "";
+});
+
+function formatDate(value: unknown) {
   if (!value) return "";
 
-  if (typeof value === "number") {
-    return new Date(value).toLocaleDateString("zh-CN", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
+  try {
+    const date = new Date(value as string);
+
+    if (!Number.isNaN(date.getTime())) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    return String(value);
+  } catch {
+    return String(value);
+  }
+}
+
+const formattedCreated = computed(() => formatDate(rawCreated.value));
+const formattedUpdated = computed(() => formatDate(rawUpdated.value));
+
+function countReadableText(text: string) {
+  const cleaned = text
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!cleaned) return 0;
+
+  const cjkCount = (
+    cleaned.match(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/g) || []
+  ).length;
+
+  const englishWordCount = (
+    cleaned
+      .replace(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/g, " ")
+      .match(/[A-Za-z0-9]+(?:[-_./][A-Za-z0-9]+)*/g) || []
+  ).length;
+
+  return cjkCount + englishWordCount;
+}
+
+function calculatePageStats() {
+  if (typeof document === "undefined") return;
+
+  const content = document.querySelector(".vp-doc") as HTMLElement | null;
+
+  if (!content) {
+    wordCount.value = 0;
+    readingTime.value = 0;
+    return;
   }
 
-  const date = new Date(String(value));
-  if (!Number.isNaN(date.getTime())) {
-    return date.toLocaleDateString("zh-CN", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-  }
+  const cloned = content.cloneNode(true) as HTMLElement;
 
-  return String(value);
-};
+  cloned
+    .querySelectorAll(
+      [
+        "script",
+        "style",
+        "svg",
+        ".cysj-meta-line",
+        ".cysj-actions",
+        ".VPDocFooter",
+        ".prev-next",
+      ].join(","),
+    )
+    .forEach((el) => el.remove());
 
-const created = computed(() => {
-  return formatDate(
-    frontmatter.value.created ||
-      frontmatter.value.date ||
-      frontmatter.value.updated ||
-      page.value.lastUpdated,
-  );
-});
+  const text = cloned.textContent || "";
+  const count = countReadableText(text);
 
-const updated = computed(() => {
-  return formatDate(frontmatter.value.updated || page.value.lastUpdated);
-});
+  wordCount.value = count;
+  readingTime.value = count > 0 ? Math.max(1, Math.ceil(count / 450)) : 0;
+}
+
+async function refreshPageStats() {
+  if (typeof window === "undefined") return;
+
+  wordCount.value = 0;
+  readingTime.value = 0;
+
+  await nextTick();
+
+  if (timer) window.clearTimeout(timer);
+
+  timer = window.setTimeout(() => {
+    calculatePageStats();
+  }, 120);
+}
 
 onMounted(() => {
-  const content = document.querySelector(".vp-doc");
-  const text = content?.textContent?.replace(/\s+/g, "").trim() || "";
+  refreshPageStats();
+});
 
-  if (text) {
-    wordCount.value = text.length;
-    readingTime.value = Math.max(1, Math.ceil(text.length / 500));
-  }
+watch(
+  () => route.path,
+  () => {
+    refreshPageStats();
+  },
+);
+
+watch(
+  () => page.value?.relativePath,
+  () => {
+    refreshPageStats();
+  },
+);
+
+onBeforeUnmount(() => {
+  if (timer) window.clearTimeout(timer);
 });
 </script>
 
 <template>
-  <div v-if="showMeta" class="cysj-doc-meta-line">
-    <span v-if="created" class="cysj-doc-meta-item">
-      <span class="cysj-doc-meta-label">写作日期</span>
-      <span>{{ created }}</span>
+  <div v-if="page.value?.frontmatter?.layout !== 'home'" class="cysj-meta-line">
+    <span class="cysj-meta-item">
+      <span class="cysj-meta-label">写作日期</span>
+      <span class="cysj-meta-value">{{ formattedCreated || "待补充" }}</span>
     </span>
 
-    <span class="cysj-doc-meta-item">
-      <span class="cysj-doc-meta-label">字数</span>
-      <span v-if="wordCount">约 {{ wordCount }} 字</span>
-      <span v-else>计算中</span>
+    <span class="cysj-meta-dot">·</span>
+
+    <span class="cysj-meta-item">
+      <span class="cysj-meta-label">字数</span>
+      <span class="cysj-meta-value">
+        <template v-if="wordCount > 0">约 {{ wordCount }} 字</template>
+        <template v-else>—</template>
+      </span>
     </span>
 
-    <span class="cysj-doc-meta-item">
-      <span class="cysj-doc-meta-label">阅读时间</span>
-      <span v-if="readingTime">约 {{ readingTime }} 分钟</span>
-      <span v-else>计算中</span>
+    <span class="cysj-meta-dot">·</span>
+
+    <span class="cysj-meta-item">
+      <span class="cysj-meta-label">阅读时长</span>
+      <span class="cysj-meta-value">
+        <template v-if="readingTime > 0">约 {{ readingTime }} 分钟</template>
+        <template v-else>—</template>
+      </span>
     </span>
 
-    <span v-if="updated" class="cysj-doc-meta-item">
-      <span class="cysj-doc-meta-label">最后更新</span>
-      <span>{{ updated }}</span>
+    <span class="cysj-meta-dot">·</span>
+
+    <span class="cysj-meta-item">
+      <span class="cysj-meta-label">维护者</span>
+      <span class="cysj-meta-value">{{ author }}</span>
     </span>
 
-    <span class="cysj-doc-meta-item">
-      <span class="cysj-doc-meta-label">维护者</span>
-      <a :href="authorUrl" target="_blank" rel="noreferrer">
-        {{ author }}
-      </a>
+    <span class="cysj-meta-dot">·</span>
+
+    <span class="cysj-meta-item">
+      <span class="cysj-meta-label">最后更新</span>
+      <span class="cysj-meta-value">{{ formattedUpdated || "待补充" }}</span>
     </span>
   </div>
 </template>

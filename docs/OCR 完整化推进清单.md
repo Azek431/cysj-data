@@ -1,3 +1,21 @@
+---
+title: OCR 完整化推进清单
+description: 创游世界 OCR 资料的推进任务表，记录截图材料转写状态、映射表进度与专题回链完成度。
+editor: Azek431
+status: 持续更新
+difficulty: 维护向
+evidence: 资料整理
+updated: 2026-05-05
+category: OCR资料
+version: v0.2.x
+tags:
+  - 创游世界
+  - OCR
+  - 推进清单
+  - 证据链
+  - 维护
+---
+
 # OCR 完整化推进清单
 
 一句话摘要：这是一份面向维护者的 OCR 推进任务表，用来记录哪些截图材料已经完成转写、哪些还在处理中、哪些还需要补回链和专题接入。
