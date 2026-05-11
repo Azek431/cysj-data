@@ -19,8 +19,16 @@ export const generatedSidebar = [
         "link": "/知识库扩展复盘与完善路线图"
       },
       {
-        "text": "创游世界引擎文档",
+        "text": "知识库总索引",
+        "link": "/知识库总索引"
+      },
+      {
+        "text": "创游世界知识库",
         "link": "/"
+      },
+      {
+        "text": "创游世界引擎文档",
+        "link": "/index.sync-conflict-20260511-192704-TLH66E4"
       },
       {
         "text": "OCR 完整化推进清单",
@@ -213,12 +221,12 @@ export const generatedSidebar = [
         "link": "/教程资料/常见问题与避坑指南"
       },
       {
-        "text": "创游世界新手常见问题速查",
-        "link": "/教程资料/创游世界新手常见问题速查"
+        "text": "创游世界编辑器基础入门",
+        "link": "/教程资料/创游世界编辑器基础入门"
       },
       {
-        "text": "创游世界新手常见问题FAQ",
-        "link": "/教程资料/创游世界新手常见问题FAQ"
+        "text": "创游世界新手常见问题速查",
+        "link": "/教程资料/创游世界新手常见问题速查"
       },
       {
         "text": "官方教程知识索引",
@@ -293,6 +301,10 @@ export const generatedSidebar = [
         "link": "/OCR资料/官方教程恢复后补OCR清单"
       },
       {
+        "text": "官方教程恢复后补 OCR 清单",
+        "link": "/OCR资料/官方教程恢复后补OCR清单.sync-conflict-20260511-191305-ZBADIBB"
+      },
+      {
         "text": "官方教程截图转文本索引",
         "link": "/OCR资料/官方教程截图转文本索引"
       },
@@ -319,8 +331,16 @@ export const generatedSidebar = [
         "link": "/OCR资料/OCR 完整化总表"
       },
       {
+        "text": "OCR 完整化总表",
+        "link": "/OCR资料/OCR 完整化总表.sync-conflict-20260511-191304-ZBADIBB"
+      },
+      {
         "text": "OCR 未识别与残缺清单",
         "link": "/OCR资料/OCR 未识别与残缺清单"
+      },
+      {
+        "text": "OCR 未识别与残缺清单",
+        "link": "/OCR资料/OCR 未识别与残缺清单.sync-conflict-20260511-191304-ZBADIBB"
       },
       {
         "text": "OCR 证据链说明",

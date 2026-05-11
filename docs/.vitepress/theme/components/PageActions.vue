@@ -2,16 +2,16 @@
 import { computed, ref } from "vue";
 import { useData, useRoute } from "vitepress";
 
-const { page, theme } = useData();
+const { page, site } = useData();
 const route = useRoute();
 const copied = ref(false);
 
 const showActions = computed(() => {
-  return page.value.frontmatter?.layout !== "home";
+  return page.value?.frontmatter?.layout !== "home";
 });
 
 const repo = computed(() => {
-  return String(theme.value.repo || "Azek431/cysj-data");
+  return String(site.value?.themeConfig?.repo || "Azek431/cysj-data");
 });
 
 const currentPath = computed(() => page.value?.relativePath || "");

@@ -1,17 +1,25 @@
 ---
 layout: home
-title: 创游世界引擎文档
-description: Azek431/cysj-data 配套知识库与文档站，面向创游世界用户的可导航、可追溯、可检索知识库。
+title: 创游世界知识库
+description: 创游世界引擎文档与知识库，涵盖脚本系统、UI设计、项目架构、组件系统、OCR证据、引擎更新、社区分析与维护报告。
 author: Azek431
 date: 2026-05-10
-updated: 2026-05-11
+updated: 2026-05-12
 keywords:
   - 创游世界
   - 文档
-  - OCR
   - 脚本
-  - 资料库
+  - 积木块
+  - 组件系统
+  - UI设计
+  - 广播机制
+  - 变量作用域
+  - OCR资料
+  - 引擎更新
+  - 游戏开发
+  - 自定义组件
   - 知识库
+  - VitePress
 
 hero:
   name: 创游世界引擎文档
