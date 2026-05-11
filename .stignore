@@ -157,3 +157,12 @@ config.ini
 secret.txt
 *.local
 
+
+# =========================
+# Generated / cache files
+# =========================
+
+# =========================
+# Syncthing conflict files
+# =========================
+*sync-conflict*

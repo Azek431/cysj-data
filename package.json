@@ -4,14 +4,15 @@
     "vitepress": "1.6.4"
   },
   "scripts": {
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
+    "docs:dev": "pnpm run docs:sidebar && vitepress dev docs --host 0.0.0.0",
+    "docs:build": "pnpm run docs:sidebar && vitepress build docs",
+    "docs:preview": "vitepress preview docs --host 0.0.0.0",
     "docs:dev:host": "vitepress dev docs --host 0.0.0.0 --port 5173",
     "docs:preview:host": "vitepress preview docs --host 0.0.0.0 --port 4173",
     "docs:clean": "node scripts/clean-docs.mjs",
     "docs:fresh": "pnpm run docs:clean && pnpm run docs:build",
-    "docs:ui:check": "node scripts/check-docs-ui.mjs"
+    "docs:ui:check": "node scripts/check-docs-ui.mjs",
+    "docs:sidebar": "node scripts/generate-sidebar.mjs"
   },
   "name": "cysj-data",
   "version": "0.1.0",

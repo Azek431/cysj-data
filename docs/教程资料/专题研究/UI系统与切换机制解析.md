@@ -1,3 +1,23 @@
+---
+title: UI系统与切换机制解析
+description: 解析创游世界 UI 系统的三类 UI（地图 UI / 操作 UI / 物体 UI）、切换机制、组件化设计思维与联机 UI 更新方向。
+editor: Azek431
+status: 已结构化
+difficulty: 进阶
+evidence: E2 OCR/转写证据 + E3 归纳结论
+updated: 2026-05-11
+category: 教程资料
+version: v0.2.x
+tags:
+  - 创游世界
+  - UI系统
+  - 地图UI
+  - 操作UI
+  - 物体UI
+  - UI切换
+  - 联机UI
+---
+
 # UI系统与切换机制解析
 
 本文基于官方教程截图中关于 UI 切换、地图 UI、操作 UI、物体 UI 的说明，整理创游世界 UI 系统的结构与常见误区。

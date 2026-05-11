@@ -126,3 +126,12 @@ __pycache__/
 .cache/
 .temp/
 
+
+# =========================
+# Syncthing conflict files
+# =========================
+*.sync-conflict-*
+*sync-conflict*
+*.tmp
+*.bak
+*.old
