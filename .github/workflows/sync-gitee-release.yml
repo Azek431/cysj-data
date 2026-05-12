@@ -1,0 +1,86 @@
+name: Sync GitHub Release to Gitee
+
+on:
+  release:
+    types: [published, edited]
+
+jobs:
+  sync-gitee-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for Gitee mirror to sync tag
+        run: sleep 120
+
+      - name: Create or update Gitee release
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
+          GITEE_REPO: ${{ secrets.GITEE_REPO }}
+          TAG_NAME: ${{ github.event.release.tag_name }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+          PRERELEASE: ${{ github.event.release.prerelease }}
+        run: |
+          python3 <<'PY'
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+          import urllib.error
+
+          token = os.environ["GITEE_TOKEN"]
+          owner = os.environ["GITEE_OWNER"]
+          repo = os.environ["GITEE_REPO"]
+          tag = os.environ["TAG_NAME"]
+          name = os.environ.get("RELEASE_NAME") or tag
+          body = os.environ.get("RELEASE_BODY") or ""
+          prerelease = os.environ.get("PRERELEASE", "false").lower() == "true"
+
+          base = f"https://gitee.com/api/v5/repos/{owner}/{repo}"
+
+          def request(method, url, data=None):
+              req = urllib.request.Request(url, method=method)
+
+              encoded = None
+              if data is not None:
+                  encoded = urllib.parse.urlencode(data).encode("utf-8")
+                  req.add_header("Content-Type", "application/x-www-form-urlencoded")
+
+              try:
+                  with urllib.request.urlopen(req, data=encoded, timeout=60) as res:
+                      text = res.read().decode("utf-8")
+                      return json.loads(text) if text else None
+              except urllib.error.HTTPError as e:
+                  text = e.read().decode("utf-8", errors="replace")
+                  print(f"HTTP {e.code}: {text}")
+                  raise
+
+          releases_url = f"{base}/releases?access_token={urllib.parse.quote(token)}&per_page=100"
+          releases = request("GET", releases_url) or []
+
+          existing = None
+          for item in releases:
+              if item.get("tag_name") == tag:
+                  existing = item
+                  break
+
+          payload = {
+              "access_token": token,
+              "tag_name": tag,
+              "name": name,
+              "body": body,
+              "prerelease": "true" if prerelease else "false",
+              "target_commitish": "main",
+          }
+
+          if existing:
+              release_id = existing.get("id")
+              print(f"Updating Gitee release: {tag}, id={release_id}")
+              request("PATCH", f"{base}/releases/{release_id}", payload)
+          else:
+              print(f"Creating Gitee release: {tag}")
+              request("POST", f"{base}/releases", payload)
+
+          print("Gitee release sync done.")
+          PY
