@@ -3,6 +3,12 @@ name: Sync GitHub Release to Gitee
 on:
   release:
     types: [published, edited]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'v0.4.0'
+        required: true
+        type: string
 
 jobs:
   sync-gitee-release:
@@ -10,17 +16,60 @@ jobs:
 
     steps:
       - name: Wait for Gitee mirror to sync tag
-        run: sleep 120
+        run: sleep 180
+
+      - name: Get GitHub release data
+        id: gh_release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_TAG: ${{ github.event.release.tag_name }}
+          INPUT_TAG: ${{ inputs.tag }}
+        run: |
+          set -e
+
+          TAG="${EVENT_TAG:-$INPUT_TAG}"
+
+          if [ -z "$TAG" ]; then
+            echo "Missing release tag."
+            exit 1
+          fi
+
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+          python3 <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          token = os.environ["GH_TOKEN"]
+          repo = os.environ["GITHUB_REPOSITORY"]
+          tag = os.environ.get("EVENT_TAG") or os.environ.get("INPUT_TAG")
+
+          url = f"https://api.github.com/repos/{repo}/releases/tags/{tag}"
+          req = urllib.request.Request(url)
+          req.add_header("Authorization", f"Bearer {token}")
+          req.add_header("Accept", "application/vnd.github+json")
+
+          with urllib.request.urlopen(req, timeout=60) as res:
+              data = json.loads(res.read().decode("utf-8"))
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"name={data.get('name') or tag}\n")
+              out.write(f"prerelease={str(data.get('prerelease', False)).lower()}\n")
+              out.write("body<<EOF\n")
+              out.write(data.get("body") or "")
+              out.write("\nEOF\n")
+          PY
 
       - name: Create or update Gitee release
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
           GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
           GITEE_REPO: ${{ secrets.GITEE_REPO }}
-          TAG_NAME: ${{ github.event.release.tag_name }}
-          RELEASE_NAME: ${{ github.event.release.name }}
-          RELEASE_BODY: ${{ github.event.release.body }}
-          PRERELEASE: ${{ github.event.release.prerelease }}
+          TAG_NAME: ${{ steps.gh_release.outputs.tag }}
+          RELEASE_NAME: ${{ steps.gh_release.outputs.name }}
+          RELEASE_BODY: ${{ steps.gh_release.outputs.body }}
+          PRERELEASE: ${{ steps.gh_release.outputs.prerelease }}
         run: |
           python3 <<'PY'
           import json
@@ -28,6 +77,12 @@ jobs:
           import urllib.parse
           import urllib.request
           import urllib.error
+
+          required = ["GITEE_TOKEN", "GITEE_OWNER", "GITEE_REPO", "TAG_NAME"]
+          missing = [key for key in required if not os.environ.get(key)]
+
+          if missing:
+              raise SystemExit(f"Missing required env/secrets: {', '.join(missing)}")
 
           token = os.environ["GITEE_TOKEN"]
           owner = os.environ["GITEE_OWNER"]
