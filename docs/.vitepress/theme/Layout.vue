@@ -2,20 +2,23 @@
 import DefaultTheme from "vitepress/theme";
 import PageInfo from "./components/PageInfo.vue";
 import PageActions from "./components/PageActions.vue";
-import PerPageHead from "./components/PerPageHead.vue";
+import SiteTools from "./components/SiteTools.vue";
 
 const { Layout } = DefaultTheme;
 </script>
 
 <template>
   <Layout>
-    <PerPageHead />
-    <template #doc-top>
+    <template #doc-before>
       <PageInfo />
     </template>
 
-    <template #doc-bottom>
+    <template #doc-after>
       <PageActions />
+    </template>
+
+    <template #aside-top>
+      <SiteTools />
     </template>
   </Layout>
 </template>
