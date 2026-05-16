@@ -151,7 +151,13 @@ export default defineConfig({
     socialLinks: [
       {
         icon: 'github',
-        link: 'https://github.com/Azek431/cysj-data'
+        link: 'https://github.com/Azek431/cysj-data',
+        ariaLabel: 'GitHub 仓库'
+      },
+      {
+        icon: 'gitee',
+        link: 'https://gitee.com/Azek431/cysj-data',
+        ariaLabel: 'Gitee 镜像仓库'
       }
     ],
 

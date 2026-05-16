@@ -327,3 +327,13 @@
     flex: 1;
   }
 }
+
+/* Gitee 镜像仓库图标强调色 */
+.VPSocialLink[aria-label="Gitee 镜像仓库"] {
+  color: #c71d23;
+}
+
+.VPSocialLink[aria-label="Gitee 镜像仓库"]:hover {
+  color: #e33b3f;
+}
+
