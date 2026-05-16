@@ -11,20 +11,8 @@ export const generatedSidebar = [
         "link": "/关于"
       },
       {
-        "text": "知识库扩展复盘与完善路线图",
-        "link": "/知识库扩展复盘与完善路线图"
-      },
-      {
-        "text": "知识库总索引",
-        "link": "/知识库总索引"
-      },
-      {
         "text": "创游世界资料库",
         "link": "/"
-      },
-      {
-        "text": "OCR 完整化推进清单",
-        "link": "/OCR 完整化推进清单"
       }
     ]
   },
@@ -33,7 +21,7 @@ export const generatedSidebar = [
     "collapsed": false,
     "items": [
       {
-        "text": "按问题查资料",
+        "text": "创游世界资料库",
         "link": "/总索引与导航/按问题查资料"
       },
       {
@@ -55,6 +43,10 @@ export const generatedSidebar = [
       {
         "text": "创游世界新手学习路线",
         "link": "/总索引与导航/新手阅读路线"
+      },
+      {
+        "text": "知识库总索引",
+        "link": "/总索引与导航/知识库总索引"
       },
       {
         "text": "知识库 FAQ",
@@ -567,6 +559,10 @@ export const generatedSidebar = [
         ]
       },
       {
+        "text": "OCR 完整化推进清单",
+        "link": "/OCR资料/OCR 完整化推进清单"
+      },
+      {
         "text": "OCR 完整化总表",
         "link": "/OCR资料/OCR 完整化总表"
       },
@@ -859,6 +855,10 @@ export const generatedSidebar = [
       {
         "text": "知识库结构与维护指南",
         "link": "/维护与报告/知识库结构与维护指南"
+      },
+      {
+        "text": "知识库扩展复盘与完善路线图",
+        "link": "/维护与报告/知识库扩展复盘与完善路线图"
       },
       {
         "text": "知识库深度优化报告",

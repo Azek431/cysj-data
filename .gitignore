@@ -148,3 +148,8 @@ docs/index.md.bak.*
 *sync-conflict*
 *.sync-conflict-*
 __pycache__/
+
+docs/.vitepress.bak.*/
+docs/index.md.bak.*
+*.bak.*
+
