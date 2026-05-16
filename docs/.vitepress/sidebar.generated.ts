@@ -41,6 +41,20 @@ export const generatedSidebar = [
         "link": "/总索引与导航/快速入门索引"
       },
       {
+        "text": "历史归档",
+        "collapsed": true,
+        "items": [
+          {
+            "text": "知识库 FAQ",
+            "link": "/总索引与导航/历史归档/知识库FAQ"
+          },
+          {
+            "text": "快速开始",
+            "link": "/总索引与导航/历史归档/getting-started"
+          }
+        ]
+      },
+      {
         "text": "创游世界新手入门指南",
         "link": "/总索引与导航/新手入门指南"
       },
@@ -51,10 +65,6 @@ export const generatedSidebar = [
       {
         "text": "知识库总索引",
         "link": "/总索引与导航/知识库总索引"
-      },
-      {
-        "text": "知识库 FAQ",
-        "link": "/总索引与导航/知识库FAQ"
       },
       {
         "text": "自动生成文档目录",
@@ -549,6 +559,28 @@ export const generatedSidebar = [
         "link": "/OCR资料/基础写脚本界面截图转文本"
       },
       {
+        "text": "历史归档",
+        "collapsed": true,
+        "items": [
+          {
+            "text": "OCR 未完成内容补齐报告 V2",
+            "link": "/OCR资料/历史归档/OCR 未完成内容补齐报告V2"
+          },
+          {
+            "text": "OCR 未完成内容补齐报告 V3",
+            "link": "/OCR资料/历史归档/OCR 未完成内容补齐报告V3"
+          },
+          {
+            "text": "OCR 未完成内容专项补齐报告 V4",
+            "link": "/OCR资料/历史归档/OCR 未完成内容专项补齐报告"
+          },
+          {
+            "text": "OCR 专题回链示例",
+            "link": "/OCR资料/历史归档/OCR 专题回链示例"
+          }
+        ]
+      },
+      {
         "text": "引擎更新截图转文本",
         "link": "/OCR资料/引擎更新截图转文本"
       },
@@ -579,28 +611,12 @@ export const generatedSidebar = [
         "link": "/OCR资料/OCR 未识别与残缺清单"
       },
       {
-        "text": "OCR 未完成内容补齐报告 V2",
-        "link": "/OCR资料/OCR 未完成内容补齐报告V2"
-      },
-      {
-        "text": "OCR 未完成内容补齐报告 V3",
-        "link": "/OCR资料/OCR 未完成内容补齐报告V3"
-      },
-      {
-        "text": "OCR 未完成内容专项补齐报告 V4",
-        "link": "/OCR资料/OCR 未完成内容专项补齐报告"
-      },
-      {
         "text": "OCR 证据链说明",
         "link": "/OCR资料/OCR 证据链说明"
       },
       {
         "text": "OCR 证据使用规范",
         "link": "/OCR资料/OCR 证据使用规范"
-      },
-      {
-        "text": "OCR 专题回链示例",
-        "link": "/OCR资料/OCR 专题回链示例"
       },
       {
         "text": "OCR 状态词与回链规范",
@@ -837,6 +853,46 @@ export const generatedSidebar = [
         "link": "/维护与报告/后续研究路线图"
       },
       {
+        "text": "历史归档",
+        "collapsed": true,
+        "items": [
+          {
+            "text": "AI自动文档建设报告",
+            "collapsed": true,
+            "items": [
+              {
+                "text": "AI自动文档建设报告",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告"
+              },
+              {
+                "text": "AI自动文档建设报告V2",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告V2"
+              },
+              {
+                "text": "AI自动文档建设报告V3",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告V3"
+              },
+              {
+                "text": "AI自动文档建设报告V4",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告V4"
+              },
+              {
+                "text": "AI自动文档建设报告V5",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告V5"
+              },
+              {
+                "text": "AI自动文档建设报告V6",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告V6"
+              },
+              {
+                "text": "AI自动文档建设报告V7",
+                "link": "/维护与报告/历史归档/AI自动文档建设报告/AI自动文档建设报告V7"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "text": "内容质量审计清单",
         "link": "/维护与报告/内容质量审计清单"
       },
@@ -885,50 +941,12 @@ export const generatedSidebar = [
         "link": "/维护与报告/AI自动维护复盘记录"
       },
       {
-        "text": "AI自动文档建设报告",
-        "link": "/维护与报告/AI自动文档建设报告"
-      },
-      {
-        "text": "AI自动文档建设报告V2",
-        "link": "/维护与报告/AI自动文档建设报告V2"
-      },
-      {
-        "text": "AI自动文档建设报告V3",
-        "link": "/维护与报告/AI自动文档建设报告V3"
-      },
-      {
-        "text": "AI自动文档建设报告V4",
-        "link": "/维护与报告/AI自动文档建设报告V4"
-      },
-      {
-        "text": "AI自动文档建设报告V5",
-        "link": "/维护与报告/AI自动文档建设报告V5"
-      },
-      {
-        "text": "AI自动文档建设报告V6",
-        "link": "/维护与报告/AI自动文档建设报告V6"
-      },
-      {
-        "text": "AI自动文档建设报告V7",
-        "link": "/维护与报告/AI自动文档建设报告V7"
-      },
-      {
         "text": "AI自动文档建设报告V8",
         "link": "/维护与报告/AI自动文档建设报告V8"
       },
       {
         "text": "OCR 未完成内容补齐报告 V3",
         "link": "/维护与报告/OCR专项建设报告_V3"
-      }
-    ]
-  },
-  {
-    "text": "guide",
-    "collapsed": false,
-    "items": [
-      {
-        "text": "快速开始",
-        "link": "/guide/getting-started"
       }
     ]
   }
