@@ -7,10 +7,6 @@ export const generatedSidebar = [
     "collapsed": false,
     "items": [
       {
-        "text": "错误点与优化点汇总",
-        "link": "/错误点与优化点汇总"
-      },
-      {
         "text": "关于",
         "link": "/关于"
       },
@@ -25,10 +21,6 @@ export const generatedSidebar = [
       {
         "text": "创游世界引擎文档",
         "link": "/"
-      },
-      {
-        "text": "创游世界文档格式示例",
-        "link": "/markdown-examples"
       },
       {
         "text": "OCR 完整化推进清单",
@@ -775,6 +767,10 @@ export const generatedSidebar = [
         "link": "/元信息/创游世界术语表"
       },
       {
+        "text": "创游世界文档格式示例",
+        "link": "/元信息/创游世界文档格式示例"
+      },
+      {
         "text": "创游世界资料库深入研究报告",
         "link": "/元信息/创游世界资料库深入研究报告"
       },
@@ -807,6 +803,10 @@ export const generatedSidebar = [
       {
         "text": "创游世界知识库文档格式规范",
         "link": "/维护与报告/创游世界知识库文档格式规范"
+      },
+      {
+        "text": "错误点与优化点汇总",
+        "link": "/维护与报告/错误点与优化点汇总"
       },
       {
         "text": "待验证问题清单",

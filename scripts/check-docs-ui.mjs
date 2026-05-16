@@ -6,10 +6,20 @@ const requiredFiles = [
   "docs/.vitepress/theme/Layout.vue",
   "docs/.vitepress/theme/components/PageInfo.vue",
   "docs/.vitepress/theme/components/PageActions.vue",
+  "docs/.vitepress/theme/styles/cysj-pro.css",
+  "docs/public/llms.txt",
+  "docs/public/robots.txt",
+];
+
+const forbiddenFiles = [
+  "docs/.vitepress/theme/custom.css",
+  "docs/.vitepress/theme/styles/premium-ui.css",
+  "docs/.vitepress/theme/styles/polish.css",
   "docs/.vitepress/theme/styles/polish-v3.css",
   "docs/.vitepress/theme/styles/polish-v4.css",
   "docs/.vitepress/theme/styles/minimal-doc-ui.css",
-  "docs/public/llms.txt",
+  "docs/.vitepress/theme/styles/page-meta-compact.css",
+  "docs/public/sitemap.xml",
 ];
 
 let failed = false;
@@ -18,9 +28,16 @@ console.log("CYSJ Docs UI check\n");
 
 for (const file of requiredFiles) {
   if (fs.existsSync(file)) {
-    console.log(`OK  ${file}`);
+    console.log(`OK ${file}`);
   } else {
     console.log(`MISS ${file}`);
+    failed = true;
+  }
+}
+
+for (const file of forbiddenFiles) {
+  if (fs.existsSync(file)) {
+    console.log(`FORBIDDEN ${file}`);
     failed = true;
   }
 }
@@ -36,7 +53,7 @@ try {
     console.log(tracked);
     failed = true;
   } else {
-    console.log("\nOK  generated files are not tracked by git");
+    console.log("\nOK generated files are not tracked by git");
   }
 } catch {
   console.log("\nSKIP git tracked files check");
