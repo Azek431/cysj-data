@@ -15,8 +15,8 @@ hero:
       text: 查看知识库总导航
       link: /总索引与导航/创游世界知识库总导航
     - theme: alt
-      text: 进入脚本系统
-      link: /脚本系统/脚本界面与积木知识索引
+      text: 按问题查资料
+      link: /总索引与导航/按问题查资料
 
 features:
   - icon: 🧭
