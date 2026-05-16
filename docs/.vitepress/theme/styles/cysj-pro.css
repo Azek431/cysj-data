@@ -3,8 +3,9 @@
   --vp-c-brand-2: #3b82f6;
   --vp-c-brand-3: #1d4ed8;
 
-  --cysj-card-border: rgba(100, 116, 139, 0.16);
-  --cysj-card-shadow: 0 14px 34px rgba(15, 23, 42, 0.06);
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: #f8fafc;
+  --vp-c-bg-alt: #f1f5f9;
 
   --vp-home-hero-name-color: transparent;
   --vp-home-hero-name-background: linear-gradient(
@@ -13,30 +14,62 @@
     #7c3aed 48%,
     #06b6d4 100%
   );
+
   --vp-home-hero-image-background-image:
-    radial-gradient(
-      circle at 40% 35%,
-      rgba(37, 99, 235, 0.35),
-      transparent 30%
-    ),
-    radial-gradient(
-      circle at 62% 55%,
-      rgba(124, 58, 237, 0.24),
-      transparent 34%
-    ),
-    radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.16), transparent 42%);
-  --vp-home-hero-image-filter: blur(72px);
+    radial-gradient(circle at 40% 35%, rgba(37, 99, 235, 0.34), transparent 32%),
+    radial-gradient(circle at 62% 55%, rgba(124, 58, 237, 0.24), transparent 36%),
+    radial-gradient(circle at 52% 48%, rgba(6, 182, 212, 0.18), transparent 44%);
+  --vp-home-hero-image-filter: blur(76px);
+
+  --cysj-radius-lg: 22px;
+  --cysj-shadow-card: 0 16px 42px rgba(15, 23, 42, 0.08);
+  --cysj-shadow-card-hover: 0 24px 60px rgba(15, 23, 42, 0.14);
 }
 
 .dark {
-  --cysj-card-border: rgba(148, 163, 184, 0.14);
-  --cysj-card-shadow: 0 18px 42px rgba(0, 0, 0, 0.22);
+  --vp-c-bg: #020617;
+  --vp-c-bg-soft: #0f172a;
+  --vp-c-bg-alt: #111827;
+}
+
+/* 顶部导航栏 */
+.VPNav {
+  backdrop-filter: blur(18px);
 }
 
 .VPNavBar {
-  backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid rgba(100, 116, 139, 0.14);
 }
 
+/* 全局阅读体验 */
+.vp-doc {
+  font-size: 16px;
+}
+
+.vp-doc p,
+.vp-doc li {
+  line-height: 1.9;
+}
+
+.vp-doc h1 {
+  font-weight: 950;
+  letter-spacing: -0.045em;
+}
+
+.vp-doc h2 {
+  margin-top: 42px;
+  padding-top: 28px;
+  border-top: 1px solid var(--vp-c-divider);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.vp-doc h3 {
+  margin-top: 28px;
+  font-weight: 850;
+}
+
+/* 首页 Hero */
 .VPHomeHero .name {
   font-weight: 950;
   letter-spacing: -0.055em;
@@ -55,28 +88,27 @@
   line-height: 1.85;
 }
 
+/* 首页按钮 */
 .VPHomeHero .actions {
   gap: 12px;
 }
 
-.VPButton {
-  border-radius: 999px !important;
+.VPHomeHero .action .VPButton {
+  border-radius: 999px;
   font-weight: 850;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
 }
 
+/* 首页功能卡片 */
 .VPFeature {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--cysj-card-border);
-  border-radius: 22px;
+  border-radius: var(--cysj-radius-lg);
+  border: 1px solid rgba(100, 116, 139, 0.16);
   background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.08), transparent 38%),
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.92),
-      rgba(248, 250, 252, 0.82)
-    );
-  box-shadow: var(--cysj-card-shadow);
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.08), transparent 40%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.84));
+  box-shadow: var(--cysj-shadow-card);
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
@@ -85,14 +117,14 @@
 
 .dark .VPFeature {
   background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.16), transparent 38%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.62));
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.18), transparent 40%),
+    linear-gradient(180deg, rgba(15, 23, 42, 0.78), rgba(2, 6, 23, 0.68));
 }
 
 .VPFeature:hover {
   transform: translateY(-4px);
   border-color: rgba(37, 99, 235, 0.35);
-  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.12);
+  box-shadow: var(--cysj-shadow-card-hover);
 }
 
 .VPFeature .title {
@@ -104,32 +136,20 @@
   line-height: 1.78;
 }
 
-.vp-doc {
-  font-size: 16px;
+/* 文档表格 */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
-.vp-doc h1 {
-  font-weight: 950;
-  letter-spacing: -0.04em;
-}
-
-.vp-doc h2 {
-  margin-top: 42px;
-  border-top: 1px solid var(--vp-c-divider);
-  padding-top: 28px;
-  font-weight: 900;
-  letter-spacing: -0.025em;
-}
-
-.vp-doc h3 {
+.vp-doc th {
+  background: rgba(37, 99, 235, 0.08);
   font-weight: 850;
 }
 
-.vp-doc p,
-.vp-doc li {
-  line-height: 1.9;
-}
-
+/* 引用块 */
 .vp-doc blockquote {
   border-radius: 14px;
   border-left: 4px solid var(--vp-c-brand-1);
@@ -137,25 +157,25 @@
   padding: 14px 18px;
 }
 
-.vp-doc table {
-  display: table;
-  width: 100%;
+/* 代码块 */
+.vp-doc div[class*='language-'] {
+  border-radius: 16px;
 }
 
-.vp-doc code {
-  border-radius: 7px;
+/* 行内代码 */
+.vp-doc :not(pre) > code {
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-weight: 700;
 }
 
-.vp-doc a {
-  text-underline-offset: 3px;
-}
-
+/* 页面顶部元信息 */
 .cysj-meta-line {
   display: flex;
   flex-wrap: wrap;
   gap: 6px 12px;
-  margin: 0 0 18px;
-  padding: 8px 0;
+  margin: 0 0 20px;
+  padding: 10px 0;
   border-bottom: 1px solid var(--vp-c-divider);
   color: var(--vp-c-text-2);
   font-size: 13px;
@@ -166,11 +186,12 @@
   white-space: nowrap;
 }
 
+/* 右侧工具 */
 .cysj-tools {
   margin-bottom: 16px;
-  padding: 12px;
+  padding: 14px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
+  border-radius: 18px;
   background: var(--vp-c-bg-soft);
 }
 
@@ -189,7 +210,7 @@
 
 .cysj-tools__links a {
   display: inline-flex;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 999px;
   background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
@@ -202,17 +223,18 @@
   color: var(--vp-c-brand-1);
 }
 
+/* 底部贡献模块 */
 .cysj-actions {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 18px;
   align-items: center;
   margin-top: 52px;
-  padding: 22px;
-  border: 1px solid var(--cysj-card-border);
+  padding: 24px;
+  border: 1px solid rgba(100, 116, 139, 0.16);
   border-radius: 24px;
   background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.1), transparent 34%),
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.1), transparent 36%),
     linear-gradient(135deg, var(--vp-c-bg-soft), var(--vp-c-bg));
 }
 
@@ -259,10 +281,6 @@
   font-weight: 850;
   text-decoration: none;
   cursor: pointer;
-  transition:
-    transform 0.16s ease,
-    opacity 0.16s ease,
-    border-color 0.16s ease;
 }
 
 .cysj-action-btn.is-primary {
@@ -274,9 +292,9 @@
 .cysj-action-btn:hover {
   transform: translateY(-1px);
   text-decoration: none;
-  opacity: 0.92;
 }
 
+/* 移动端适配 */
 @media (max-width: 960px) {
   .cysj-tools {
     display: none;
