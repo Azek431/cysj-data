@@ -1,0 +1,69 @@
+name: 文档内容错误反馈
+description: 反馈文档中的错别字、错误结论、过期内容、描述不准确等问题
+title: "修正："
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈文档问题。请尽量提供具体页面、问题位置和建议修改内容，这样更容易修正。
+
+  - type: input
+    id: page
+    attributes:
+      label: 问题页面
+      description: 请填写出现问题的文档页面链接，或者文档路径。
+      placeholder: "例如：https://cysjdocs.dpdns.org/脚本系统/脚本界面与积木知识索引"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: problem_type
+    attributes:
+      label: 问题类型
+      multiple: true
+      options:
+        - 错别字 / 语病
+        - 内容过期
+        - 结论错误
+        - 表述不清楚
+        - 分类不合理
+        - 缺少证据来源
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_content
+    attributes:
+      label: 当前有问题的内容
+      description: 请粘贴有问题的原文，或者说明大概位置。
+      placeholder: "例如：某段说 xxx，但实际应该是 xxx。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_content
+    attributes:
+      label: 建议修改为
+      description: 如果你知道应该怎么改，可以直接写出建议内容。
+      placeholder: "建议改成：..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据或说明
+      description: 如果有截图、OCR、官方说明、实测结果，可以放在这里。
+      placeholder: "例如：截图、链接、OCR 原文、实测步骤等。"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我确认这个问题与创游世界资料库文档内容有关。
+          required: true

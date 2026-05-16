@@ -1,0 +1,63 @@
+name: 文档站体验问题
+description: 反馈首页、搜索、导航、移动端、暗色模式、UI 显示等体验问题
+title: "体验："
+labels: ["bug", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        这个模板用于反馈文档站体验问题，例如搜索不好用、移动端显示异常、导航不清晰、按钮样式问题等。
+
+  - type: input
+    id: page
+    attributes:
+      label: 问题页面
+      description: 请填写出现体验问题的页面链接。
+      placeholder: "例如：https://cysjdocs.dpdns.org/"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 体验问题类型
+      multiple: true
+      options:
+        - 首页信息不清楚
+        - 搜索结果不准确
+        - 导航不好找
+        - 移动端显示异常
+        - 深色模式显示异常
+        - 页面加载慢
+        - 文字排版不好读
+        - 图标 / 按钮 / 卡片样式问题
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: detail
+    attributes:
+      label: 具体问题
+      description: 请描述你遇到的问题，最好写出复现步骤。
+      placeholder: "例如：手机端打开首页时，某个表格太宽，需要横向滚动。"
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: 设备和浏览器
+      description: 可选，但有助于定位 UI 问题。
+      placeholder: "例如：Android Chrome / Windows Edge / iPhone Safari"
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: 截图或补充说明
+      description: 可以上传截图或补充更多信息。
+      placeholder: "截图、录屏、控制台报错等。"
+    validations:
+      required: false

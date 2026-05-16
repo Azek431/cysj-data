@@ -1,0 +1,68 @@
+name: OCR 资料修正
+description: 修正 OCR 识别错误、截图编号、证据链、原文转写等问题
+title: "OCR："
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        OCR 资料是本资料库的重要证据来源。请尽量提供原始截图、识别文本和建议修正内容。
+
+  - type: input
+    id: ocr_page
+    attributes:
+      label: OCR 相关页面
+      description: 请填写 OCR 页面链接或文档路径。
+      placeholder: "例如：https://cysjdocs.dpdns.org/OCR资料/OCR%20完整化总表"
+    validations:
+      required: true
+
+  - type: input
+    id: image_id
+    attributes:
+      label: 图片编号 / 资料编号
+      description: 如果有图片编号、OCR 编号、截图编号，请填写。
+      placeholder: "例如：IMG-001 / OCR-xxx / 暂无编号"
+    validations:
+      required: false
+
+  - type: textarea
+    id: wrong_text
+    attributes:
+      label: 当前 OCR 内容
+      description: 请粘贴当前识别错误、残缺或需要修正的内容。
+      placeholder: "当前写的是：..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: fixed_text
+    attributes:
+      label: 建议修正内容
+      description: 请填写你认为更准确的内容。
+      placeholder: "建议改为：..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 证据材料
+      description: 可以上传截图、粘贴图片链接、说明来源或补充上下文。
+      placeholder: "例如：原图截图、官方界面、视频截图、人工校对说明等。"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: evidence_level
+    attributes:
+      label: 证据等级判断
+      description: 如果不确定，可以选“不确定”。
+      options:
+        - E1 原始截图 / 原始证据
+        - E2 整理证据
+        - E3 人工归纳
+        - E4 待验证
+        - 不确定
+    validations:
+      required: true

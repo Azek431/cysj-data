@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 在线文档站
+    url: https://cysjdocs.dpdns.org/
+    about: 如果只是查资料，建议优先访问在线文档站。
+  - name: Gitee 镜像仓库
+    url: https://gitee.com/Azek431/cysj-data
+    about: 如果 GitHub 访问较慢，可以查看 Gitee 镜像。
+  - name: Telegram 主频道
+    url: https://t.me/AzekMain
+    about: 关注项目维护动态与作者更新。
