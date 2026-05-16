@@ -1,0 +1,49 @@
+name: 失效链接 / 404 反馈
+description: 反馈文档站中无法打开、跳转错误、404、锚点失效等链接问题
+title: "修复："
+labels: ["bug", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        请尽量提供“从哪个页面点过去”和“点到哪里出错”，这样方便定位死链。
+
+  - type: input
+    id: source_page
+    attributes:
+      label: 出现问题的页面
+      description: 你是在哪个页面发现这个链接有问题的？
+      placeholder: "例如：https://cysjdocs.dpdns.org/总索引与导航/按问题查资料"
+    validations:
+      required: true
+
+  - type: input
+    id: broken_link
+    attributes:
+      label: 失效链接
+      description: 请粘贴无法打开或跳转错误的链接。
+      placeholder: "例如：https://cysjdocs.dpdns.org/OCR资料/xxx"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: 问题表现
+      options:
+        - 404 页面不存在
+        - 链接跳错页面
+        - 锚点无法定位
+        - 页面可以打开但内容不对
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 其他说明
+      description: 可以补充浏览器、设备、截图、复现步骤等。
+      placeholder: "例如：手机端点击侧边栏时出现 404。"
+    validations:
+      required: false

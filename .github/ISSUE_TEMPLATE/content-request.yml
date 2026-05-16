@@ -1,0 +1,61 @@
+name: 新资料 / 新专题建议
+description: 建议新增文档、补充资料、整理专题、扩展教程内容
+title: "建议："
+labels: ["enhancement", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        如果你希望资料库新增某类内容，可以在这里提出建议。越具体越容易被整理进文档。
+
+  - type: input
+    id: topic
+    attributes:
+      label: 建议主题
+      description: 你希望新增或补充什么内容？
+      placeholder: "例如：创游世界变量广播实战教程 / 商店系统设计 / UI 弹窗教程"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: 推荐分类
+      options:
+        - 新手路线
+        - 脚本系统
+        - 项目设计
+        - OCR资料
+        - 核心研究
+        - 教程资料
+        - 元信息
+        - 维护与报告
+        - 不确定
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: 为什么需要这个内容？
+      description: 请说明这个资料能解决什么问题，适合谁看。
+      placeholder: "例如：很多新手不知道变量和广播怎么配合，所以希望新增一个实战教程。"
+    validations:
+      required: true
+
+  - type: textarea
+    id: material
+    attributes:
+      label: 可提供的资料
+      description: 如果你有截图、链接、OCR、视频、文字资料，可以放这里。
+      placeholder: "资料链接 / 截图 / 原文 / 你的整理思路..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我确认这个建议与创游世界资料库内容相关。
+          required: true
