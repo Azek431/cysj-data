@@ -2,6 +2,13 @@
 
 > 一个面向 **AI 检索、知识整理、学习研究与长期维护** 的创游世界资料仓库。
 
+## 在线入口
+
+- 文档站：https://cysjdocs.dpdns.org/
+- GitHub 仓库：https://github.com/Azek431/cysj-data
+- Gitee 镜像：https://gitee.com/Azek431/cysj-data
+
+如果你只是想查资料，推荐优先访问在线文档站，而不是直接翻仓库文件。
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-Knowledge%20Base-blue)](#仓库定位)
 [![Status](https://img.shields.io/badge/Status-持续整理中-brightgreen)](#维护原则)
@@ -59,25 +66,27 @@
 
 ---
 
-## 🚀 快速开始
+## 快速开始
 
-如果你是第一次进入本仓库，建议从下面几个入口开始：
+如果你是第一次进入本项目，推荐按下面顺序阅读：
 
-### 推荐入口
+### 在线阅读入口
 
-- `docs/总索引与导航/创游世界知识库总导航.md`
-- `docs/知识库总索引.md`
-- `docs/总索引与导航/新手阅读路线.md`
-- `docs/OCR资料/OCR资料导航.md`
-- `docs/后续研究路线图.md`
+- [创游世界资料库首页](https://cysjdocs.dpdns.org/)
+- [新手阅读路线](https://cysjdocs.dpdns.org/总索引与导航/新手阅读路线)
+- [按问题查资料](https://cysjdocs.dpdns.org/总索引与导航/按问题查资料)
+- [创游世界知识库总导航](https://cysjdocs.dpdns.org/总索引与导航/创游世界知识库总导航)
+- [脚本系统](https://cysjdocs.dpdns.org/脚本系统/脚本界面与积木知识索引)
+- [OCR 资料导航](https://cysjdocs.dpdns.org/OCR资料/OCR资料导航)
+- [资料证据等级说明](https://cysjdocs.dpdns.org/元信息/资料证据等级说明)
 
-### 适合快速浏览的路径
+### 本地预览
 
-- **想先看全库结构**：从总索引和标签体系开始
-- **想重点看教程与实战**：优先阅读新手路线和项目实战路线
-- **想做证据追溯**：进入 OCR 原文入口和编号映射表
-- **想了解长期规划**：查看研究报告与维护入口
+如果你希望在本地预览文档站，请执行：
 
+```bash
+pnpm install
+pnpm run docs:dev
 ---
 
 ## 💻 本地运行
