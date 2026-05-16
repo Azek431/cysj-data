@@ -1,6 +1,6 @@
 ---
 date: 2026-04-22
-updated: 2026-05-13
+updated: 2026-05-16
 title: "OCR 专题回链示例"
 ---
 # OCR 专题回链示例
@@ -115,3 +115,4 @@ title: "OCR 专题回链示例"
 - `docs/OCR资料/OCR资料导航.md`
 - `docs/OCR资料/OCR 证据使用规范.md`
 - `docs/维护与报告/维护与报告导航.md`
+

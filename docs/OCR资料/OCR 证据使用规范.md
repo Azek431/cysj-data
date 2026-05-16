@@ -5,7 +5,7 @@ editor: Azek431
 status: 已整理
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-13
+updated: 2026-05-16
 category: OCR资料
 version: v0.2.x
 tags:
@@ -190,3 +190,4 @@ OCR 文本不是圣旨，它只是中间层。
 - `docs/OCR资料/OCR 证据链说明.md`
 - `docs/维护与报告/维护检查清单.md`
 - `docs/总索引与导航/创游世界知识库总导航.md`
+

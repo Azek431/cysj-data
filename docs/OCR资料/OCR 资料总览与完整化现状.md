@@ -5,7 +5,7 @@ editor: Azek431
 status: 持续扩展中
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-13
+updated: 2026-05-16
 category: OCR资料
 version: v0.2.x
 tags:
@@ -415,3 +415,4 @@ tags:
 - 更可视化的版本覆盖表
 - 问题页处理前后对比区
 - 与映射表的双向引用清单
+

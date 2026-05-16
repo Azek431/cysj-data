@@ -5,7 +5,7 @@ editor: Azek431
 status: 已整理
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-13
+updated: 2026-05-16
 category: OCR资料
 version: v0.2.x
 tags:
@@ -115,3 +115,4 @@ tags:
 2. 将 `113929-120527` 中已确认主题的条目合并进正式 OCR 索引。
 3. 对评论区噪声较多的页面，仅保留教程正文、参数说明和关键结论。
 4. 对问答页保留 Q/A 主体，不建议保留全部评论。
+

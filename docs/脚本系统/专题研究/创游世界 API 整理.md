@@ -6,7 +6,7 @@ editor: Azek431
 status: 持续扩展中
 difficulty: 进阶
 evidence: E2（截图直接证据 + 多来源交叉归纳）
-updated: 2026-05-11
+updated: 2026-05-16
 category: 核心研究
 version: v0.2.x
 source: 脚本界面截图 OCR + 现有专题文档交叉整理
@@ -1028,3 +1028,4 @@ tags:
 - `创游世界对象域入口与组件分类总表.md`
 - `创游世界地图与系统脚本 API 总表.md`
 - `创游世界流程控制与时序语义整理.md`
+

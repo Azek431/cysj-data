@@ -5,7 +5,7 @@ editor: Azek431
 status: 深度整理
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-13
+updated: 2026-05-16
 category: OCR资料
 version: v0.2.x
 tags:
@@ -104,3 +104,4 @@ tags:
 2. 脚本截图编号段的继续回填
 3. 引擎更新版本页的“版本号 → 截图编号 → 功能点”闭环
 4. 高价值专题统一补齐来源截图编号与 OCR 回链
+
