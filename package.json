@@ -1,5 +1,8 @@
 {
   "devDependencies": {
+    "dayjs": "^1.11.20",
+    "fast-glob": "^3.3.3",
+    "gray-matter": "^4.0.3",
     "prettier": "^3.8.3",
     "vitepress": "1.6.4"
   },
