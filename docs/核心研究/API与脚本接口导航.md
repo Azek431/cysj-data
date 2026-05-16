@@ -1,6 +1,8 @@
 ---
 title: API与脚本接口导航
 description: 汇总创游世界中与API、指令、参数、返回值、触发时机、自定义组件接口相关的文档，适合作为"API / 脚本接口"专题入口。
+updatedAt: 2026-05-16T18:00:48+08:00
+createdAt: 2026-04-22T21:30:57+08:00
 created: 2026-04-22
 editor: Azek431
 status: 已整理

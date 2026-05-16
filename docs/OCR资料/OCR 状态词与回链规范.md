@@ -1,6 +1,8 @@
 ---
 title: OCR 状态词与回链规范
 description: 统一创游世界 OCR 目录中的状态词、回链方式和维护习惯，减少后续补档时的表述漂移。
+updatedAt: 2026-05-16T18:00:48+08:00
+createdAt: 2026-04-22T21:30:57+08:00
 created: 2026-04-22
 editor: Azek431
 status: 深度整理

@@ -1,6 +1,9 @@
 ---
 title: OCR 当前状态与待补清单
 description: 汇总创游世界资料库 OCR 内容的当前整理状态、历史报告关系、待补资料和后续维护优先级。
+updatedAt: 2026-05-16T18:00:48+08:00
+updated: 2026-05-16
+createdAt: 2026-05-16T15:32:16+08:00
 created: 2026-05-16
 category: OCR资料
 tags:

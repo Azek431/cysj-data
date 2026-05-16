@@ -1,6 +1,8 @@
 ---
 title: OCR 资料总览与完整化现状
 description: 创游世界 OCR 资料库当前完成度总览，回答"已经做到了哪里、还差什么、下一步最该先补什么"。
+updatedAt: 2026-05-16T18:00:48+08:00
+createdAt: 2026-04-19T17:04:29+08:00
 created: 2026-04-19
 editor: Azek431
 status: 持续扩展中

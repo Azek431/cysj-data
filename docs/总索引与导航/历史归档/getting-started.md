@@ -2,6 +2,8 @@
 date: 2026-05-05
 title: 快速开始
 description: 快速上手创游世界引擎文档，了解站点结构、入口导航和核心资源位置。
+updatedAt: 2026-05-16T17:45:43+08:00
+createdAt: 2026-05-05T13:11:08+08:00
 editor: Azek431
 status: 已整理
 difficulty: 入门

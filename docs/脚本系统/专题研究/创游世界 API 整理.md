@@ -2,6 +2,8 @@
 date: 2026-04-22
 title: 创游世界 API 整理
 description: 面向玩家与研究者的创游世界 API 总整理，按组件、指令、触发时机、参数类型、作用域和系统接口分层梳理当前可确认能力。
+updatedAt: 2026-05-16T13:21:27+08:00
+createdAt: 2026-04-22T21:30:57+08:00
 editor: Azek431
 status: 持续扩展中
 difficulty: 进阶

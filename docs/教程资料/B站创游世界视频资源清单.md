@@ -2,6 +2,8 @@
 date: 2026-04-19
 title: B站创游世界视频资源清单
 description: 整理 B 站上与创游世界相关的教程视频资源，按脚本、UI、组件、实战系统等分类，提供视频链接与主题索引。
+updatedAt: 2026-05-16T13:21:27+08:00
+createdAt: 2026-04-19T17:04:29+08:00
 editor: Azek431
 status: 深度整理
 difficulty: 入门

@@ -1,6 +1,8 @@
 ---
 title: 联机UI演进专题
 description: 追踪创游世界联机UI从旧版到 4.54.0 的演进历程，解析当前UI、上传并等待、地图广播等核心机制与兼容迁移方案。
+updatedAt: 2026-05-16T18:00:48+08:00
+createdAt: 2026-04-19T17:04:29+08:00
 created: 2026-04-19
 editor: Azek431
 status: 已整理
