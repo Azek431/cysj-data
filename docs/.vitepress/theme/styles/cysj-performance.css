@@ -1,0 +1,206 @@
+/* =========================================================
+   CYSJ Docs Performance Layer
+   性能优化层：保留高级视觉，但减少滚动卡顿和 GPU 压力
+   必须在 cysj-pro / cysj-ultimate / cysj-ambient 之后加载
+   ========================================================= */
+
+/* ---------- 全局降低绘制压力 ---------- */
+
+:root {
+  --cysj-perf-blur: 10px;
+  --cysj-perf-blur-light: 6px;
+  --cysj-perf-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+  --cysj-perf-shadow-hover: 0 20px 56px rgba(15, 23, 42, 0.12);
+}
+
+.dark {
+  --cysj-perf-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
+  --cysj-perf-shadow-hover: 0 22px 60px rgba(0, 0, 0, 0.38);
+}
+
+/* fixed 背景在滚动时容易触发重绘，改成 scroll 更顺滑 */
+body {
+  background-attachment: scroll !important;
+}
+
+/* 降低全局网格层强度，保留氛围但减少绘制 */
+body::before {
+  opacity: 0.12 !important;
+  background-size: 72px 72px !important;
+}
+
+/* Hero 光晕降低 blur，减少 GPU 压力 */
+:root {
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+.VPHomeHero::after {
+  filter: blur(2px) !important;
+  opacity: 0.72;
+}
+
+/* ---------- 降低玻璃拟态 blur 强度 ---------- */
+
+.VPNavBar,
+.VPFeature,
+.VPHome .vp-doc,
+.VPDoc .content-container::before,
+.VPSidebar,
+.VPLocalSearchBox .shell,
+.cysj-author-card {
+  backdrop-filter: blur(var(--cysj-perf-blur)) saturate(1.05) !important;
+  -webkit-backdrop-filter: blur(var(--cysj-perf-blur)) saturate(1.05) !important;
+}
+
+/* 强阴影改轻一点，保留质感但降低滚动合成压力 */
+.VPFeature,
+.VPHome .vp-doc,
+.VPDoc .content-container::before,
+.vp-doc table,
+.vp-doc blockquote,
+.vp-doc div[class*='language-'],
+.pager-link,
+.cysj-author-card {
+  box-shadow: var(--cysj-perf-shadow) !important;
+}
+
+.VPFeature:hover,
+.pager-link:hover {
+  box-shadow: var(--cysj-perf-shadow-hover) !important;
+}
+
+/* hover 动画更克制，减少连续滚动时的合成负担 */
+.VPFeature:hover {
+  transform: translateY(-3px) !important;
+}
+
+.VPHomeHero .VPButton:hover,
+.cysj-author-card__links a:hover,
+.pager-link:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* ---------- 非可视区域跳过渲染 ---------- */
+/* 对大块内容启用 content-visibility，滚动长文时更省力 */
+
+.VPFeature,
+.vp-doc table,
+.vp-doc blockquote,
+.vp-doc div[class*='language-'],
+.vp-doc .custom-block,
+.pager-link {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 180px;
+}
+
+/* 表格可能很高，给更大的预估高度 */
+.vp-doc table {
+  contain-intrinsic-size: auto 260px;
+}
+
+/* ---------- 搜索弹窗打开时减少背景层干扰 ---------- */
+
+body:has(.VPLocalSearchBox) .VPHome::before {
+  opacity: 0.6;
+}
+
+/* ---------- 中低性能设备：自动降级重型效果 ---------- */
+
+@media (max-width: 960px), (pointer: coarse) {
+  body::before {
+    display: none !important;
+  }
+
+  .VPNavBar,
+  .VPFeature,
+  .VPHome .vp-doc,
+  .VPDoc .content-container::before,
+  .VPSidebar,
+  .VPLocalSearchBox .shell,
+  .cysj-author-card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .VPDoc .content-container::before {
+    box-shadow: none !important;
+  }
+
+  .VPFeature,
+  .VPHome .vp-doc,
+  .vp-doc table,
+  .vp-doc blockquote,
+  .vp-doc div[class*='language-'],
+  .cysj-author-card {
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  .dark .VPFeature,
+  .dark .VPHome .vp-doc,
+  .dark .vp-doc table,
+  .dark .vp-doc blockquote,
+  .dark .vp-doc div[class*='language-'],
+  .dark .cysj-author-card {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28) !important;
+  }
+
+  .VPHomeHero::after {
+    filter: none !important;
+    opacity: 0.38;
+  }
+}
+
+/* 小屏直接关闭正文外层玻璃卡片，避免滚动卡顿 */
+@media (max-width: 720px) {
+  .VPDoc .content-container::before {
+    display: none !important;
+  }
+
+  .VPHome .vp-doc {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
+/* ---------- 低动画偏好：更彻底降级 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  .VPHomeHero::after {
+    display: none !important;
+  }
+
+  .VPFeature,
+  .VPHomeHero .VPButton,
+  .pager-link,
+  .cysj-author-card__links a,
+  .outline-link {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .VPFeature:hover,
+  .VPHomeHero .VPButton:hover,
+  .pager-link:hover {
+    transform: none !important;
+  }
+}
+
+/* ---------- 打印/截图场景 ---------- */
+
+@media print {
+  body::before,
+  .VPHomeHero::after {
+    display: none !important;
+  }
+
+  .VPFeature,
+  .VPHome .vp-doc,
+  .VPDoc .content-container::before,
+  .vp-doc table,
+  .vp-doc blockquote,
+  .vp-doc div[class*='language-'] {
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+}

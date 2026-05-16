@@ -10,7 +10,7 @@ export default defineConfig({
 
   cleanUrls: true,
   ignoreDeadLinks: true,
-  lastUpdated: true,
+  lastUpdated: true, metaChunk: true,
 
   sitemap: {
     hostname: 'https://cysjdocs.dpdns.org'
@@ -185,3 +185,4 @@ export default defineConfig({
     }
   }
 })
+

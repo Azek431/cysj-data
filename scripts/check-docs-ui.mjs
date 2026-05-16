@@ -7,6 +7,10 @@ const requiredFiles = [
   "docs/.vitepress/theme/components/PageInfo.vue",
   "docs/.vitepress/theme/components/PageActions.vue",
   "docs/.vitepress/theme/styles/cysj-pro.css",
+  "docs/public/_headers",
+  "docs/.vitepress/theme/styles/cysj-performance.css",
+  "docs/.vitepress/theme/styles/cysj-ambient.css",
+  "docs/.vitepress/theme/styles/cysj-ultimate.css",
   "docs/public/llms.txt",
   "docs/public/robots.txt",
 ];
@@ -65,5 +69,6 @@ if (failed) {
 } else {
   console.log("\nResult: all good");
 }
+
 
 
