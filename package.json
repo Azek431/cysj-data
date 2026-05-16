@@ -16,7 +16,11 @@
     "docs:fresh": "pnpm run docs:clean && pnpm run docs:build",
     "docs:ui:check": "node scripts/check-docs-ui.mjs",
     "docs:sidebar": "node scripts/generate-sidebar.mjs",
-    "docs:frontmatter:check": "node scripts/check-frontmatter.mjs"
+    "docs:frontmatter:check": "node scripts/check-frontmatter.mjs",
+    "docs:check": "pnpm run docs:sidebar && pnpm run docs:frontmatter:check && pnpm run docs:ui:check",
+    "docs:deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1",
+    "docs:deploy:clean": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1 -Clean",
+    "docs:deploy:full": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1 -Install -Clean"
   },
   "name": "cysj-data",
   "version": "0.1.0",
