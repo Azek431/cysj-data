@@ -5,7 +5,7 @@ editor: Azek431
 status: 持续更新
 difficulty: 维护向
 evidence: 资料整理
-updated: 2026-05-05
+updated: 2026-05-13
 category: OCR资料
 version: v0.2.x
 tags:

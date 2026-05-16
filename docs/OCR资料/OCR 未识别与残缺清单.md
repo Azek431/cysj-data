@@ -5,7 +5,7 @@ editor: Azek431
 status: 持续更新
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-27
+updated: 2026-05-16
 category: OCR资料
 version: v0.3.x
 tags:
