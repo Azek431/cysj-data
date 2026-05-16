@@ -9,49 +9,36 @@ import SiteTools from "./components/SiteTools.vue";
 const { Layout } = DefaultTheme;
 
 let raf = 0;
-
 let currentX = 0;
 let currentY = 0;
 let targetX = 0;
 let targetY = 0;
-let targetActive = 0;
 let currentActive = 0;
+let targetActive = 0;
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-function setCrystalVars() {
-  // 提高跟随速度：之前太慢，这里从 0.08 提到 0.18
-  currentX += (targetX - currentX) * 0.18;
-  currentY += (targetY - currentY) * 0.18;
-  currentActive += (targetActive - currentActive) * 0.16;
-
-  const moveX = currentX * 30;
-  const moveY = currentY * 22;
-  const auraX = currentX * 44;
-  const auraY = currentY * 34;
-  const rotateX = currentY * -7;
-  const rotateY = currentX * 9;
-  const shineX = 42 + currentX * 12;
-  const shineY = 34 + currentY * 10;
-  const glow = 0.78 + Math.abs(currentX + currentY) * 0.08 + currentActive * 0.18;
-  const scale = 1 + currentActive * 0.035;
+function tickCrystal() {
+  currentX += (targetX - currentX) * 0.12;
+  currentY += (targetY - currentY) * 0.12;
+  currentActive += (targetActive - currentActive) * 0.12;
 
   const style = document.documentElement.style;
 
-  style.setProperty("--cysj-crystal-move-x", `${moveX.toFixed(2)}px`);
-  style.setProperty("--cysj-crystal-move-y", `${moveY.toFixed(2)}px`);
-  style.setProperty("--cysj-crystal-aura-x", `${auraX.toFixed(2)}px`);
-  style.setProperty("--cysj-crystal-aura-y", `${auraY.toFixed(2)}px`);
-  style.setProperty("--cysj-crystal-rotate-x", `${rotateX.toFixed(2)}deg`);
-  style.setProperty("--cysj-crystal-rotate-y", `${rotateY.toFixed(2)}deg`);
-  style.setProperty("--cysj-crystal-shine-x", `${shineX.toFixed(2)}%`);
-  style.setProperty("--cysj-crystal-shine-y", `${shineY.toFixed(2)}%`);
-  style.setProperty("--cysj-crystal-glow", glow.toFixed(3));
-  style.setProperty("--cysj-crystal-scale", scale.toFixed(3));
+  // 控制得更克制：只轻微移动，不改变原球大小
+  style.setProperty("--cysj-crystal-move-x", `${(currentX * 14).toFixed(2)}px`);
+  style.setProperty("--cysj-crystal-move-y", `${(currentY * 10).toFixed(2)}px`);
+  style.setProperty("--cysj-crystal-aura-x", `${(currentX * 20).toFixed(2)}px`);
+  style.setProperty("--cysj-crystal-aura-y", `${(currentY * 14).toFixed(2)}px`);
+  style.setProperty("--cysj-crystal-shine-x", `${(35 + currentX * 8).toFixed(2)}%`);
+  style.setProperty("--cysj-crystal-shine-y", `${(35 + currentY * 6).toFixed(2)}%`);
+  style.setProperty("--cysj-crystal-rotate-x", `${(currentY * -2.2).toFixed(2)}deg`);
+  style.setProperty("--cysj-crystal-rotate-y", `${(currentX * 2.8).toFixed(2)}deg`);
+  style.setProperty("--cysj-crystal-glow", `${(0.9 + currentActive * 0.08).toFixed(3)}`);
 
-  raf = window.requestAnimationFrame(setCrystalVars);
+  raf = window.requestAnimationFrame(tickCrystal);
 }
 
 function handlePointerMove(event: PointerEvent) {
@@ -69,33 +56,19 @@ function handlePointerLeave() {
   targetActive = 0;
 }
 
-function handlePointerDown() {
-  targetActive = 1.8;
-}
-
-function handlePointerUp() {
-  targetActive = 1;
-}
-
 onMounted(() => {
-  const isCoarsePointer = window.matchMedia("(pointer: coarse)").matches;
-
-  // 手机/触屏设备不启用全局鼠标跟随，避免浪费性能
-  if (isCoarsePointer) return;
+  const isTouch = window.matchMedia("(pointer: coarse)").matches;
+  if (isTouch) return;
 
   window.addEventListener("pointermove", handlePointerMove, { passive: true });
   window.addEventListener("pointerleave", handlePointerLeave);
-  window.addEventListener("pointerdown", handlePointerDown, { passive: true });
-  window.addEventListener("pointerup", handlePointerUp, { passive: true });
 
-  raf = window.requestAnimationFrame(setCrystalVars);
+  raf = window.requestAnimationFrame(tickCrystal);
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("pointermove", handlePointerMove);
   window.removeEventListener("pointerleave", handlePointerLeave);
-  window.removeEventListener("pointerdown", handlePointerDown);
-  window.removeEventListener("pointerup", handlePointerUp);
 
   if (raf) {
     window.cancelAnimationFrame(raf);
