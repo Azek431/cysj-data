@@ -5,7 +5,7 @@ editor: Azek431
 status: 持续扩展中
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-13
+updated: 2026-05-16
 category: OCR资料
 version: v0.2.x
 tags:
@@ -878,3 +878,4 @@ tags:
 - 子系统：知识库工程 / 证据追踪 / 图片编号映射
 - 证据等级：内部维护索引
 - 完整度状态：持续扩展中
+

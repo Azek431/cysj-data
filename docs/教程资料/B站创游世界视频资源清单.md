@@ -6,7 +6,7 @@ editor: Azek431
 status: 深度整理
 difficulty: 入门
 evidence: E3（公开视频标题 + 搜索页摘要 + 本地资料交叉归纳）
-updated: 2026-05-11
+updated: 2026-05-16
 category: 教程资料
 version: v0.2.x
 tags:
@@ -906,3 +906,4 @@ tags:
 **完整字幕级讲义**。
 
 当前状态：**第三版视频清单，已支持学习导航、专题筛选、部分直达观看与后续精读补档。**
+
