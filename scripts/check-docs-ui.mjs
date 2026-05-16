@@ -6,6 +6,7 @@ const requiredFiles = [
   "docs/.vitepress/theme/Layout.vue",
   "docs/.vitepress/theme/components/PageInfo.vue",
   "docs/.vitepress/theme/components/PageActions.vue",
+  "docs/.vitepress/theme/components/HomeParticles.vue",
   "docs/.vitepress/theme/styles/cysj-pro.css",
   "docs/public/_headers",
   "docs/.vitepress/theme/styles/cysj-performance.css",
