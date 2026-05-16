@@ -21,7 +21,9 @@
     "docs:deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1",
     "docs:deploy:clean": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1 -Clean",
     "docs:deploy:full": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1 -Install -Clean",
-    "docs:links:fix": "node scripts/fix-md-links.mjs"
+    "docs:links:fix": "node scripts/fix-md-links.mjs",
+    "docs:footers:check": "node scripts/remove-ai-footers.mjs --check",
+    "docs:footers:fix": "node scripts/remove-ai-footers.mjs"
   },
   "name": "cysj-data",
   "version": "0.1.0",
