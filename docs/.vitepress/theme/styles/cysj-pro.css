@@ -16,8 +16,16 @@
   );
 
   --vp-home-hero-image-background-image:
-    radial-gradient(circle at 40% 35%, rgba(37, 99, 235, 0.34), transparent 32%),
-    radial-gradient(circle at 62% 55%, rgba(124, 58, 237, 0.24), transparent 36%),
+    radial-gradient(
+      circle at 40% 35%,
+      rgba(37, 99, 235, 0.34),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 62% 55%,
+      rgba(124, 58, 237, 0.24),
+      transparent 36%
+    ),
     radial-gradient(circle at 52% 48%, rgba(6, 182, 212, 0.18), transparent 44%);
   --vp-home-hero-image-filter: blur(76px);
 
@@ -107,7 +115,11 @@
   border: 1px solid rgba(100, 116, 139, 0.16);
   background:
     radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.08), transparent 40%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.84));
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(248, 250, 252, 0.84)
+    );
   box-shadow: var(--cysj-shadow-card);
   transition:
     transform 0.18s ease,
@@ -158,7 +170,7 @@
 }
 
 /* 代码块 */
-.vp-doc div[class*='language-'] {
+.vp-doc div[class*="language-"] {
   border-radius: 16px;
 }
 
@@ -337,3 +349,129 @@
   color: #e33b3f;
 }
 
+/* 维护者悬浮信息卡片 */
+.cysj-author-meta {
+  position: relative;
+  cursor: help;
+  border-radius: 999px;
+}
+
+.cysj-author-card {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 10px);
+  z-index: 30;
+  display: grid;
+  min-width: 220px;
+  max-width: 280px;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(100, 116, 139, 0.18);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.12), transparent 42%),
+    var(--vp-c-bg);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.16);
+  color: var(--vp-c-text-1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.16s ease,
+    visibility 0.16s ease,
+    transform 0.16s ease;
+}
+
+.dark .cysj-author-card {
+  border-color: rgba(148, 163, 184, 0.18);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.18), transparent 42%),
+    var(--vp-c-bg-soft);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.36);
+}
+
+.cysj-author-meta:hover .cysj-author-card,
+.cysj-author-meta:focus-within .cysj-author-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.cysj-author-card::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: -6px;
+  width: 10px;
+  height: 10px;
+  border-left: 1px solid rgba(100, 116, 139, 0.18);
+  border-top: 1px solid rgba(100, 116, 139, 0.18);
+  background: var(--vp-c-bg);
+  transform: rotate(45deg);
+}
+
+.dark .cysj-author-card::before {
+  background: var(--vp-c-bg-soft);
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.cysj-author-card__name {
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+}
+
+.cysj-author-card__role {
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.cysj-author-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 2px;
+}
+
+.cysj-author-card__links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 4px 10px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 999px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 12px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.cysj-author-card__links a:hover {
+  border-color: rgba(37, 99, 235, 0.36);
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+}
+
+.cysj-author-card__contact {
+  padding-top: 6px;
+  border-top: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+  font-size: 12px;
+}
+
+/* 移动端避免卡片超出屏幕 */
+@media (max-width: 640px) {
+  .cysj-author-card {
+    left: auto;
+    right: 0;
+    min-width: 210px;
+  }
+
+  .cysj-author-card::before {
+    left: auto;
+    right: 22px;
+  }
+}
