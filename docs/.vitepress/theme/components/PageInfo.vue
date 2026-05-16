@@ -16,6 +16,8 @@ const wordCount = ref(0);
 const readingTime = ref(0);
 let timer: ReturnType<typeof setTimeout> | undefined;
 
+const isHome = computed(() => page.value?.frontmatter?.layout === "home");
+
 const author = computed(() => {
   return (
     page.value?.frontmatter?.author ||
@@ -25,7 +27,7 @@ const author = computed(() => {
   );
 });
 
-const rawCreated = computed(() => {
+const rawDate = computed(() => {
   return (
     page.value?.frontmatter?.date || page.value?.frontmatter?.created || ""
   );
@@ -42,8 +44,8 @@ function formatDate(value: unknown) {
   return String(value);
 }
 
-const formattedCreated = computed(() => formatDate(rawCreated.value));
-const formattedUpdated = computed(() => formatDate(rawUpdated.value));
+const dateText = computed(() => formatDate(rawDate.value));
+const updatedText = computed(() => formatDate(rawUpdated.value));
 
 function countReadableText(text: string) {
   const cleaned = text
@@ -56,36 +58,24 @@ function countReadableText(text: string) {
   const cjkCount = (
     cleaned.match(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/g) || []
   ).length;
-
-  const englishWordCount = (
+  const latinCount = (
     cleaned
       .replace(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/g, " ")
       .match(/[A-Za-z0-9]+(?:[-_./][A-Za-z0-9]+)*/g) || []
   ).length;
 
-  return cjkCount + englishWordCount;
+  return cjkCount + latinCount;
 }
 
-function calculatePageStats() {
+function calculate() {
   if (typeof document === "undefined") return;
-
   const content = document.querySelector(".vp-doc") as HTMLElement | null;
   if (!content) return;
 
   const cloned = content.cloneNode(true) as HTMLElement;
-
   cloned
     .querySelectorAll(
-      [
-        "script",
-        "style",
-        "svg",
-        ".cysj-meta-line",
-        ".cysj-actions",
-        ".cysj-tools",
-        ".VPDocFooter",
-        ".prev-next",
-      ].join(","),
+      "script,style,svg,.cysj-meta-line,.cysj-actions,.cysj-tools,.VPDocFooter,.prev-next",
     )
     .forEach((el) => el.remove());
 
@@ -94,28 +84,20 @@ function calculatePageStats() {
   readingTime.value = count > 0 ? Math.max(1, Math.ceil(count / 450)) : 0;
 }
 
-async function refreshPageStats() {
+async function refresh() {
   if (typeof window === "undefined") return;
-
   wordCount.value = 0;
   readingTime.value = 0;
-
   await nextTick();
-
   if (timer) window.clearTimeout(timer);
-  timer = window.setTimeout(calculatePageStats, 120);
+  timer = window.setTimeout(calculate, 120);
 }
 
-onMounted(refreshPageStats);
+onMounted(refresh);
 
 watch(
   () => route.path,
-  () => refreshPageStats(),
-);
-
-watch(
-  () => page.value?.relativePath,
-  () => refreshPageStats(),
+  () => refresh(),
 );
 
 onBeforeUnmount(() => {
@@ -124,11 +106,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="page.value?.frontmatter?.layout !== 'home'" class="cysj-meta-line">
-    <span>写作日期：{{ formattedCreated || "待补充" }}</span>
-    <span>字数：{{ wordCount > 0 ? `约 ${wordCount} 字` : "—" }}</span>
-    <span>阅读：{{ readingTime > 0 ? `约 ${readingTime} 分钟` : "—" }}</span>
-    <span>维护者：{{ author }}</span>
-    <span>更新：{{ formattedUpdated || "待补充" }}</span>
+  <div v-if="!isHome" class="cysj-meta-line">
+    <span>写作：{{ dateText || "待补充" }}</span>
+    <span>更新：{{ updatedText || "待补充" }}</span>
+    <span>字数：{{ wordCount ? `约 ${wordCount} 字` : "—" }}</span>
+    <span>阅读：{{ readingTime ? `约 ${readingTime} 分钟` : "—" }}</span>
+    <span>维护：{{ author }}</span>
   </div>
 </template>

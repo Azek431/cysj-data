@@ -1,21 +1,9 @@
 <script setup lang="ts">
 const links = [
-  {
-    text: "GitHub",
-    href: "https://github.com/Azek431/cysj-data",
-  },
-  {
-    text: "新手路线",
-    href: "/总索引与导航/新手阅读路线",
-  },
-  {
-    text: "总目录",
-    href: "/总索引与导航/自动生成文档目录",
-  },
-  {
-    text: "OCR",
-    href: "/OCR资料/OCR资料导航",
-  },
+  { text: "GitHub", href: "https://github.com/Azek431/cysj-data" },
+  { text: "新手路线", href: "/总索引与导航/新手阅读路线" },
+  { text: "总目录", href: "/总索引与导航/自动生成文档目录" },
+  { text: "OCR", href: "/OCR资料/OCR资料导航" },
 ];
 </script>
 

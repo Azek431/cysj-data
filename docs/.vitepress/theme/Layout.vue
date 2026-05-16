@@ -13,12 +13,12 @@ const { Layout } = DefaultTheme;
       <PageInfo />
     </template>
 
-    <template #doc-after>
-      <PageActions />
-    </template>
-
     <template #aside-top>
       <SiteTools />
+    </template>
+
+    <template #doc-after>
+      <PageActions />
     </template>
   </Layout>
 </template>
