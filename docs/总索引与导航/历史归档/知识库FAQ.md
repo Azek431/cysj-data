@@ -1,7 +1,7 @@
 ---
 title: 知识库 FAQ
 description: 关于创游世界知识库（cysj-data）的常见问题解答，帮助用户快速了解如何使用本站、导航方式、贡献流程和注意事项。
-updatedAt: 2026-05-16T18:00:48+08:00
+updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-05-16T11:37:10+08:00
 created: 2026-05-16
 editor: Azek431
