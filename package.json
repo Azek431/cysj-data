@@ -17,7 +17,7 @@
     "docs:ui:check": "node scripts/check-docs-ui.mjs",
     "docs:sidebar": "node scripts/generate-sidebar.mjs && node scripts/fix-md-links.mjs",
     "docs:frontmatter:check": "node scripts/check-frontmatter.mjs",
-    "docs:check": "pnpm run docs:sidebar && pnpm run docs:frontmatter:check && pnpm run docs:ui:check",
+    "docs:check": "pnpm run docs:dates:fix && pnpm run docs:sidebar && pnpm run docs:frontmatter:check && pnpm run docs:ui:check",
     "docs:deploy": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1",
     "docs:deploy:clean": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1 -Clean",
     "docs:deploy:full": "powershell -ExecutionPolicy Bypass -File scripts/deploy-docs.ps1 -Install -Clean",

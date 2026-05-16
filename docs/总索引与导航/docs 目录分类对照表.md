@@ -2,6 +2,8 @@
 date: 2026-04-22
 title: docs 目录分类对照表
 description: 创游世界资料库 docs 目录结构详解，帮助用户理解每个子目录的定位与核心文档位置。
+updatedAt: 2026-05-16T13:21:27+08:00
+createdAt: 2026-04-22T21:30:57+08:00
 editor: Azek431
 status: 已整理
 difficulty: 入门
