@@ -153,3 +153,30 @@ docs/.vitepress.bak.*/
 docs/index.md.bak.*
 *.bak.*
 
+
+# Local backup / conflict / generated files
+docs/.vitepress.bak.*/
+docs/index.md.bak.*
+*.bak
+*.bak.*
+*.backup.*
+*.tmp
+*.temp
+*.old
+*.orig
+*~
+*sync-conflict*
+*.sync-conflict-*
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+docs/.vitepress/.temp/
+dist/
+build/
+site-dist/
+.cache/
+.temp/
+.backup/
+backup/
+Thumbs.db
+desktop.ini
+.DS_Store
