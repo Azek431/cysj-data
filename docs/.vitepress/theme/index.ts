@@ -5,6 +5,7 @@ import "./styles/cysj-pro.css";
 import './styles/cysj-ultimate.css'
 import './styles/cysj-ambient.css'
 import './styles/cysj-performance.css'
+import './styles/cysj-mobile.css'
 
 export default {
   extends: DefaultTheme,

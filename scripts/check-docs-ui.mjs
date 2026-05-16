@@ -10,6 +10,7 @@ const requiredFiles = [
   "docs/.vitepress/theme/styles/cysj-pro.css",
   "docs/public/_headers",
   "docs/.vitepress/theme/styles/cysj-performance.css",
+  "docs/.vitepress/theme/styles/cysj-mobile.css",
   "docs/.vitepress/theme/styles/cysj-ambient.css",
   "docs/.vitepress/theme/styles/cysj-ultimate.css",
   "docs/public/llms.txt",

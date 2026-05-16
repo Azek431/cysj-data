@@ -1,0 +1,553 @@
+/* =========================================================
+   CYSJ Docs Mobile UI Layer
+   移动端专项优化层：手机端优先阅读、触摸、性能和观感
+   必须在 cysj-performance.css 之后加载
+   ========================================================= */
+
+/* ---------- 移动端基础变量 ---------- */
+
+:root {
+  --cysj-mobile-page-x: 16px;
+  --cysj-mobile-card-radius: 20px;
+  --cysj-mobile-soft-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+  --cysj-mobile-soft-border: rgba(100, 116, 139, 0.14);
+}
+
+.dark {
+  --cysj-mobile-soft-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  --cysj-mobile-soft-border: rgba(148, 163, 184, 0.14);
+}
+
+/* ---------- 触屏设备统一降级重型 hover ---------- */
+
+@media (pointer: coarse) {
+  .VPFeature:hover,
+  .pager-link:hover,
+  .VPHomeHero .VPButton:hover,
+  .cysj-author-card__links a:hover {
+    transform: none !important;
+  }
+
+  .VPFeature,
+  .pager-link,
+  .VPHomeHero .VPButton,
+  .cysj-author-card__links a {
+    transition-duration: 0.12s !important;
+  }
+}
+
+/* ---------- 手机端整体排版 ---------- */
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 76px;
+  }
+
+  body {
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .Layout {
+    overflow-x: clip;
+  }
+
+  /* 避免 fixed 背景和网格在手机端造成滚动负担 */
+  body::before {
+    display: none !important;
+  }
+
+  /* iPhone / 异形屏安全区：避免底部内容贴边 */
+  .VPContent,
+  .VPFooter {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* 顶部导航更像移动 App 顶栏 */
+  .VPNavBar {
+    min-height: 56px !important;
+    border-bottom: 1px solid var(--cysj-mobile-soft-border) !important;
+    background: rgba(255, 255, 255, 0.86) !important;
+    backdrop-filter: blur(14px) saturate(1.08) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(1.08) !important;
+  }
+
+  .dark .VPNavBar {
+    background: rgba(2, 6, 23, 0.84) !important;
+  }
+
+  .VPNavBarTitle .title {
+    max-width: 52vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 15px !important;
+    letter-spacing: -0.02em;
+  }
+
+  /* 移动端搜索按钮更好点 */
+  .DocSearch-Button,
+  .VPLocalSearchBox .shell {
+    min-height: 38px !important;
+    border-radius: 999px !important;
+  }
+}
+
+/* ---------- 首页 Hero 手机端重排 ---------- */
+
+@media (max-width: 768px) {
+  .VPHomeHero .container {
+    padding-top: 22px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .VPHomeHero .main {
+    max-width: 100% !important;
+    text-align: left;
+  }
+
+  .VPHomeHero .name {
+    font-size: clamp(34px, 11vw, 46px) !important;
+    line-height: 0.98 !important;
+    letter-spacing: -0.055em !important;
+  }
+
+  .VPHomeHero .text {
+    margin-top: 8px !important;
+    font-size: clamp(24px, 7vw, 34px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.04em !important;
+  }
+
+  .VPHomeHero .tagline {
+    margin-top: 16px !important;
+    max-width: 100% !important;
+    font-size: 14.5px !important;
+    line-height: 1.85 !important;
+    color: var(--vp-c-text-2);
+  }
+
+  .VPHomeHero .actions {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding-top: 22px !important;
+  }
+
+  .VPHomeHero .action,
+  .VPHomeHero .VPButton {
+    width: 100% !important;
+  }
+
+  .VPHomeHero .VPButton {
+    min-height: 46px !important;
+    justify-content: center;
+    border-radius: 16px !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.10) !important;
+  }
+
+  /* 手机端水晶保留氛围，但不要抢首屏信息 */
+  .VPHomeHero::after {
+    right: -92px !important;
+    top: 26px !important;
+    width: 280px !important;
+    height: 280px !important;
+    opacity: 0.30 !important;
+    filter: blur(5px) saturate(1.06) !important;
+    transform: none !important;
+  }
+
+  .VPHomeHero::before {
+    right: -140px !important;
+    top: 8px !important;
+    width: 340px !important;
+    height: 340px !important;
+    opacity: 0.22 !important;
+    transform: none !important;
+  }
+
+  /* 首页粒子手机端降噪：保留高级氛围，不盖住文字 */
+  .cysj-home-particles {
+    opacity: 0.20 !important;
+  }
+}
+
+/* ---------- 首页 Feature 卡片手机端 ---------- */
+
+@media (max-width: 768px) {
+  .VPFeatures {
+    padding-top: 10px !important;
+  }
+
+  .VPFeatures .container {
+    padding-left: var(--cysj-mobile-page-x) !important;
+    padding-right: var(--cysj-mobile-page-x) !important;
+  }
+
+  .VPFeature {
+    min-height: auto !important;
+    border-radius: var(--cysj-mobile-card-radius) !important;
+    box-shadow: var(--cysj-mobile-soft-shadow) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .VPFeature .box {
+    padding: 18px !important;
+  }
+
+  .VPFeature .icon {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 14px !important;
+  }
+
+  .VPFeature .title {
+    margin-top: 14px !important;
+    font-size: 16px !important;
+    line-height: 1.35 !important;
+  }
+
+  .VPFeature .details {
+    margin-top: 8px !important;
+    font-size: 13.5px !important;
+    line-height: 1.75 !important;
+  }
+}
+
+/* ---------- 首页 Markdown 正文手机端 ---------- */
+
+@media (max-width: 768px) {
+  .VPHome .VPDoc {
+    padding-left: var(--cysj-mobile-page-x) !important;
+    padding-right: var(--cysj-mobile-page-x) !important;
+  }
+
+  .VPHome .vp-doc {
+    margin-top: 20px !important;
+    padding: 18px !important;
+    border-radius: 22px !important;
+    box-shadow: var(--cysj-mobile-soft-shadow) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .VPHome .vp-doc h2 {
+    margin-top: 34px !important;
+    font-size: 22px !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.035em;
+  }
+
+  .VPHome .vp-doc h2:first-child {
+    margin-top: 8px !important;
+  }
+
+  .VPHome .vp-doc h2::before {
+    width: 38px !important;
+    height: 3px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .VPHome .vp-doc p {
+    font-size: 14.8px !important;
+    line-height: 1.9 !important;
+  }
+
+  .VPHome .vp-doc > ul,
+  .VPHome .vp-doc > ol {
+    margin: 14px 0 20px !important;
+    padding: 15px 16px 15px 30px !important;
+    border-radius: 18px !important;
+  }
+
+  .VPHome .vp-doc li {
+    font-size: 14.5px !important;
+    line-height: 1.8 !important;
+  }
+}
+
+/* ---------- 普通文档页手机端阅读体验 ---------- */
+
+@media (max-width: 768px) {
+  .VPDoc {
+    padding-top: 14px !important;
+  }
+
+  .VPDoc .content {
+    padding-left: var(--cysj-mobile-page-x) !important;
+    padding-right: var(--cysj-mobile-page-x) !important;
+  }
+
+  .VPDoc .content-container {
+    max-width: 100% !important;
+  }
+
+  .VPDoc .content-container::before {
+    display: none !important;
+  }
+
+  .vp-doc {
+    font-size: 15.5px !important;
+    line-height: 1.88 !important;
+  }
+
+  .vp-doc > h1:first-child {
+    margin-top: 4px !important;
+    margin-bottom: 14px !important;
+    font-size: clamp(27px, 8vw, 34px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.045em !important;
+  }
+
+  .vp-doc h2 {
+    margin-top: 38px !important;
+    font-size: 22px !important;
+    line-height: 1.28 !important;
+    letter-spacing: -0.035em;
+  }
+
+  .vp-doc h2::before {
+    width: 38px !important;
+    height: 3px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .vp-doc h3 {
+    margin-top: 26px !important;
+    font-size: 18px !important;
+    line-height: 1.35 !important;
+  }
+
+  .vp-doc p,
+  .vp-doc li {
+    font-size: 15px !important;
+    line-height: 1.9 !important;
+  }
+
+  .vp-doc ul,
+  .vp-doc ol {
+    padding-left: 1.25rem !important;
+  }
+
+  .vp-doc li + li {
+    margin-top: 5px !important;
+  }
+}
+
+/* ---------- 文档元信息标签：手机端横向滑动 ---------- */
+
+@media (max-width: 768px) {
+  .cysj-meta-line {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 7px !important;
+    margin-bottom: 20px !important;
+    padding: 8px 0 14px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cysj-meta-line::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cysj-meta-line > span {
+    flex: 0 0 auto;
+    min-height: 28px !important;
+    padding: 3px 9px !important;
+    font-size: 11.5px !important;
+    white-space: nowrap;
+  }
+
+  .cysj-meta-line::before {
+    width: 72px !important;
+  }
+
+  /* 手机端维护者卡片：轻触聚焦更稳定 */
+  .cysj-author-meta {
+    position: static !important;
+  }
+
+  .cysj-author-card {
+    position: fixed !important;
+    left: 16px !important;
+    right: 16px !important;
+    top: auto !important;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    border-radius: 22px !important;
+    transform-origin: bottom center !important;
+  }
+
+  .cysj-author-card::before {
+    display: none !important;
+  }
+
+  .cysj-author-card__links {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cysj-author-card__links a {
+    min-height: 38px !important;
+  }
+}
+
+/* ---------- 表格 / 代码块 / 长链接手机端 ---------- */
+
+@media (max-width: 768px) {
+  .vp-doc table {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap;
+    border-radius: 16px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vp-doc th,
+  .vp-doc td {
+    padding: 10px 12px !important;
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+  }
+
+  .vp-doc div[class*='language-'] {
+    margin: 18px 0 !important;
+    border-radius: 16px !important;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+  }
+
+  .vp-doc div[class*='language-'] pre {
+    padding: 16px 14px !important;
+    font-size: 12.5px !important;
+    line-height: 1.7 !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .vp-doc :not(pre) > code {
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .vp-doc a {
+    overflow-wrap: anywhere;
+  }
+
+  .vp-doc blockquote,
+  .vp-doc .custom-block {
+    margin: 18px 0 !important;
+    border-radius: 17px !important;
+  }
+
+  .vp-doc blockquote {
+    padding: 14px 16px !important;
+  }
+}
+
+/* ---------- 上一页 / 下一页手机端 ---------- */
+
+@media (max-width: 768px) {
+  .prev-next {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-top: 28px !important;
+  }
+
+  .pager-link {
+    min-height: 72px !important;
+    border-radius: 18px !important;
+    box-shadow: var(--cysj-mobile-soft-shadow) !important;
+  }
+
+  .pager-link .title {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* ---------- 搜索弹窗手机端 ---------- */
+
+@media (max-width: 768px) {
+  .VPLocalSearchBox {
+    padding: 12px !important;
+  }
+
+  .VPLocalSearchBox .shell {
+    border-radius: 20px !important;
+    max-height: calc(100vh - 28px - env(safe-area-inset-bottom, 0px)) !important;
+    box-shadow: 0 16px 52px rgba(15, 23, 42, 0.18) !important;
+  }
+}
+
+/* ---------- 性能优化：长内容延迟渲染 ---------- */
+
+@media (max-width: 768px) {
+  .VPFeature,
+  .vp-doc table,
+  .vp-doc blockquote,
+  .vp-doc .custom-block,
+  .vp-doc div[class*='language-'],
+  .pager-link {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 180px;
+  }
+}
+
+/* ---------- 超小屏优化 ---------- */
+
+@media (max-width: 420px) {
+  :root {
+    --cysj-mobile-page-x: 14px;
+  }
+
+  .VPHomeHero .name {
+    font-size: clamp(31px, 11vw, 40px) !important;
+  }
+
+  .VPHomeHero .text {
+    font-size: clamp(22px, 7vw, 30px) !important;
+  }
+
+  .VPHomeHero .tagline {
+    font-size: 14px !important;
+  }
+
+  .VPHome .vp-doc,
+  .VPFeature .box {
+    padding: 16px !important;
+  }
+
+  .vp-doc > h1:first-child {
+    font-size: 27px !important;
+  }
+
+  .vp-doc h2 {
+    font-size: 21px !important;
+  }
+}
+
+/* ---------- 低动画偏好 ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .cysj-home-particles {
+    display: none !important;
+  }
+
+  .VPHomeHero::before,
+  .VPHomeHero::after {
+    animation: none !important;
+    transform: none !important;
+    will-change: auto !important;
+  }
+}
