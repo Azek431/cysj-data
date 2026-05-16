@@ -1,60 +1,67 @@
 <script setup lang="ts">
+import { onBeforeUnmount, onMounted } from "vue";
 import DefaultTheme from "vitepress/theme";
 
 import PageInfo from "./components/PageInfo.vue";
 import PageActions from "./components/PageActions.vue";
 import SiteTools from "./components/SiteTools.vue";
-import HomeCrystal from "./components/HomeCrystal.vue";
 
 const { Layout } = DefaultTheme;
+
+let raf = 0;
+let currentX = 0;
+let currentY = 0;
+let targetX = 0;
+let targetY = 0;
+
+function updateCrystalVars() {
+  currentX += (targetX - currentX) * 0.08;
+  currentY += (targetY - currentY) * 0.08;
+
+  document.documentElement.style.setProperty("--cysj-crystal-x", currentX.toFixed(4));
+  document.documentElement.style.setProperty("--cysj-crystal-y", currentY.toFixed(4));
+
+  raf = window.requestAnimationFrame(updateCrystalVars);
+}
+
+function handlePointerMove(event: PointerEvent) {
+  const width = window.innerWidth || 1;
+  const height = window.innerHeight || 1;
+
+  targetX = (event.clientX / width - 0.5) * 2;
+  targetY = (event.clientY / height - 0.5) * 2;
+}
+
+function handlePointerLeave() {
+  targetX = 0;
+  targetY = 0;
+}
+
+onMounted(() => {
+  window.addEventListener("pointermove", handlePointerMove, { passive: true });
+  window.addEventListener("pointerleave", handlePointerLeave);
+  raf = window.requestAnimationFrame(updateCrystalVars);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("pointermove", handlePointerMove);
+  window.removeEventListener("pointerleave", handlePointerLeave);
+  window.cancelAnimationFrame(raf);
+});
 </script>
 
 <template>
   <Layout>
-    <!-- 首页 Hero 右侧水晶视觉组件 -->
-    <template #home-hero-image>
-      <div class="cysj-home-crystal-wrap">
-        <HomeCrystal />
-      </div>
-    </template>
-
-    <!-- 文档正文顶部信息 -->
     <template #doc-before>
       <PageInfo />
     </template>
 
-    <!-- 右侧工具区 -->
     <template #aside-top>
       <SiteTools />
     </template>
 
-    <!-- 文档底部操作区 -->
     <template #doc-after>
       <PageActions />
     </template>
   </Layout>
 </template>
-
-<style scoped>
-.cysj-home-crystal-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 360px;
-  pointer-events: auto;
-}
-
-@media (max-width: 960px) {
-  .cysj-home-crystal-wrap {
-    min-height: 300px;
-    margin-top: 8px;
-  }
-}
-
-@media (max-width: 640px) {
-  .cysj-home-crystal-wrap {
-    min-height: 260px;
-  }
-}
-</style>

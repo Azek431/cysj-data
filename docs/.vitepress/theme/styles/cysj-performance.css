@@ -400,3 +400,172 @@ body:has(.VPLocalSearchBox) .VPHome::before {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   Home hero native crystal enhancement
+   增强首页原生右侧水晶：鼠标跟随、呼吸光效、层次美化
+   ========================================================= */
+
+:root {
+  --cysj-crystal-x: 0;
+  --cysj-crystal-y: 0;
+}
+
+/* 让首页 Hero 右侧原有水晶更像品牌视觉元素 */
+.VPHomeHero::after {
+  right: max(16px, calc(7vw + (var(--cysj-crystal-x) * 18px))) !important;
+  top: calc(22px + (var(--cysj-crystal-y) * 14px)) !important;
+  width: clamp(260px, 31vw, 440px) !important;
+  height: clamp(260px, 31vw, 440px) !important;
+  border-radius: 38% 62% 58% 42% / 42% 38% 62% 58% !important;
+  background:
+    radial-gradient(circle at calc(36% + var(--cysj-crystal-x) * 6%) calc(28% + var(--cysj-crystal-y) * 6%), rgba(255, 255, 255, 0.68), transparent 13%),
+    radial-gradient(circle at calc(48% + var(--cysj-crystal-x) * 4%) calc(48% + var(--cysj-crystal-y) * 4%), rgba(37, 99, 235, 0.30), transparent 36%),
+    radial-gradient(circle at calc(68% + var(--cysj-crystal-x) * -5%) calc(42% + var(--cysj-crystal-y) * 3%), rgba(124, 58, 237, 0.28), transparent 38%),
+    radial-gradient(circle at calc(40% + var(--cysj-crystal-x) * 5%) calc(72% + var(--cysj-crystal-y) * -4%), rgba(6, 182, 212, 0.22), transparent 42%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.03)) !important;
+  filter: blur(1.5px) saturate(1.18) !important;
+  opacity: 0.92 !important;
+  box-shadow:
+    0 28px 90px rgba(37, 99, 235, 0.18),
+    0 38px 120px rgba(124, 58, 237, 0.14),
+    inset 0 2px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -24px 44px rgba(6, 182, 212, 0.08);
+  transform:
+    translate3d(
+      calc(var(--cysj-crystal-x) * 10px),
+      calc(var(--cysj-crystal-y) * 8px),
+      0
+    )
+    rotateX(calc(var(--cysj-crystal-y) * -4deg))
+    rotateY(calc(var(--cysj-crystal-x) * 5deg));
+  transform-style: preserve-3d;
+  transition:
+    opacity 0.18s ease,
+    filter 0.18s ease,
+    box-shadow 0.18s ease;
+  animation: cysjNativeCrystalFloat 7s ease-in-out infinite;
+}
+
+/* 给原水晶加一层细腻光环 */
+.VPHomeHero::before {
+  content: "";
+  position: absolute;
+  right: max(2px, calc(5vw + (var(--cysj-crystal-x) * 26px)));
+  top: calc(8px + (var(--cysj-crystal-y) * 20px));
+  z-index: -1;
+  width: clamp(310px, 37vw, 520px);
+  height: clamp(310px, 37vw, 520px);
+  pointer-events: none;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.18), transparent 38%),
+    radial-gradient(circle at 58% 48%, rgba(124, 58, 237, 0.16), transparent 42%),
+    radial-gradient(circle at 44% 60%, rgba(6, 182, 212, 0.12), transparent 46%);
+  filter: blur(28px);
+  opacity: 0.88;
+  transform:
+    translate3d(
+      calc(var(--cysj-crystal-x) * 14px),
+      calc(var(--cysj-crystal-y) * 10px),
+      0
+    );
+  animation: cysjNativeCrystalAura 8s ease-in-out infinite;
+}
+
+.dark .VPHomeHero::after {
+  opacity: 0.76 !important;
+  background:
+    radial-gradient(circle at calc(36% + var(--cysj-crystal-x) * 6%) calc(28% + var(--cysj-crystal-y) * 6%), rgba(255, 255, 255, 0.42), transparent 13%),
+    radial-gradient(circle at calc(48% + var(--cysj-crystal-x) * 4%) calc(48% + var(--cysj-crystal-y) * 4%), rgba(59, 130, 246, 0.36), transparent 36%),
+    radial-gradient(circle at calc(68% + var(--cysj-crystal-x) * -5%) calc(42% + var(--cysj-crystal-y) * 3%), rgba(124, 58, 237, 0.34), transparent 38%),
+    radial-gradient(circle at calc(40% + var(--cysj-crystal-x) * 5%) calc(72% + var(--cysj-crystal-y) * -4%), rgba(6, 182, 212, 0.24), transparent 42%),
+    linear-gradient(135deg, rgba(148, 163, 184, 0.10), rgba(15, 23, 42, 0.03)) !important;
+  box-shadow:
+    0 28px 100px rgba(37, 99, 235, 0.22),
+    0 44px 140px rgba(124, 58, 237, 0.18),
+    inset 0 2px 0 rgba(255, 255, 255, 0.10),
+    inset 0 -24px 44px rgba(6, 182, 212, 0.10);
+}
+
+/* 鼠标在首页 Hero 上时，原水晶略微更亮 */
+.VPHomeHero:hover::after {
+  opacity: 1 !important;
+  filter: blur(1px) saturate(1.28) brightness(1.04) !important;
+}
+
+/* 微妙漂浮，不抢正文注意力 */
+@keyframes cysjNativeCrystalFloat {
+  0%, 100% {
+    border-radius: 38% 62% 58% 42% / 42% 38% 62% 58%;
+  }
+
+  50% {
+    border-radius: 44% 56% 52% 48% / 48% 42% 58% 52%;
+  }
+}
+
+@keyframes cysjNativeCrystalAura {
+  0%, 100% {
+    opacity: 0.72;
+    transform:
+      translate3d(
+        calc(var(--cysj-crystal-x) * 14px),
+        calc(var(--cysj-crystal-y) * 10px),
+        0
+      )
+      scale(1);
+  }
+
+  50% {
+    opacity: 0.94;
+    transform:
+      translate3d(
+        calc(var(--cysj-crystal-x) * 14px),
+        calc(var(--cysj-crystal-y) * 10px),
+        0
+      )
+      scale(1.035);
+  }
+}
+
+/* 触屏设备不做鼠标跟随，避免性能浪费 */
+@media (pointer: coarse), (max-width: 960px) {
+  .VPHomeHero::after {
+    right: -70px !important;
+    top: 18px !important;
+    width: 300px !important;
+    height: 300px !important;
+    filter: blur(1px) saturate(1.08) !important;
+    transform: none !important;
+  }
+
+  .VPHomeHero::before {
+    right: -120px !important;
+    top: 0 !important;
+    width: 360px !important;
+    height: 360px !important;
+    transform: none !important;
+    opacity: 0.55;
+  }
+}
+
+@media (max-width: 640px) {
+  .VPHomeHero::before {
+    opacity: 0.28;
+  }
+
+  .VPHomeHero::after {
+    opacity: 0.36 !important;
+  }
+}
+
+/* 减少动画偏好：保留静态美观，关闭动态 */
+@media (prefers-reduced-motion: reduce) {
+  .VPHomeHero::before,
+  .VPHomeHero::after {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
