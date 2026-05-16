@@ -77,6 +77,17 @@ const author = computed(() => {
   return frontmatter.value.author || frontmatter.value.maintainer || 'Azek431'
 })
 
+const authorProfile = computed(() => {
+  return {
+    name: String(author.value || 'Azek431'),
+    role: String(frontmatter.value.authorRole || frontmatter.value.maintainerRole || '创游世界资料库维护者'),
+    github: String(frontmatter.value.github || frontmatter.value.authorGithub || 'https://github.com/Azek431'),
+    gitee: String(frontmatter.value.gitee || frontmatter.value.authorGitee || 'https://gitee.com/Azek431'),
+    telegram: String(frontmatter.value.telegram || frontmatter.value.authorTelegram || 'https://t.me/AzekMain'),
+    qqGroup: String(frontmatter.value.qqGroup || frontmatter.value.authorQQGroup || '1097265516')
+  }
+})
+
 const status = computed(() => frontmatter.value.status || '')
 const difficulty = computed(() => frontmatter.value.difficulty || '')
 const evidence = computed(() => frontmatter.value.evidence || '')
@@ -111,8 +122,48 @@ watch(
       阅读时间：{{ readingTime }}
     </span>
 
-    <span v-if="author">
+    <span
+      v-if="author"
+      class="cysj-author-meta"
+      tabindex="0"
+      aria-label="维护者信息"
+    >
       维护者：{{ author }}
+
+      <span class="cysj-author-card" role="tooltip">
+        <span class="cysj-author-card__name">{{ authorProfile.name }}</span>
+        <span class="cysj-author-card__role">{{ authorProfile.role }}</span>
+
+        <span class="cysj-author-card__links">
+          <a
+            :href="authorProfile.github"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+
+          <a
+            :href="authorProfile.gitee"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Gitee
+          </a>
+
+          <a
+            :href="authorProfile.telegram"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Telegram
+          </a>
+        </span>
+
+        <span class="cysj-author-card__contact">
+          QQ 群：{{ authorProfile.qqGroup }}
+        </span>
+      </span>
     </span>
 
     <span v-if="status">
