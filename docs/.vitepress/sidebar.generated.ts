@@ -31,7 +31,7 @@ export const generatedSidebar = [
         "link": "/知识库总索引.sync-conflict-20260516-111947-TLH66E4"
       },
       {
-        "text": "创游世界知识库",
+        "text": "创游世界引擎文档",
         "link": "/"
       },
       {
