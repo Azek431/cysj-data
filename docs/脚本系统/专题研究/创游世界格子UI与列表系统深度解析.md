@@ -5,7 +5,7 @@ editor: Azek431
 status: 已结构化
 difficulty: 进阶
 evidence: E3（多来源交叉归纳）
-updated: 2026-06-03
+updated: 2026-05-16
 category: 脚本系统
 version: v0.3.x
 tags:

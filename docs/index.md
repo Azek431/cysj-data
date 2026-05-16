@@ -4,7 +4,7 @@ title: 创游世界知识库
 description: 创游世界引擎文档与知识库，涵盖脚本系统、UI设计、项目架构、组件系统、OCR证据、引擎更新、社区分析与维护报告。
 author: Azek431
 date: 2026-05-10
-updated: 2026-06-03
+updated: 2026-05-16
 status: 已整理
 difficulty: 入门
 evidence: E3（多来源交叉归纳）
