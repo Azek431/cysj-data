@@ -135,3 +135,16 @@ __pycache__/
 *.tmp
 *.bak
 *.old
+
+# =========================================================
+# Local cleanup / backup snapshots
+# 本地清理与备份快照：不提交
+# =========================================================
+*.bak.*
+*.backup.*
+*.orig.*
+docs/.vitepress.bak.*/
+docs/index.md.bak.*
+*sync-conflict*
+*.sync-conflict-*
+__pycache__/
