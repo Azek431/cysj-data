@@ -402,142 +402,189 @@ body:has(.VPLocalSearchBox) .VPHome::before {
 }
 
 /* =========================================================
-   Home hero native crystal enhancement
-   增强首页原生右侧水晶：鼠标跟随、呼吸光效、层次美化
+   Home hero native crystal interaction v2
+   首页原生水晶互动增强 v2：更快、更小周期、更明显鼠标反馈
    ========================================================= */
 
 :root {
-  --cysj-crystal-x: 0;
-  --cysj-crystal-y: 0;
+  --cysj-crystal-move-x: 0px;
+  --cysj-crystal-move-y: 0px;
+  --cysj-crystal-aura-x: 0px;
+  --cysj-crystal-aura-y: 0px;
+  --cysj-crystal-rotate-x: 0deg;
+  --cysj-crystal-rotate-y: 0deg;
+  --cysj-crystal-shine-x: 42%;
+  --cysj-crystal-shine-y: 34%;
+  --cysj-crystal-glow: 0.78;
+  --cysj-crystal-scale: 1;
 }
 
-/* 让首页 Hero 右侧原有水晶更像品牌视觉元素 */
+/* 原生右侧水晶：交互版 */
 .VPHomeHero::after {
-  right: max(16px, calc(7vw + (var(--cysj-crystal-x) * 18px))) !important;
-  top: calc(22px + (var(--cysj-crystal-y) * 14px)) !important;
-  width: clamp(260px, 31vw, 440px) !important;
-  height: clamp(260px, 31vw, 440px) !important;
-  border-radius: 38% 62% 58% 42% / 42% 38% 62% 58% !important;
+  right: max(18px, 7vw) !important;
+  top: 20px !important;
+  width: clamp(250px, 30vw, 420px) !important;
+  height: clamp(250px, 30vw, 420px) !important;
+  border-radius: 40% 60% 56% 44% / 42% 38% 62% 58% !important;
+  pointer-events: none;
   background:
-    radial-gradient(circle at calc(36% + var(--cysj-crystal-x) * 6%) calc(28% + var(--cysj-crystal-y) * 6%), rgba(255, 255, 255, 0.68), transparent 13%),
-    radial-gradient(circle at calc(48% + var(--cysj-crystal-x) * 4%) calc(48% + var(--cysj-crystal-y) * 4%), rgba(37, 99, 235, 0.30), transparent 36%),
-    radial-gradient(circle at calc(68% + var(--cysj-crystal-x) * -5%) calc(42% + var(--cysj-crystal-y) * 3%), rgba(124, 58, 237, 0.28), transparent 38%),
-    radial-gradient(circle at calc(40% + var(--cysj-crystal-x) * 5%) calc(72% + var(--cysj-crystal-y) * -4%), rgba(6, 182, 212, 0.22), transparent 42%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.03)) !important;
-  filter: blur(1.5px) saturate(1.18) !important;
-  opacity: 0.92 !important;
+    radial-gradient(
+      circle at var(--cysj-crystal-shine-x) var(--cysj-crystal-shine-y),
+      rgba(255, 255, 255, 0.78),
+      transparent 12%
+    ),
+    radial-gradient(
+      circle at 48% 48%,
+      rgba(37, 99, 235, 0.36),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 68% 42%,
+      rgba(124, 58, 237, 0.34),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 38% 74%,
+      rgba(6, 182, 212, 0.26),
+      transparent 42%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.28),
+      rgba(255, 255, 255, 0.03)
+    ) !important;
+  opacity: var(--cysj-crystal-glow) !important;
+  filter: blur(0.8px) saturate(1.32) brightness(1.05) !important;
   box-shadow:
-    0 28px 90px rgba(37, 99, 235, 0.18),
-    0 38px 120px rgba(124, 58, 237, 0.14),
-    inset 0 2px 0 rgba(255, 255, 255, 0.28),
-    inset 0 -24px 44px rgba(6, 182, 212, 0.08);
+    0 20px 64px rgba(37, 99, 235, 0.22),
+    0 34px 110px rgba(124, 58, 237, 0.16),
+    0 0 54px rgba(6, 182, 212, 0.10),
+    inset 0 2px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -22px 44px rgba(6, 182, 212, 0.10);
   transform:
     translate3d(
-      calc(var(--cysj-crystal-x) * 10px),
-      calc(var(--cysj-crystal-y) * 8px),
+      var(--cysj-crystal-move-x),
+      var(--cysj-crystal-move-y),
       0
     )
-    rotateX(calc(var(--cysj-crystal-y) * -4deg))
-    rotateY(calc(var(--cysj-crystal-x) * 5deg));
+    rotateX(var(--cysj-crystal-rotate-x))
+    rotateY(var(--cysj-crystal-rotate-y))
+    scale(var(--cysj-crystal-scale));
   transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
   transition:
-    opacity 0.18s ease,
-    filter 0.18s ease,
-    box-shadow 0.18s ease;
-  animation: cysjNativeCrystalFloat 7s ease-in-out infinite;
+    filter 0.12s ease,
+    box-shadow 0.12s ease,
+    opacity 0.12s ease;
+  animation:
+    cysjNativeCrystalMorphFast 3.6s ease-in-out infinite,
+    cysjNativeCrystalBreathFast 2.8s ease-in-out infinite;
 }
 
-/* 给原水晶加一层细腻光环 */
+/* 外围光环：跟随更明显 */
 .VPHomeHero::before {
   content: "";
   position: absolute;
-  right: max(2px, calc(5vw + (var(--cysj-crystal-x) * 26px)));
-  top: calc(8px + (var(--cysj-crystal-y) * 20px));
+  right: max(-18px, 4.5vw) !important;
+  top: 0 !important;
   z-index: -1;
   width: clamp(310px, 37vw, 520px);
   height: clamp(310px, 37vw, 520px);
   pointer-events: none;
   border-radius: 999px;
   background:
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.18), transparent 38%),
-    radial-gradient(circle at 58% 48%, rgba(124, 58, 237, 0.16), transparent 42%),
-    radial-gradient(circle at 44% 60%, rgba(6, 182, 212, 0.12), transparent 46%);
-  filter: blur(28px);
-  opacity: 0.88;
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.22), transparent 38%),
+    radial-gradient(circle at 60% 44%, rgba(124, 58, 237, 0.18), transparent 42%),
+    radial-gradient(circle at 42% 62%, rgba(6, 182, 212, 0.14), transparent 46%);
+  filter: blur(24px);
+  opacity: calc(var(--cysj-crystal-glow) * 0.78);
   transform:
     translate3d(
-      calc(var(--cysj-crystal-x) * 14px),
-      calc(var(--cysj-crystal-y) * 10px),
+      var(--cysj-crystal-aura-x),
+      var(--cysj-crystal-aura-y),
       0
-    );
-  animation: cysjNativeCrystalAura 8s ease-in-out infinite;
+    )
+    scale(var(--cysj-crystal-scale));
+  will-change: transform, opacity;
+  animation: cysjNativeCrystalAuraFast 3.2s ease-in-out infinite;
 }
 
-.dark .VPHomeHero::after {
-  opacity: 0.76 !important;
-  background:
-    radial-gradient(circle at calc(36% + var(--cysj-crystal-x) * 6%) calc(28% + var(--cysj-crystal-y) * 6%), rgba(255, 255, 255, 0.42), transparent 13%),
-    radial-gradient(circle at calc(48% + var(--cysj-crystal-x) * 4%) calc(48% + var(--cysj-crystal-y) * 4%), rgba(59, 130, 246, 0.36), transparent 36%),
-    radial-gradient(circle at calc(68% + var(--cysj-crystal-x) * -5%) calc(42% + var(--cysj-crystal-y) * 3%), rgba(124, 58, 237, 0.34), transparent 38%),
-    radial-gradient(circle at calc(40% + var(--cysj-crystal-x) * 5%) calc(72% + var(--cysj-crystal-y) * -4%), rgba(6, 182, 212, 0.24), transparent 42%),
-    linear-gradient(135deg, rgba(148, 163, 184, 0.10), rgba(15, 23, 42, 0.03)) !important;
-  box-shadow:
-    0 28px 100px rgba(37, 99, 235, 0.22),
-    0 44px 140px rgba(124, 58, 237, 0.18),
-    inset 0 2px 0 rgba(255, 255, 255, 0.10),
-    inset 0 -24px 44px rgba(6, 182, 212, 0.10);
-}
-
-/* 鼠标在首页 Hero 上时，原水晶略微更亮 */
+/* Hero hover 时增加“被唤醒”感 */
 .VPHomeHero:hover::after {
-  opacity: 1 !important;
-  filter: blur(1px) saturate(1.28) brightness(1.04) !important;
+  filter: blur(0.6px) saturate(1.46) brightness(1.08) !important;
+  box-shadow:
+    0 24px 76px rgba(37, 99, 235, 0.28),
+    0 42px 130px rgba(124, 58, 237, 0.22),
+    0 0 68px rgba(6, 182, 212, 0.14),
+    inset 0 2px 0 rgba(255, 255, 255, 0.40),
+    inset 0 -24px 48px rgba(6, 182, 212, 0.12);
 }
 
-/* 微妙漂浮，不抢正文注意力 */
-@keyframes cysjNativeCrystalFloat {
-  0%, 100% {
-    border-radius: 38% 62% 58% 42% / 42% 38% 62% 58%;
+/* 深色模式增强，但不刺眼 */
+.dark .VPHomeHero::after {
+  opacity: calc(var(--cysj-crystal-glow) * 0.88) !important;
+  background:
+    radial-gradient(
+      circle at var(--cysj-crystal-shine-x) var(--cysj-crystal-shine-y),
+      rgba(255, 255, 255, 0.48),
+      transparent 12%
+    ),
+    radial-gradient(circle at 48% 48%, rgba(59, 130, 246, 0.42), transparent 34%),
+    radial-gradient(circle at 68% 42%, rgba(124, 58, 237, 0.40), transparent 38%),
+    radial-gradient(circle at 38% 74%, rgba(6, 182, 212, 0.28), transparent 42%),
+    linear-gradient(135deg, rgba(148, 163, 184, 0.12), rgba(15, 23, 42, 0.03)) !important;
+  box-shadow:
+    0 22px 82px rgba(37, 99, 235, 0.30),
+    0 44px 138px rgba(124, 58, 237, 0.22),
+    0 0 64px rgba(6, 182, 212, 0.13),
+    inset 0 2px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -24px 44px rgba(6, 182, 212, 0.12);
+}
+
+/* 更短周期：你说时间太大，这里压短到 3.6s / 2.8s / 3.2s */
+@keyframes cysjNativeCrystalMorphFast {
+  0%,
+  100% {
+    border-radius: 40% 60% 56% 44% / 42% 38% 62% 58%;
   }
 
   50% {
-    border-radius: 44% 56% 52% 48% / 48% 42% 58% 52%;
+    border-radius: 48% 52% 50% 50% / 50% 44% 56% 50%;
   }
 }
 
-@keyframes cysjNativeCrystalAura {
-  0%, 100% {
-    opacity: 0.72;
-    transform:
-      translate3d(
-        calc(var(--cysj-crystal-x) * 14px),
-        calc(var(--cysj-crystal-y) * 10px),
-        0
-      )
-      scale(1);
+@keyframes cysjNativeCrystalBreathFast {
+  0%,
+  100% {
+    filter: blur(0.8px) saturate(1.32) brightness(1.04);
   }
 
   50% {
-    opacity: 0.94;
-    transform:
-      translate3d(
-        calc(var(--cysj-crystal-x) * 14px),
-        calc(var(--cysj-crystal-y) * 10px),
-        0
-      )
-      scale(1.035);
+    filter: blur(0.6px) saturate(1.44) brightness(1.10);
   }
 }
 
-/* 触屏设备不做鼠标跟随，避免性能浪费 */
+@keyframes cysjNativeCrystalAuraFast {
+  0%,
+  100% {
+    opacity: calc(var(--cysj-crystal-glow) * 0.66);
+  }
+
+  50% {
+    opacity: calc(var(--cysj-crystal-glow) * 0.86);
+  }
+}
+
+/* 触屏设备关闭互动，保留静态美观 */
 @media (pointer: coarse), (max-width: 960px) {
   .VPHomeHero::after {
     right: -70px !important;
     top: 18px !important;
     width: 300px !important;
     height: 300px !important;
-    filter: blur(1px) saturate(1.08) !important;
     transform: none !important;
+    will-change: auto;
+    animation: cysjNativeCrystalMorphFast 5s ease-in-out infinite;
   }
 
   .VPHomeHero::before {
@@ -546,26 +593,29 @@ body:has(.VPLocalSearchBox) .VPHome::before {
     width: 360px !important;
     height: 360px !important;
     transform: none !important;
-    opacity: 0.55;
+    will-change: auto;
+    opacity: 0.46;
+    animation: none;
   }
 }
 
 @media (max-width: 640px) {
   .VPHomeHero::before {
-    opacity: 0.28;
+    opacity: 0.24;
   }
 
   .VPHomeHero::after {
-    opacity: 0.36 !important;
+    opacity: 0.34 !important;
   }
 }
 
-/* 减少动画偏好：保留静态美观，关闭动态 */
+/* 减少动画偏好：关闭动态，保留静态水晶 */
 @media (prefers-reduced-motion: reduce) {
   .VPHomeHero::before,
   .VPHomeHero::after {
     animation: none !important;
     transform: none !important;
+    will-change: auto;
   }
 }
 
