@@ -33,6 +33,10 @@ export const generatedSidebar = [
         "link": "/总索引与导航/创游世界知识库FAQ"
       },
       {
+        "text": "导航体系说明",
+        "link": "/总索引与导航/导航体系说明"
+      },
+      {
         "text": "快速入门索引",
         "link": "/总索引与导航/快速入门索引"
       },
@@ -559,6 +563,10 @@ export const generatedSidebar = [
         ]
       },
       {
+        "text": "OCR 当前状态与待补清单",
+        "link": "/OCR资料/OCR 当前状态与待补清单"
+      },
+      {
         "text": "OCR 完整化推进清单",
         "link": "/OCR资料/OCR 完整化推进清单"
       },
@@ -827,6 +835,10 @@ export const generatedSidebar = [
       {
         "text": "后续研究路线图",
         "link": "/维护与报告/后续研究路线图"
+      },
+      {
+        "text": "内容质量审计清单",
+        "link": "/维护与报告/内容质量审计清单"
       },
       {
         "text": "社区贡献与维护指南",
