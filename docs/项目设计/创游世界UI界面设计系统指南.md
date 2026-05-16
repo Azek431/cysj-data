@@ -1,6 +1,7 @@
 ---
 title: 创游世界UI界面设计系统指南
 description: 创游世界UI界面设计系统指南，涵盖地图UI、操作UI、物体UI的切换控制、布局设计、数据绑定与联机优化策略。
+created: 2026-05-16
 editor: Azek431
 status: 整理中
 difficulty: 进阶

@@ -1,6 +1,7 @@
 ---
 title: UI与交互研究导航
 description: 汇总创游世界中与界面（UI）、显示、交互、格子列表、UI数据同步相关的核心文档，适合作为"界面与交互"栏目入口。
+created: 2026-04-22
 editor: Azek431
 status: 已整理
 difficulty: 入门

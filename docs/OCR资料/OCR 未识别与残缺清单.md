@@ -1,6 +1,7 @@
 ---
 title: OCR 未识别与残缺清单
 description: 集中记录当前仍未完全识别的截图条目，包括"无有效文本 / 仅标题 / OCR 残缺 / 待继续重读"的问题页，便于后续补档。
+created: 2026-04-22
 editor: Azek431
 status: 持续更新
 difficulty: 维护向

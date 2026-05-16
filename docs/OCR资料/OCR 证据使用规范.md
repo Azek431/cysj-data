@@ -1,6 +1,7 @@
 ---
 title: OCR 证据使用规范
 description: 面向维护者、研究者和 AI 检索系统的 OCR 证据使用规则页，让截图证据、OCR 文本与专题结论形成可回查、可降级、可维护的链路。
+created: 2026-04-22
 editor: Azek431
 status: 已整理
 difficulty: 维护向

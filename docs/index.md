@@ -2,6 +2,7 @@
 layout: home
 title: 创游世界资料库
 description: 系统整理创游世界脚本、组件、UI、项目设计、OCR 证据、教程资料与维护规范的中文知识库。
+created: 2026-05-05
 
 hero:
   name: 创游世界资料库

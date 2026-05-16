@@ -1,6 +1,7 @@
 ---
 title: 创游世界知识库 FAQ
 description: 创游世界资料库的常见问题解答，帮助用户快速了解知识库的使用方式、贡献流程、文档规范和常见疑问。
+created: 2026-05-16
 editor: Azek431
 status: 已整理
 difficulty: 入门
