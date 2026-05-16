@@ -1,6 +1,7 @@
 ---
 title: AI自动维护复盘记录
 description: 创游世界资料库AI自动维护复盘记录，追踪每轮维护的问题、优化方向和下一轮任务。
+created: 2026-05-16
 editor: Azek431
 status: 持续更新中
 difficulty: 维护向

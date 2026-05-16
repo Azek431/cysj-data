@@ -1,6 +1,7 @@
 ---
 title: OCR 证据链说明
 description: 解释 OCR 原文、图片编号、映射表、专题文档之间的关系，帮助理解证据链结构。
+created: 2026-04-22
 editor: Azek431
 status: 已整理
 difficulty: 入门

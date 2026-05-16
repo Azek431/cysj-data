@@ -1,6 +1,7 @@
 ---
 title: 创游世界AI系统设计入门
 description: 创游世界敌人AI行为设计的完整指南，涵盖AI状态机、巡逻路径、追击逻辑、攻击模式、技能使用等，帮助开发者做出有挑战性且有趣的敌人行为。
+created: 2026-05-16
 editor: Azek431
 status: 已整理
 difficulty: 进阶

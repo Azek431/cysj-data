@@ -1,6 +1,7 @@
 ---
 title: OCR 完整化推进清单
 description: 创游世界 OCR 资料的推进任务表，记录截图材料转写状态、映射表进度与专题回链完成度。
+created: 2026-04-19
 editor: Azek431
 status: 持续更新
 difficulty: 维护向

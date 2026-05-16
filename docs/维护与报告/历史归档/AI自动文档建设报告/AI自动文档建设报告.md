@@ -1,6 +1,7 @@
 ---
 title: AI自动文档建设报告
 description: 本次 AI 自动文档建设报告，记录第一轮扫描、优化、补齐和新增的文档内容。
+created: 2026-05-11
 editor: Azek431
 status: 已完成
 difficulty: 入门

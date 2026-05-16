@@ -1,6 +1,7 @@
 ---
 title: 创游世界UI数据同步架构
 description: 解释创游世界UI、地图与系统之间的数据同步边界，尤其聚焦联机场景下"上传并等待"的结构性原因与规避思路，帮助你建立正确的UI数据同步架构。
+created: 2026-04-19
 editor: Azek431
 status: 已整理
 difficulty: 进阶

@@ -1,6 +1,7 @@
 ---
 title: UI系统与切换机制解析
 description: 解析创游世界UI系统的三类UI（地图UI/操作UI/物体UI）、切换机制、组件化设计思维与联机UI更新方向。
+created: 2026-04-19
 editor: Azek431
 status: 已整理
 difficulty: 进阶

@@ -27,7 +27,9 @@
     "docs:content:audit": "node scripts/audit-doc-content.mjs",
     "docs:search:exclude": "node scripts/mark-search-excluded.mjs",
     "docs:size:audit": "node scripts/audit-dist-size.mjs",
-    "docs:perf:check": "pnpm run docs:frontmatter:check && pnpm run docs:ui:check && pnpm run docs:size:audit"
+    "docs:perf:check": "pnpm run docs:frontmatter:check && pnpm run docs:ui:check && pnpm run docs:size:audit",
+    "docs:dates:check": "node scripts/sync-doc-dates.mjs --check",
+    "docs:dates:fix": "node scripts/sync-doc-dates.mjs"
   },
   "name": "cysj-data",
   "version": "0.1.0",
