@@ -2,6 +2,7 @@
 date: 2026-04-22
 updated: 2026-05-16
 title: "OCR 专题回链示例"
+search: false
 ---
 # OCR 专题回链示例
 
