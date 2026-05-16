@@ -3,9 +3,11 @@ import DefaultTheme from "vitepress/theme";
 import Layout from "./Layout.vue";
 import "./styles/cysj-pro.css";
 import './styles/cysj-ultimate.css'
+import './styles/cysj-ambient.css'
 
 export default {
   extends: DefaultTheme,
   Layout,
 } satisfies Theme;
+
 
