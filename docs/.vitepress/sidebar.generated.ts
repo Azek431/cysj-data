@@ -19,7 +19,7 @@ export const generatedSidebar = [
         "link": "/知识库总索引"
       },
       {
-        "text": "创游世界引擎文档",
+        "text": "创游世界资料库",
         "link": "/"
       },
       {
@@ -32,6 +32,10 @@ export const generatedSidebar = [
     "text": "总索引与导航",
     "collapsed": false,
     "items": [
+      {
+        "text": "按问题查资料",
+        "link": "/总索引与导航/按问题查资料"
+      },
       {
         "text": "创游世界知识库总导航",
         "link": "/总索引与导航/创游世界知识库总导航"
