@@ -24,7 +24,10 @@
     "docs:links:fix": "node scripts/fix-md-links.mjs",
     "docs:footers:check": "node scripts/remove-ai-footers.mjs --check",
     "docs:footers:fix": "node scripts/remove-ai-footers.mjs",
-    "docs:content:audit": "node scripts/audit-doc-content.mjs"
+    "docs:content:audit": "node scripts/audit-doc-content.mjs",
+    "docs:search:exclude": "node scripts/mark-search-excluded.mjs",
+    "docs:size:audit": "node scripts/audit-dist-size.mjs",
+    "docs:perf:check": "pnpm run docs:frontmatter:check && pnpm run docs:ui:check && pnpm run docs:size:audit"
   },
   "name": "cysj-data",
   "version": "0.1.0",

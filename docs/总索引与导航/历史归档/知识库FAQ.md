@@ -15,6 +15,7 @@ tags:
   - 常见问题
   - 使用指南
   - 贡献指南
+search: false
 ---
 
 # 知识库 FAQ
