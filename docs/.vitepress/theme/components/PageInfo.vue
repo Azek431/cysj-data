@@ -6,6 +6,7 @@ const { frontmatter, page } = useData()
 const route = useRoute()
 
 const wordCount = ref(0)
+const authorCardOpen = ref(false)
 
 function formatShortDate(value: unknown) {
   if (!value) return ''
@@ -49,7 +50,7 @@ function countWords() {
   if (typeof document === 'undefined') return
 
   const article = document.querySelector('.vp-doc')
-  const text = article?.textContent?.replace(/\s+/g, '') ?? ''
+  const text = article?.textContent?.replace(/s+/g, '') ?? ''
 
   wordCount.value = text.length
 }
@@ -77,6 +78,11 @@ const author = computed(() => {
   return frontmatter.value.author || frontmatter.value.maintainer || 'Azek431'
 })
 
+const authorInitial = computed(() => {
+  const name = String(author.value || 'A').trim()
+  return name.charAt(0).toUpperCase() || 'A'
+})
+
 const authorProfile = computed(() => {
   return {
     name: String(author.value || 'Azek431'),
@@ -92,6 +98,16 @@ const status = computed(() => frontmatter.value.status || '')
 const difficulty = computed(() => frontmatter.value.difficulty || '')
 const evidence = computed(() => frontmatter.value.evidence || '')
 
+function handleAuthorFocus() {
+  authorCardOpen.value = true
+}
+
+function handleAuthorBlur(event: FocusEvent) {
+  const next = event.relatedTarget as HTMLElement | null
+  if (next && next.closest('.cysj-author-meta')) return
+  authorCardOpen.value = false
+}
+
 onMounted(() => {
   nextTick(countWords)
 })
@@ -100,6 +116,7 @@ watch(
   () => route.path,
   () => {
     nextTick(countWords)
+    authorCardOpen.value = false
   }
 )
 </script>
@@ -126,11 +143,18 @@ watch(
       v-if="author"
       class="cysj-author-meta"
       tabindex="0"
-      aria-label="维护者信息"
+      role="button"
+      :aria-expanded="authorCardOpen"
+      :aria-label="`维护者 ${author}，按回车查看联系方式`"
+      @focus="handleAuthorFocus"
+      @blur="handleAuthorBlur"
     >
       维护者：{{ author }}
 
       <span class="cysj-author-card" role="tooltip">
+        <span class="cysj-author-card__avatar" aria-hidden="true">
+          {{ authorInitial }}
+        </span>
         <span class="cysj-author-card__name">{{ authorProfile.name }}</span>
         <span class="cysj-author-card__role">{{ authorProfile.role }}</span>
 
@@ -161,7 +185,7 @@ watch(
         </span>
 
         <span class="cysj-author-card__contact">
-          QQ 群：{{ authorProfile.qqGroup }}
+          QQ 群：<strong>{{ authorProfile.qqGroup }}</strong>
         </span>
       </span>
     </span>

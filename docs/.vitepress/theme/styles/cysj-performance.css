@@ -1,66 +1,54 @@
 /* =========================================================
    CYSJ Docs Performance Layer
-   性能优化层：保留高级视觉，但减少滚动卡顿和 GPU 压力
-   必须在 cysj-pro / cysj-ultimate / cysj-ambient 之后加载
+   性能优化层：保留视觉效果，减少 GPU 压力
+   必须在 pro/ultimate/ambient 之后加载
    ========================================================= */
 
-/* ---------- 全局降低绘制压力 ---------- */
-
 :root {
-  --cysj-perf-blur: 10px;
-  --cysj-perf-blur-light: 6px;
-  --cysj-perf-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
-  --cysj-perf-shadow-hover: 0 20px 56px rgba(15, 23, 42, 0.12);
+  --cysj-perf-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  --cysj-perf-shadow-hover: 0 14px 36px rgba(15, 23, 42, 0.1);
 }
 
 .dark {
-  --cysj-perf-shadow: 0 16px 44px rgba(0, 0, 0, 0.28);
-  --cysj-perf-shadow-hover: 0 22px 60px rgba(0, 0, 0, 0.38);
+  --cysj-perf-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
+  --cysj-perf-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.36);
 }
 
-/* fixed 背景在滚动时容易触发重绘，改成 scroll 更顺滑 */
+/* =========================================================
+   全局降低绘制压力
+   ========================================================= */
 body {
   background-attachment: scroll !important;
 }
 
-/* 降低全局网格层强度，保留氛围但减少绘制 */
+/* 颗粒层降级 */
 body::before {
-  opacity: 0.12 !important;
-  background-size: 72px 72px !important;
+  opacity: 0.18 !important;
+  background-size: 80px 80px !important;
 }
 
-/* Hero 光晕降低 blur，减少 GPU 压力 */
+/* Hero 光晕降级 */
 :root {
-  --vp-home-hero-image-filter: blur(44px);
+  --vp-home-hero-image-filter: blur(48px);
 }
 
 .VPHomeHero::after {
-  filter: blur(2px) !important;
-  opacity: 0.72;
+  filter: blur(1px) saturate(1.1) !important;
+  opacity: 0.6 !important;
+  will-change: transform, opacity;
 }
 
-/* ---------- 降低玻璃拟态 blur 强度 ---------- */
-
-.VPNavBar,
+/* =========================================================
+   阴影降级 —— 保留层次但更轻
+   ========================================================= */
 .VPFeature,
 .VPHome .vp-doc,
-.VPDoc .content-container::before,
-.VPSidebar,
-.VPLocalSearchBox .shell,
-.cysj-author-card {
-  backdrop-filter: blur(var(--cysj-perf-blur)) saturate(1.05) !important;
-  -webkit-backdrop-filter: blur(var(--cysj-perf-blur)) saturate(1.05) !important;
-}
-
-/* 强阴影改轻一点，保留质感但降低滚动合成压力 */
-.VPFeature,
-.VPHome .vp-doc,
-.VPDoc .content-container::before,
 .vp-doc table,
 .vp-doc blockquote,
 .vp-doc div[class*='language-'],
 .pager-link,
-.cysj-author-card {
+.cysj-author-card,
+.cysj-actions {
   box-shadow: var(--cysj-perf-shadow) !important;
 }
 
@@ -69,20 +57,23 @@ body::before {
   box-shadow: var(--cysj-perf-shadow-hover) !important;
 }
 
-/* hover 动画更克制，减少连续滚动时的合成负担 */
+/* =========================================================
+   hover 动画更克制
+   ========================================================= */
 .VPFeature:hover {
   transform: translateY(-3px) !important;
 }
 
 .VPHomeHero .VPButton:hover,
 .cysj-author-card__links a:hover,
-.pager-link:hover {
+.pager-link:hover,
+.cysj-action-btn:hover {
   transform: translateY(-1px) !important;
 }
 
-/* ---------- 非可视区域跳过渲染 ---------- */
-/* 对大块内容启用 content-visibility，滚动长文时更省力 */
-
+/* =========================================================
+   content-visibility：非可视区域跳过渲染
+   ========================================================= */
 .VPFeature,
 .vp-doc table,
 .vp-doc blockquote,
@@ -90,40 +81,19 @@ body::before {
 .vp-doc .custom-block,
 .pager-link {
   content-visibility: auto;
-  contain-intrinsic-size: auto 180px;
+  contain-intrinsic-size: auto 200px;
 }
 
-/* 表格可能很高，给更大的预估高度 */
 .vp-doc table {
-  contain-intrinsic-size: auto 260px;
+  contain-intrinsic-size: auto 280px;
 }
 
-/* ---------- 搜索弹窗打开时减少背景层干扰 ---------- */
-
-body:has(.VPLocalSearchBox) .VPHome::before {
-  opacity: 0.6;
-}
-
-/* ---------- 中低性能设备：自动降级重型效果 ---------- */
-
+/* =========================================================
+   触屏 / 中低性能设备：自动降级
+   ========================================================= */
 @media (max-width: 960px), (pointer: coarse) {
   body::before {
     display: none !important;
-  }
-
-  .VPNavBar,
-  .VPFeature,
-  .VPHome .vp-doc,
-  .VPDoc .content-container::before,
-  .VPSidebar,
-  .VPLocalSearchBox .shell,
-  .cysj-author-card {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  .VPDoc .content-container::before {
-    box-shadow: none !important;
   }
 
   .VPFeature,
@@ -131,8 +101,21 @@ body:has(.VPLocalSearchBox) .VPHome::before {
   .vp-doc table,
   .vp-doc blockquote,
   .vp-doc div[class*='language-'],
-  .cysj-author-card {
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08) !important;
+  .cysj-author-card,
+  .cysj-actions,
+  .VPSidebar {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .VPFeature,
+  .VPHome .vp-doc,
+  .vp-doc table,
+  .vp-doc blockquote,
+  .vp-doc div[class*='language-'],
+  .cysj-author-card,
+  .cysj-actions {
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06) !important;
   }
 
   .dark .VPFeature,
@@ -140,30 +123,27 @@ body:has(.VPLocalSearchBox) .VPHome::before {
   .dark .vp-doc table,
   .dark .vp-doc blockquote,
   .dark .vp-doc div[class*='language-'],
-  .dark .cysj-author-card {
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28) !important;
+  .dark .cysj-author-card,
+  .dark .cysj-actions {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24) !important;
   }
 
   .VPHomeHero::after {
     filter: none !important;
-    opacity: 0.38;
+    opacity: 0.32 !important;
   }
 }
 
-/* 小屏直接关闭正文外层玻璃卡片，避免滚动卡顿 */
 @media (max-width: 720px) {
-  .VPDoc .content-container::before {
-    display: none !important;
-  }
-
   .VPHome .vp-doc {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
   }
 }
 
-/* ---------- 低动画偏好：更彻底降级 ---------- */
-
+/* =========================================================
+   低动画偏好：彻底降级
+   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
   body::before,
   .VPHomeHero::after {
@@ -174,20 +154,23 @@ body:has(.VPLocalSearchBox) .VPHome::before {
   .VPHomeHero .VPButton,
   .pager-link,
   .cysj-author-card__links a,
-  .outline-link {
+  .outline-link,
+  .cysj-action-btn {
     transition: none !important;
     transform: none !important;
   }
 
   .VPFeature:hover,
   .VPHomeHero .VPButton:hover,
-  .pager-link:hover {
+  .pager-link:hover,
+  .cysj-action-btn:hover {
     transform: none !important;
   }
 }
 
-/* ---------- 打印/截图场景 ---------- */
-
+/* =========================================================
+   打印场景
+   ========================================================= */
 @media print {
   body::before,
   .VPHomeHero::after {
@@ -196,599 +179,12 @@ body:has(.VPLocalSearchBox) .VPHome::before {
 
   .VPFeature,
   .VPHome .vp-doc,
-  .VPDoc .content-container::before,
   .vp-doc table,
   .vp-doc blockquote,
-  .vp-doc div[class*='language-'] {
+  .vp-doc div[class*='language-'],
+  .cysj-actions,
+  .cysj-author-card {
     box-shadow: none !important;
     backdrop-filter: none !important;
   }
 }
-
-/* =========================================================
-   Author hover card interaction fix
-   维护者悬浮卡片交互修复与美化
-   解决鼠标移动到卡片内容时卡片消失的问题
-   ========================================================= */
-
-.cysj-author-meta {
-  position: relative !important;
-  z-index: 80;
-  display: inline-flex !important;
-  align-items: center;
-  cursor: help;
-  isolation: isolate;
-}
-
-/* 透明桥接层：覆盖标签和卡片之间的空隙，避免 hover 断开 */
-.cysj-author-meta::after {
-  content: "";
-  position: absolute;
-  left: -12px;
-  right: -12px;
-  top: 100%;
-  height: 18px;
-  z-index: 81;
-  background: transparent;
-}
-
-/* 卡片本体：可点击、可悬停、层级更高 */
-.cysj-author-card {
-  pointer-events: auto !important;
-  left: 0 !important;
-  top: calc(100% + 10px) !important;
-  z-index: 90 !important;
-  min-width: 248px;
-  max-width: 320px;
-  padding: 16px !important;
-  border-radius: 24px !important;
-  border: 1px solid rgba(100, 116, 139, 0.18) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.16), transparent 38%),
-    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.12), transparent 36%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.88)) !important;
-  box-shadow:
-    0 18px 52px rgba(15, 23, 42, 0.16),
-    inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
-  backdrop-filter: blur(16px) saturate(1.12) !important;
-  -webkit-backdrop-filter: blur(16px) saturate(1.12) !important;
-  transform: translateY(-4px) scale(0.98) !important;
-  transform-origin: top left;
-  transition:
-    opacity 0.16s ease,
-    transform 0.16s ease,
-    visibility 0s linear 0.16s !important;
-}
-
-.dark .cysj-author-card {
-  border-color: rgba(148, 163, 184, 0.18) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.20), transparent 38%),
-    radial-gradient(circle at 100% 0%, rgba(124, 58, 237, 0.16), transparent 36%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.94), rgba(2, 6, 23, 0.88)) !important;
-  box-shadow:
-    0 22px 64px rgba(0, 0, 0, 0.42),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
-}
-
-/* 悬浮标签、卡片自身、键盘聚焦时都保持显示 */
-.cysj-author-meta:hover .cysj-author-card,
-.cysj-author-meta:focus-within .cysj-author-card,
-.cysj-author-card:hover {
-  opacity: 1 !important;
-  visibility: visible !important;
-  transform: translateY(0) scale(1) !important;
-  transition-delay: 0s !important;
-}
-
-/* 卡片小箭头 */
-.cysj-author-card::before {
-  content: "";
-  position: absolute;
-  left: 22px;
-  top: -6px;
-  width: 12px;
-  height: 12px;
-  border-left: 1px solid rgba(100, 116, 139, 0.18);
-  border-top: 1px solid rgba(100, 116, 139, 0.18);
-  background: rgba(255, 255, 255, 0.96);
-  transform: rotate(45deg);
-}
-
-.dark .cysj-author-card::before {
-  border-color: rgba(148, 163, 184, 0.18);
-  background: rgba(15, 23, 42, 0.94);
-}
-
-/* 作者名 */
-.cysj-author-card__name {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px !important;
-  font-weight: 950 !important;
-  letter-spacing: -0.03em;
-}
-
-.cysj-author-card__name::before {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed, #06b6d4);
-  box-shadow: 0 0 18px rgba(37, 99, 235, 0.55);
-}
-
-/* 角色说明 */
-.cysj-author-card__role {
-  color: var(--vp-c-text-2);
-  font-size: 12px !important;
-  line-height: 1.75 !important;
-}
-
-/* 链接按钮 */
-.cysj-author-card__links {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px !important;
-  margin-top: 4px !important;
-}
-
-.cysj-author-card__links a {
-  min-height: 32px !important;
-  padding: 5px 10px !important;
-  border: 1px solid rgba(100, 116, 139, 0.18) !important;
-  border-radius: 999px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(248, 250, 252, 0.66)) !important;
-  color: var(--vp-c-text-1) !important;
-  font-size: 12px !important;
-  font-weight: 900 !important;
-  text-align: center;
-  text-decoration: none !important;
-  transition:
-    transform 0.14s ease,
-    border-color 0.14s ease,
-    background 0.14s ease,
-    color 0.14s ease !important;
-}
-
-.dark .cysj-author-card__links a {
-  background:
-    linear-gradient(180deg, rgba(30, 41, 59, 0.82), rgba(15, 23, 42, 0.72)) !important;
-}
-
-.cysj-author-card__links a:hover {
-  transform: translateY(-1px) !important;
-  border-color: rgba(37, 99, 235, 0.42) !important;
-  color: var(--vp-c-brand-1) !important;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.12), transparent 42%),
-    var(--vp-c-bg-soft) !important;
-}
-
-/* 联系方式 */
-.cysj-author-card__contact {
-  margin-top: 4px;
-  padding-top: 10px !important;
-  border-top: 1px solid rgba(100, 116, 139, 0.16) !important;
-  color: var(--vp-c-text-2);
-  font-size: 12px !important;
-  line-height: 1.7;
-}
-
-.dark .cysj-author-card__contact {
-  border-top-color: rgba(148, 163, 184, 0.16) !important;
-}
-
-/* 移动端：靠右显示，避免超出屏幕 */
-@media (max-width: 640px) {
-  .cysj-author-card {
-    left: auto !important;
-    right: 0 !important;
-    min-width: 238px;
-    max-width: min(300px, calc(100vw - 36px));
-    transform-origin: top right;
-  }
-
-  .cysj-author-card::before {
-    left: auto;
-    right: 24px;
-  }
-
-  .cysj-author-card__links {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================================================
-   Home hero native crystal interaction v2
-   首页原生水晶互动增强 v2：更快、更小周期、更明显鼠标反馈
-   ========================================================= */
-
-:root {
-  --cysj-crystal-move-x: 0px;
-  --cysj-crystal-move-y: 0px;
-  --cysj-crystal-aura-x: 0px;
-  --cysj-crystal-aura-y: 0px;
-  --cysj-crystal-rotate-x: 0deg;
-  --cysj-crystal-rotate-y: 0deg;
-  --cysj-crystal-shine-x: 42%;
-  --cysj-crystal-shine-y: 34%;
-  --cysj-crystal-glow: 0.78;
-  --cysj-crystal-scale: 1;
-}
-
-/* 原生右侧水晶：交互版 */
-.VPHomeHero::after {
-  right: max(18px, 7vw) !important;
-  top: 20px !important;
-  width: clamp(250px, 30vw, 420px) !important;
-  height: clamp(250px, 30vw, 420px) !important;
-  border-radius: 40% 60% 56% 44% / 42% 38% 62% 58% !important;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      circle at var(--cysj-crystal-shine-x) var(--cysj-crystal-shine-y),
-      rgba(255, 255, 255, 0.78),
-      transparent 12%
-    ),
-    radial-gradient(
-      circle at 48% 48%,
-      rgba(37, 99, 235, 0.36),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 68% 42%,
-      rgba(124, 58, 237, 0.34),
-      transparent 38%
-    ),
-    radial-gradient(
-      circle at 38% 74%,
-      rgba(6, 182, 212, 0.26),
-      transparent 42%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(255, 255, 255, 0.28),
-      rgba(255, 255, 255, 0.03)
-    ) !important;
-  opacity: var(--cysj-crystal-glow) !important;
-  filter: blur(0.8px) saturate(1.32) brightness(1.05) !important;
-  box-shadow:
-    0 20px 64px rgba(37, 99, 235, 0.22),
-    0 34px 110px rgba(124, 58, 237, 0.16),
-    0 0 54px rgba(6, 182, 212, 0.10),
-    inset 0 2px 0 rgba(255, 255, 255, 0.34),
-    inset 0 -22px 44px rgba(6, 182, 212, 0.10);
-  transform:
-    translate3d(
-      var(--cysj-crystal-move-x),
-      var(--cysj-crystal-move-y),
-      0
-    )
-    rotateX(var(--cysj-crystal-rotate-x))
-    rotateY(var(--cysj-crystal-rotate-y))
-    scale(var(--cysj-crystal-scale));
-  transform-style: preserve-3d;
-  will-change: transform, opacity, filter;
-  transition:
-    filter 0.12s ease,
-    box-shadow 0.12s ease,
-    opacity 0.12s ease;
-  animation:
-    cysjNativeCrystalMorphFast 3.6s ease-in-out infinite,
-    cysjNativeCrystalBreathFast 2.8s ease-in-out infinite;
-}
-
-/* 外围光环：跟随更明显 */
-.VPHomeHero::before {
-  content: "";
-  position: absolute;
-  right: max(-18px, 4.5vw) !important;
-  top: 0 !important;
-  z-index: -1;
-  width: clamp(310px, 37vw, 520px);
-  height: clamp(310px, 37vw, 520px);
-  pointer-events: none;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.22), transparent 38%),
-    radial-gradient(circle at 60% 44%, rgba(124, 58, 237, 0.18), transparent 42%),
-    radial-gradient(circle at 42% 62%, rgba(6, 182, 212, 0.14), transparent 46%);
-  filter: blur(24px);
-  opacity: calc(var(--cysj-crystal-glow) * 0.78);
-  transform:
-    translate3d(
-      var(--cysj-crystal-aura-x),
-      var(--cysj-crystal-aura-y),
-      0
-    )
-    scale(var(--cysj-crystal-scale));
-  will-change: transform, opacity;
-  animation: cysjNativeCrystalAuraFast 3.2s ease-in-out infinite;
-}
-
-/* Hero hover 时增加“被唤醒”感 */
-.VPHomeHero:hover::after {
-  filter: blur(0.6px) saturate(1.46) brightness(1.08) !important;
-  box-shadow:
-    0 24px 76px rgba(37, 99, 235, 0.28),
-    0 42px 130px rgba(124, 58, 237, 0.22),
-    0 0 68px rgba(6, 182, 212, 0.14),
-    inset 0 2px 0 rgba(255, 255, 255, 0.40),
-    inset 0 -24px 48px rgba(6, 182, 212, 0.12);
-}
-
-/* 深色模式增强，但不刺眼 */
-.dark .VPHomeHero::after {
-  opacity: calc(var(--cysj-crystal-glow) * 0.88) !important;
-  background:
-    radial-gradient(
-      circle at var(--cysj-crystal-shine-x) var(--cysj-crystal-shine-y),
-      rgba(255, 255, 255, 0.48),
-      transparent 12%
-    ),
-    radial-gradient(circle at 48% 48%, rgba(59, 130, 246, 0.42), transparent 34%),
-    radial-gradient(circle at 68% 42%, rgba(124, 58, 237, 0.40), transparent 38%),
-    radial-gradient(circle at 38% 74%, rgba(6, 182, 212, 0.28), transparent 42%),
-    linear-gradient(135deg, rgba(148, 163, 184, 0.12), rgba(15, 23, 42, 0.03)) !important;
-  box-shadow:
-    0 22px 82px rgba(37, 99, 235, 0.30),
-    0 44px 138px rgba(124, 58, 237, 0.22),
-    0 0 64px rgba(6, 182, 212, 0.13),
-    inset 0 2px 0 rgba(255, 255, 255, 0.12),
-    inset 0 -24px 44px rgba(6, 182, 212, 0.12);
-}
-
-/* 更短周期：你说时间太大，这里压短到 3.6s / 2.8s / 3.2s */
-@keyframes cysjNativeCrystalMorphFast {
-  0%,
-  100% {
-    border-radius: 40% 60% 56% 44% / 42% 38% 62% 58%;
-  }
-
-  50% {
-    border-radius: 48% 52% 50% 50% / 50% 44% 56% 50%;
-  }
-}
-
-@keyframes cysjNativeCrystalBreathFast {
-  0%,
-  100% {
-    filter: blur(0.8px) saturate(1.32) brightness(1.04);
-  }
-
-  50% {
-    filter: blur(0.6px) saturate(1.44) brightness(1.10);
-  }
-}
-
-@keyframes cysjNativeCrystalAuraFast {
-  0%,
-  100% {
-    opacity: calc(var(--cysj-crystal-glow) * 0.66);
-  }
-
-  50% {
-    opacity: calc(var(--cysj-crystal-glow) * 0.86);
-  }
-}
-
-/* 触屏设备关闭互动，保留静态美观 */
-@media (pointer: coarse), (max-width: 960px) {
-  .VPHomeHero::after {
-    right: -70px !important;
-    top: 18px !important;
-    width: 300px !important;
-    height: 300px !important;
-    transform: none !important;
-    will-change: auto;
-    animation: cysjNativeCrystalMorphFast 5s ease-in-out infinite;
-  }
-
-  .VPHomeHero::before {
-    right: -120px !important;
-    top: 0 !important;
-    width: 360px !important;
-    height: 360px !important;
-    transform: none !important;
-    will-change: auto;
-    opacity: 0.46;
-    animation: none;
-  }
-}
-
-@media (max-width: 640px) {
-  .VPHomeHero::before {
-    opacity: 0.24;
-  }
-
-  .VPHomeHero::after {
-    opacity: 0.34 !important;
-  }
-}
-
-/* 减少动画偏好：关闭动态，保留静态水晶 */
-@media (prefers-reduced-motion: reduce) {
-  .VPHomeHero::before,
-  .VPHomeHero::after {
-    animation: none !important;
-    transform: none !important;
-    will-change: auto;
-  }
-}
-
-/* =========================================================
-   Home hero native crystal v3
-   恢复原始球体大小，只保留轻量鼠标互动与高级光感
-   ========================================================= */
-
-:root {
-  --cysj-crystal-move-x: 0px;
-  --cysj-crystal-move-y: 0px;
-  --cysj-crystal-aura-x: 0px;
-  --cysj-crystal-aura-y: 0px;
-  --cysj-crystal-shine-x: 35%;
-  --cysj-crystal-shine-y: 35%;
-  --cysj-crystal-rotate-x: 0deg;
-  --cysj-crystal-rotate-y: 0deg;
-  --cysj-crystal-glow: 0.9;
-}
-
-/* 恢复原始尺寸：不再使用 420px / 520px 那种大球 */
-.VPHomeHero::after {
-  right: max(24px, 8vw) !important;
-  top: 28px !important;
-  width: 360px !important;
-  height: 360px !important;
-  border-radius: 999px !important;
-  pointer-events: none;
-  opacity: var(--cysj-crystal-glow) !important;
-  filter: blur(5px) saturate(1.14) brightness(1.02) !important;
-  background:
-    radial-gradient(
-      circle at var(--cysj-crystal-shine-x) var(--cysj-crystal-shine-y),
-      rgba(255, 255, 255, 0.58),
-      transparent 16%
-    ),
-    radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.22), transparent 42%),
-    radial-gradient(circle at 64% 64%, rgba(124, 58, 237, 0.24), transparent 46%),
-    radial-gradient(circle at 38% 72%, rgba(6, 182, 212, 0.18), transparent 44%) !important;
-  box-shadow:
-    0 20px 70px rgba(37, 99, 235, 0.14),
-    0 30px 90px rgba(124, 58, 237, 0.10);
-  transform:
-    translate3d(
-      var(--cysj-crystal-move-x),
-      var(--cysj-crystal-move-y),
-      0
-    )
-    rotateX(var(--cysj-crystal-rotate-x))
-    rotateY(var(--cysj-crystal-rotate-y));
-  transform-style: preserve-3d;
-  will-change: transform, opacity, filter;
-  transition:
-    filter 0.18s ease,
-    opacity 0.18s ease,
-    box-shadow 0.18s ease;
-  animation: cysjCrystalSoftBreath 6.8s ease-in-out infinite !important;
-}
-
-/* 外围光环也缩回克制大小 */
-.VPHomeHero::before {
-  content: "";
-  position: absolute;
-  right: max(0px, 6vw) !important;
-  top: 6px !important;
-  z-index: -1;
-  width: 410px !important;
-  height: 410px !important;
-  pointer-events: none;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.12), transparent 42%),
-    radial-gradient(circle at 58% 52%, rgba(124, 58, 237, 0.10), transparent 46%),
-    radial-gradient(circle at 42% 64%, rgba(6, 182, 212, 0.08), transparent 48%);
-  filter: blur(24px);
-  opacity: 0.72;
-  transform:
-    translate3d(
-      var(--cysj-crystal-aura-x),
-      var(--cysj-crystal-aura-y),
-      0
-    );
-  will-change: transform, opacity;
-  animation: cysjCrystalAuraSoftBreath 7.6s ease-in-out infinite !important;
-}
-
-/* hover 只微微亮一点，不再膨胀 */
-.VPHomeHero:hover::after {
-  opacity: 0.98 !important;
-  filter: blur(4px) saturate(1.2) brightness(1.04) !important;
-  box-shadow:
-    0 22px 76px rgba(37, 99, 235, 0.17),
-    0 34px 96px rgba(124, 58, 237, 0.13);
-}
-
-.dark .VPHomeHero::after {
-  opacity: calc(var(--cysj-crystal-glow) * 0.72) !important;
-  background:
-    radial-gradient(
-      circle at var(--cysj-crystal-shine-x) var(--cysj-crystal-shine-y),
-      rgba(255, 255, 255, 0.36),
-      transparent 16%
-    ),
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.30), transparent 42%),
-    radial-gradient(circle at 64% 64%, rgba(124, 58, 237, 0.28), transparent 46%),
-    radial-gradient(circle at 38% 72%, rgba(6, 182, 212, 0.20), transparent 44%) !important;
-}
-
-.dark .VPHomeHero::before {
-  opacity: 0.58;
-}
-
-@keyframes cysjCrystalSoftBreath {
-  0%,
-  100% {
-    filter: blur(5px) saturate(1.12) brightness(1.01);
-  }
-
-  50% {
-    filter: blur(4.5px) saturate(1.2) brightness(1.05);
-  }
-}
-
-@keyframes cysjCrystalAuraSoftBreath {
-  0%,
-  100% {
-    opacity: 0.56;
-  }
-
-  50% {
-    opacity: 0.78;
-  }
-}
-
-/* 恢复原本移动端大小逻辑 */
-@media (max-width: 960px), (pointer: coarse) {
-  .VPHomeHero::after {
-    right: -90px !important;
-    top: 20px !important;
-    width: 300px !important;
-    height: 300px !important;
-    transform: none !important;
-    will-change: auto;
-    animation: cysjCrystalSoftBreath 7.2s ease-in-out infinite !important;
-  }
-
-  .VPHomeHero::before {
-    right: -130px !important;
-    top: 0 !important;
-    width: 360px !important;
-    height: 360px !important;
-    transform: none !important;
-    will-change: auto;
-    opacity: 0.42;
-  }
-}
-
-@media (max-width: 640px) {
-  .VPHomeHero::after {
-    opacity: 0.34 !important;
-  }
-
-  .VPHomeHero::before {
-    opacity: 0.22;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .VPHomeHero::before,
-  .VPHomeHero::after {
-    animation: none !important;
-    transform: none !important;
-    will-change: auto;
-  }
-}
-

@@ -5,6 +5,7 @@ import { useData, useRoute } from "vitepress";
 const { page, site } = useData();
 const route = useRoute();
 const copied = ref(false);
+const copyError = ref(false);
 
 const repo = computed(
   () => site.value?.themeConfig?.repo || "Azek431/cysj-data",
@@ -32,11 +33,16 @@ async function copyLink() {
   try {
     await navigator.clipboard.writeText(window.location.href);
     copied.value = true;
+    copyError.value = false;
     window.setTimeout(() => {
       copied.value = false;
-    }, 1600);
+    }, 1800);
   } catch {
     copied.value = false;
+    copyError.value = true;
+    window.setTimeout(() => {
+      copyError.value = false;
+    }, 2400);
   }
 }
 </script>
@@ -66,8 +72,16 @@ async function copyLink() {
         class="cysj-action-btn"
         >反馈建议</a
       >
-      <button type="button" class="cysj-action-btn" @click="copyLink">
-        {{ copied ? "已复制" : "复制链接" }}
+      <button
+        type="button"
+        class="cysj-action-btn"
+        :class="{ 'is-success': copied }"
+        :aria-label="copied ? '链接已复制' : '复制当前页面链接'"
+        @click="copyLink"
+      >
+        <span aria-live="polite" role="status">
+          {{ copyError ? "复制失败" : copied ? "已复制" : "复制链接" }}
+        </span>
       </button>
     </div>
   </section>

@@ -1,38 +1,34 @@
 /* =========================================================
-   CYSJ Docs Ambient UI Layer
-   全站氛围增强层：让渐变、玻璃感、卡片层次贯穿全站
-   必须在 cysj-pro.css / cysj-ultimate.css 之后加载
+   CYSJ Docs Ambient Layer
+   氛围增强层：背景渐变、文档玻璃卡片、装饰层
+   必须在 pro/ultimate 之后加载
    ========================================================= */
 
-/* ---------- 更连续的全局背景 ---------- */
-
 :root {
-  --cysj-page-glow-a: rgba(37, 99, 235, 0.105);
-  --cysj-page-glow-b: rgba(124, 58, 237, 0.095);
-  --cysj-page-glow-c: rgba(6, 182, 212, 0.080);
-  --cysj-page-glow-d: rgba(219, 39, 119, 0.055);
+  --cysj-page-glow-a: rgba(59, 110, 245, 0.085);
+  --cysj-page-glow-b: rgba(124, 58, 237, 0.075);
+  --cysj-page-glow-c: rgba(6, 182, 212, 0.065);
+  --cysj-page-glow-d: rgba(219, 39, 119, 0.04);
 
-  --cysj-content-glass: rgba(255, 255, 255, 0.76);
-  --cysj-content-glass-strong: rgba(255, 255, 255, 0.90);
-  --cysj-content-border: rgba(100, 116, 139, 0.16);
-  --cysj-content-shadow: 0 22px 72px rgba(15, 23, 42, 0.09);
-  --cysj-content-shadow-hover: 0 28px 88px rgba(15, 23, 42, 0.13);
+  --cysj-content-glass: rgba(255, 255, 255, 0.78);
+  --cysj-content-glass-strong: rgba(255, 255, 255, 0.92);
+  --cysj-content-border: var(--vp-c-divider);
 }
 
 .dark {
-  --cysj-page-glow-a: rgba(59, 130, 246, 0.150);
-  --cysj-page-glow-b: rgba(124, 58, 237, 0.140);
-  --cysj-page-glow-c: rgba(6, 182, 212, 0.105);
-  --cysj-page-glow-d: rgba(219, 39, 119, 0.075);
+  --cysj-page-glow-a: rgba(96, 165, 250, 0.12);
+  --cysj-page-glow-b: rgba(168, 85, 247, 0.11);
+  --cysj-page-glow-c: rgba(34, 211, 238, 0.08);
+  --cysj-page-glow-d: rgba(219, 39, 119, 0.06);
 
-  --cysj-content-glass: rgba(15, 23, 42, 0.66);
-  --cysj-content-glass-strong: rgba(15, 23, 42, 0.84);
-  --cysj-content-border: rgba(148, 163, 184, 0.16);
-  --cysj-content-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
-  --cysj-content-shadow-hover: 0 34px 96px rgba(0, 0, 0, 0.44);
+  --cysj-content-glass: rgba(17, 24, 39, 0.6);
+  --cysj-content-glass-strong: rgba(17, 24, 39, 0.84);
+  --cysj-content-border: var(--vp-c-divider);
 }
 
-/* 给整个页面加连续的柔光，而不是只在首页头尾有 */
+/* =========================================================
+   全局背景层 —— 固定 + 渐变 + 网格
+   ========================================================= */
 html {
   background: var(--vp-c-bg);
 }
@@ -42,172 +38,137 @@ body {
   background:
     radial-gradient(circle at 12% 6%, var(--cysj-page-glow-a), transparent 28%),
     radial-gradient(circle at 88% 4%, var(--cysj-page-glow-b), transparent 30%),
-    radial-gradient(circle at 50% 36%, var(--cysj-page-glow-c), transparent 34%),
-    radial-gradient(circle at 8% 72%, var(--cysj-page-glow-d), transparent 26%),
-    radial-gradient(circle at 92% 82%, var(--cysj-page-glow-a), transparent 30%),
-    linear-gradient(180deg, var(--vp-c-bg) 0%, var(--vp-c-bg-soft) 48%, var(--vp-c-bg) 100%) !important;
+    radial-gradient(circle at 50% 50%, var(--cysj-page-glow-c), transparent 36%),
+    radial-gradient(circle at 8% 80%, var(--cysj-page-glow-d), transparent 24%),
+    linear-gradient(
+      180deg,
+      var(--vp-c-bg) 0%,
+      var(--vp-c-bg-soft) 50%,
+      var(--vp-c-bg) 100%
+    );
   background-attachment: fixed;
 }
 
-/* 为中部内容增加非常淡的网格/颗粒层次 */
+/* 颗粒层 */
 body::before {
-  content: "";
+  content: '';
   position: fixed;
   inset: 0;
   z-index: -10;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(100, 116, 139, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100, 116, 139, 0.045) 1px, transparent 1px);
-  background-size: 44px 44px;
+    linear-gradient(rgba(100, 116, 139, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
   mask-image: radial-gradient(circle at 50% 20%, black 0%, transparent 72%);
-  opacity: 0.32;
+  -webkit-mask-image: radial-gradient(circle at 50% 20%, black 0%, transparent 72%);
+  opacity: 0.4;
 }
 
 .dark body::before {
-  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+  opacity: 0.22;
 }
 
-/* ---------- 文档页主体玻璃卡片 ---------- */
-
-/* 文档正文区域：避免中间变得太普通 */
+/* =========================================================
+   文档页主体玻璃卡 —— 克制版
+   ========================================================= */
 .VPDoc .content-container {
   position: relative;
+  padding: 0;
 }
 
-.VPDoc .content-container::before {
-  content: "";
-  position: absolute;
-  inset: -18px -24px -36px;
-  z-index: -1;
-  border: 1px solid var(--cysj-content-border);
-  border-radius: 34px;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.075), transparent 32%),
-    radial-gradient(circle at 100% 12%, rgba(124, 58, 237, 0.055), transparent 34%),
-    linear-gradient(180deg, var(--cysj-content-glass), rgba(255, 255, 255, 0.50));
-  box-shadow: var(--cysj-content-shadow);
-  backdrop-filter: blur(18px) saturate(1.10);
-  -webkit-backdrop-filter: blur(18px) saturate(1.10);
+.VPDoc .content-container > .content {
+  position: relative;
+  z-index: 1;
 }
 
-.dark .VPDoc .content-container::before {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.115), transparent 34%),
-    radial-gradient(circle at 100% 12%, rgba(124, 58, 237, 0.100), transparent 34%),
-    linear-gradient(180deg, var(--cysj-content-glass), rgba(2, 6, 23, 0.52));
-}
-
-/* 防止卡片在首页默认布局里过度包裹 */
-.VPHome .VPDoc .content-container::before {
-  display: none;
-}
-
-/* ---------- 首页中间 Markdown 区域：控制台化 ---------- */
-
+/* =========================================================
+   首页中间 Markdown 区域
+   ========================================================= */
 .VPHome .vp-doc {
   position: relative;
-  padding: 32px;
-  border: 1px solid var(--cysj-content-border);
-  border-radius: 34px;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.085), transparent 30%),
-    radial-gradient(circle at 100% 10%, rgba(124, 58, 237, 0.070), transparent 30%),
-    radial-gradient(circle at 48% 100%, rgba(6, 182, 212, 0.065), transparent 34%),
-    linear-gradient(180deg, var(--cysj-content-glass-strong), rgba(255, 255, 255, 0.62));
-  box-shadow: var(--cysj-content-shadow);
-  backdrop-filter: blur(20px) saturate(1.12);
-  -webkit-backdrop-filter: blur(20px) saturate(1.12);
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-xl);
+  box-shadow: var(--cysj-shadow-card);
+  padding: 32px 36px;
+  max-width: 1120px;
+  margin: 0 auto;
 }
 
 .dark .VPHome .vp-doc {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.13), transparent 32%),
-    radial-gradient(circle at 100% 10%, rgba(124, 58, 237, 0.12), transparent 32%),
-    radial-gradient(circle at 48% 100%, rgba(6, 182, 212, 0.09), transparent 36%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.78), rgba(2, 6, 23, 0.58));
+  background: var(--vp-c-bg-soft);
 }
 
-/* 首页每个 h2 区块更像独立模块 */
-.VPHome .vp-doc h2 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.VPHome .vp-doc h2::before {
-  flex: 0 0 auto;
-  margin-bottom: 0;
-}
-
-/* 首页直接子级列表做成轻卡片 */
 .VPHome .vp-doc > ul,
 .VPHome .vp-doc > ol {
   margin: 18px 0 26px;
   padding: 18px 22px 18px 38px;
-  border: 1px solid var(--cysj-content-border);
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--vp-c-divider-light);
+  border-radius: var(--cysj-radius-md);
+  background: var(--vp-c-bg-soft);
+  list-style-position: outside;
 }
 
 .dark .VPHome .vp-doc > ul,
 .dark .VPHome .vp-doc > ol {
-  background: rgba(15, 23, 42, 0.46);
+  background: var(--vp-c-bg-alt);
 }
 
-/* 首页表格做成入口面板 */
 .VPHome .vp-doc table {
-  border: 1px solid var(--cysj-content-border);
-  background: var(--cysj-content-glass);
-  box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  box-shadow: var(--cysj-shadow-card);
 }
 
-/* 首页 blockquote 更像标语卡 */
 .VPHome .vp-doc blockquote {
   margin: 28px 0;
   padding: 20px 24px;
-  border-radius: 26px;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.12), transparent 34%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(248, 250, 252, 0.54));
+  border-radius: var(--cysj-radius-md);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-left: 4px solid var(--vp-c-brand-1);
 }
 
 .dark .VPHome .vp-doc blockquote {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.15), transparent 34%),
-    linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.56));
+  background: var(--vp-c-bg-alt);
 }
 
-/* ---------- 首页 features 区和正文区之间更自然 ---------- */
-
+/* =========================================================
+   features 区和正文区之间分隔
+   ========================================================= */
 .VPFeatures {
   position: relative;
 }
 
 .VPFeatures::after {
-  content: "";
+  content: '';
   display: block;
-  width: min(780px, calc(100vw - 48px));
+  width: min(640px, calc(100vw - 64px));
   height: 1px;
-  margin: 28px auto 0;
-  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.22), rgba(124, 58, 237, 0.18), transparent);
+  margin: 32px auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 110, 245, 0.18),
+    rgba(124, 58, 237, 0.14),
+    transparent
+  );
 }
 
-/* ---------- 侧边栏与右侧目录融入整体背景 ---------- */
-
+/* =========================================================
+   侧边栏与右侧目录融入整体背景
+   ========================================================= */
 .VPSidebar {
-  border-right: 1px solid var(--cysj-content-border);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.055), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(248, 250, 252, 0.58)) !important;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.dark .VPSidebar {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.10), transparent 32%),
-    linear-gradient(180deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.62)) !important;
+  background: linear-gradient(
+    180deg,
+    var(--vp-c-bg) 0%,
+    var(--vp-c-bg-soft) 100%
+  ) !important;
+  border-right: 1px solid var(--vp-c-divider-light) !important;
 }
 
 .VPDocAside {
@@ -216,16 +177,22 @@ body::before {
 
 .VPDocAside .content {
   padding: 12px 0 12px 16px;
-  border-radius: 18px;
 }
 
-/* ---------- 文档内部重点块更漂亮 ---------- */
-
+/* =========================================================
+   文档内部重点块
+   ========================================================= */
 .vp-doc hr {
   height: 1px;
   margin: 36px 0;
   border: 0;
-  background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.24), rgba(124, 58, 237, 0.16), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(59, 110, 245, 0.18),
+    rgba(124, 58, 237, 0.14),
+    transparent
+  );
 }
 
 .vp-doc a {
@@ -237,65 +204,63 @@ body::before {
   text-decoration-thickness: 2px;
 }
 
-/* 让普通段落里的入口链接更容易识别，但不变成按钮 */
 .vp-doc p a,
 .vp-doc li a,
 .vp-doc td a {
-  font-weight: 760;
+  font-weight: 700;
 }
 
-/* ---------- 元信息标签再增强 ---------- */
-
+/* =========================================================
+   元信息标签再增强
+   ========================================================= */
 .cysj-meta-line {
   position: relative;
 }
 
 .cysj-meta-line::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   bottom: -1px;
-  width: 120px;
+  width: 96px;
   height: 1px;
-  background: var(--cysj-gradient-brand, linear-gradient(90deg, #2563eb, #7c3aed, #06b6d4));
+  background: var(--cysj-gradient-brand);
+  opacity: 0.5;
 }
 
-.cysj-meta-line > span {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-/* ---------- 搜索弹窗与本地搜索更统一 ---------- */
-
+/* =========================================================
+   搜索弹窗
+   ========================================================= */
 .VPLocalSearchBox .shell {
-  border: 1px solid var(--cysj-content-border) !important;
-  border-radius: 26px !important;
-  background: var(--cysj-content-glass-strong) !important;
-  box-shadow: var(--cysj-content-shadow) !important;
-  backdrop-filter: blur(20px) saturate(1.12);
-  -webkit-backdrop-filter: blur(20px) saturate(1.12);
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: var(--cysj-radius-xl) !important;
+  background: var(--vp-c-bg) !important;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18) !important;
 }
 
-/* ---------- 页脚更高级 ---------- */
-
+/* =========================================================
+   页脚
+   ========================================================= */
 .VPFooter {
-  border-top: 1px solid var(--cysj-content-border) !important;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.065), transparent 36%),
-    transparent !important;
+  border-top: 1px solid var(--vp-c-divider-light) !important;
+  background: transparent !important;
+  color: var(--vp-c-text-2);
+  padding: 32px 24px 48px;
 }
 
-/* ---------- 移动端：保持高级但别拥挤 ---------- */
+.VPFooter .message,
+.VPFooter .copyright {
+  color: var(--vp-c-text-3);
+  font-size: 13px;
+}
 
+/* =========================================================
+   移动端：保持高级但别拥挤
+   ========================================================= */
 @media (max-width: 960px) {
-  .VPDoc .content-container::before {
-    inset: -12px -14px -28px;
-    border-radius: 26px;
-  }
-
   .VPHome .vp-doc {
-    padding: 24px;
-    border-radius: 28px;
+    padding: 22px;
+    border-radius: var(--cysj-radius-lg);
   }
 
   .VPHome .vp-doc > ul,
@@ -313,29 +278,18 @@ body::before {
     display: none;
   }
 
-  .VPDoc .content-container::before {
-    display: none;
-  }
-
   .VPHome .vp-doc {
     padding: 18px;
-    border-radius: 22px;
+    border-radius: var(--cysj-radius-md);
   }
 
   .VPHome .vp-doc h2 {
     align-items: flex-start;
   }
-
-  .VPHome .vp-doc h2::before {
-    margin-top: 0.55em;
-  }
 }
-
-/* ---------- 低动画偏好 ---------- */
 
 @media (prefers-reduced-motion: reduce) {
   body {
     background-attachment: scroll;
   }
 }
-

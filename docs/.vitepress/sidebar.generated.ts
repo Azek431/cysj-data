@@ -21,7 +21,7 @@ export const generatedSidebar = [
     "collapsed": false,
     "items": [
       {
-        "text": "创游世界资料库",
+        "text": "按问题查资料",
         "link": "/总索引与导航/按问题查资料"
       },
       {
