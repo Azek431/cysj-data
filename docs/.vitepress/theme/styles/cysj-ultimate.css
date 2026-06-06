@@ -1407,6 +1407,99 @@
 }
 
 /* =========================================================
+   404 错误页样式
+   ========================================================= */
+.VPDoc h1 {
+  background: var(--cysj-gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: clamp(64px, 12vw, 120px);
+  font-weight: 950;
+  letter-spacing: -0.08em;
+  line-height: 0.95;
+  margin: 32px 0 16px;
+  text-align: center;
+}
+
+.vp-doc > h1 + p,
+.vp-doc > h1 + p + p {
+  text-align: center;
+  color: var(--vp-c-text-2);
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.vp-doc > h2 {
+  margin-top: 36px;
+  text-align: center;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.vp-doc > h2::before {
+  display: none !important;
+}
+
+.vp-doc > p + h2,
+.vp-doc > h1 + h2 {
+  position: relative;
+  display: block;
+}
+
+.vp-doc > h2::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 12px auto 0;
+  background: var(--cysj-gradient-brand);
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.vp-doc > ul {
+  max-width: 480px;
+  margin: 20px auto !important;
+  padding: 22px 26px !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  border-radius: var(--cysj-radius-lg) !important;
+  background: var(--vp-c-bg-soft) !important;
+  list-style: none !important;
+}
+
+.vp-doc > ul li {
+  padding: 4px 0;
+}
+
+.vp-doc > ul li a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin: -6px -10px;
+  border-radius: 8px;
+  transition: background var(--cysj-transition-fast),
+    color var(--cysj-transition-fast);
+}
+
+.vp-doc > ul li a:hover {
+  background: var(--vp-c-brand-soft);
+  text-decoration: none;
+}
+
+.vp-doc > h2 + ul + h2 + ul {
+  columns: 2;
+  column-gap: 24px;
+}
+
+@media (max-width: 640px) {
+  .vp-doc > h2 + ul + h2 + ul {
+    columns: 1;
+  }
+}
+
+/* =========================================================
    移动端优化
    ========================================================= */
 @media (max-width: 960px) {
