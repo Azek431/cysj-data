@@ -919,6 +919,330 @@
 }
 
 /* =========================================================
+   文档表格 —— 斑马纹 + 悬浮行高亮
+   ========================================================= */
+.vp-doc table tbody tr:nth-child(even) {
+  background: var(--vp-c-bg-soft);
+}
+
+.vp-doc table tbody tr {
+  transition: background var(--cysj-transition-fast);
+}
+
+.vp-doc table tbody tr:hover {
+  background: var(--vp-c-brand-soft);
+}
+
+.dark .vp-doc table tbody tr:nth-child(even) {
+  background: var(--vp-c-bg-alt);
+}
+
+.dark .vp-doc table tbody tr:hover {
+  background: rgba(96, 165, 250, 0.08);
+}
+
+/* =========================================================
+   details 折叠面板美化
+   ========================================================= */
+.vp-doc details {
+  margin: 20px 0;
+  padding: 14px 18px;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-md);
+  background: var(--vp-c-bg-soft);
+  transition: border-color var(--cysj-transition-fast),
+    background var(--cysj-transition-fast);
+}
+
+.vp-doc details:hover {
+  border-color: rgba(59, 110, 245, 0.24);
+}
+
+.vp-doc details[open] {
+  background: var(--vp-c-bg);
+  border-color: rgba(59, 110, 245, 0.32);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.vp-doc details summary {
+  cursor: pointer;
+  padding: 2px 0;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vp-doc details summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc details summary::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--vp-c-text-2);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform var(--cysj-transition-fast);
+  flex: 0 0 auto;
+}
+
+.vp-doc details[open] summary::before {
+  transform: rotate(90deg);
+  border-left-color: var(--vp-c-brand-1);
+}
+
+.vp-doc details > :not(summary) {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--vp-c-divider-light);
+  color: var(--vp-c-text-2);
+}
+
+/* =========================================================
+   自定义块 —— 强化色彩对比与左侧色条
+   ========================================================= */
+.vp-doc .custom-block {
+  position: relative;
+  margin: 20px 0;
+  padding: 14px 18px 14px 22px;
+  border-radius: var(--cysj-radius-md) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  background: var(--vp-c-bg-soft) !important;
+  color: var(--vp-c-text-2);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.vp-doc .custom-block::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: var(--cysj-radius-md) 0 0 var(--cysj-radius-md);
+  background: var(--vp-c-brand-1);
+}
+
+.vp-doc .custom-block-title {
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+  color: var(--vp-c-text-1);
+  margin-bottom: 6px;
+}
+
+.vp-doc .custom-block.warning {
+  background: rgba(245, 158, 11, 0.06) !important;
+  border-color: rgba(245, 158, 11, 0.24) !important;
+}
+
+.vp-doc .custom-block.warning::before {
+  background: #f59e0b;
+}
+
+.vp-doc .custom-block.tip {
+  background: rgba(59, 110, 245, 0.05) !important;
+  border-color: rgba(59, 110, 245, 0.24) !important;
+}
+
+.vp-doc .custom-block.tip::before {
+  background: var(--vp-c-brand-1);
+}
+
+.vp-doc .custom-block.info {
+  background: rgba(6, 182, 212, 0.05) !important;
+  border-color: rgba(6, 182, 212, 0.24) !important;
+}
+
+.vp-doc .custom-block.info::before {
+  background: #06b6d4;
+}
+
+.vp-doc .custom-block.danger {
+  background: rgba(239, 68, 68, 0.05) !important;
+  border-color: rgba(239, 68, 68, 0.24) !important;
+}
+
+.vp-doc .custom-block.danger::before {
+  background: #ef4444;
+}
+
+.dark .vp-doc .custom-block {
+  background: var(--vp-c-bg-alt) !important;
+}
+
+.dark .vp-doc .custom-block.tip {
+  background: rgba(96, 165, 250, 0.08) !important;
+}
+
+.dark .vp-doc .custom-block.warning {
+  background: rgba(245, 158, 11, 0.08) !important;
+}
+
+.dark .vp-doc .custom-block.info {
+  background: rgba(6, 182, 212, 0.08) !important;
+}
+
+.dark .vp-doc .custom-block.danger {
+  background: rgba(239, 68, 68, 0.1) !important;
+}
+
+/* =========================================================
+   列表项 —— 序号与符号更精致
+   ========================================================= */
+.vp-doc ol > li,
+.vp-doc ul > li {
+  padding-left: 4px;
+  margin-top: 6px;
+}
+
+.vp-doc ol > li::marker {
+  color: var(--vp-c-brand-1);
+  font-weight: 800;
+}
+
+.vp-doc ul > li::marker {
+  color: var(--vp-c-brand-2);
+}
+
+/* =========================================================
+   任务清单 checkbox
+   ========================================================= */
+.vp-doc .task-list-item {
+  list-style: none;
+  margin-left: -20px;
+  padding-left: 4px;
+}
+
+.vp-doc .task-list-item input[type='checkbox'] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: -3px;
+  border: 1.5px solid var(--vp-c-default-3);
+  border-radius: 4px;
+  background: var(--vp-c-bg);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--cysj-transition-fast),
+    border-color var(--cysj-transition-fast);
+}
+
+.vp-doc .task-list-item input[type='checkbox']:checked {
+  background: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
+
+.vp-doc .task-list-item input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* =========================================================
+   站内 / 站外链接区分
+   ========================================================= */
+.vp-doc a[href^='http']:not([href*='cysjdocs.dpdns.org']):not([href*='cysj-data']):not([href*='/']):not([href^='#'])::after {
+  content: '↗';
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 0.85em;
+  color: var(--vp-c-text-3);
+  vertical-align: 0.05em;
+}
+
+.vp-doc a[href^='mailto:']::after {
+  content: '';
+}
+
+/* =========================================================
+   文档末尾 last-updated 时间
+   ========================================================= */
+.vp-doc div[class*='meta'] {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--vp-c-text-3);
+  font-weight: 600;
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--vp-c-divider-light);
+}
+
+/* =========================================================
+   全局键盘焦点
+   ========================================================= */
+.vp-doc a:focus-visible,
+.vp-doc button:focus-visible {
+  outline: 0;
+  box-shadow: var(--cysj-focus-ring);
+  border-radius: 4px;
+}
+
+/* =========================================================
+   图片展示
+   ========================================================= */
+.vp-doc img {
+  max-width: 100%;
+  border-radius: var(--cysj-radius-md);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  transition: transform var(--cysj-transition-fast),
+    box-shadow var(--cysj-transition-fast);
+}
+
+.vp-doc img:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+/* =========================================================
+   键名 / 快捷键样式
+   ========================================================= */
+.vp-doc kbd {
+  display: inline-block;
+  padding: 1px 7px;
+  border: 1px solid var(--vp-c-divider);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo,
+    Consolas, monospace;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1.4;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.04);
+}
+
+/* =========================================================
+   mark 高亮
+   ========================================================= */
+.vp-doc mark {
+  background: linear-gradient(
+    180deg,
+    transparent 55%,
+    rgba(245, 158, 11, 0.28) 55%,
+    rgba(245, 158, 11, 0.28) 92%,
+    transparent 92%
+  );
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+  padding: 0 2px;
+}
+
+/* =========================================================
    移动端优化
    ========================================================= */
 @media (max-width: 960px) {
