@@ -6,6 +6,10 @@ updatedAt: 2026-05-16T19:26:34+08:00
 updated: 2026-05-16
 createdAt: 2026-05-05T13:11:08+08:00
 created: 2026-05-05
+status: 已整理
+difficulty: 入门
+editor: Azek431
+evidence: 资料整理
 
 hero:
   name: 创游世界资料库

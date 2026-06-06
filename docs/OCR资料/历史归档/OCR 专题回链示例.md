@@ -5,6 +5,18 @@ title: "OCR 专题回链示例"
 updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-04-22T21:30:57+08:00
 search: false
+description: 演示专题页如何挂接 OCR 证据、编号映射与可信度等级,是资料库的回链写法模板。
+status: 历史归档
+difficulty: 维护向
+editor: Azek431
+evidence: 资料整理
+category: OCR资料
+version: v0.2.x
+tags:
+  - OCR
+  - 回链
+  - 模板
+  - 历史归档
 ---
 # OCR 专题回链示例
 
