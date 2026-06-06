@@ -5,7 +5,7 @@ description: 面向玩家与研究者的创游世界 API 总整理，按组件�
 updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-04-22T21:30:57+08:00
 editor: Azek431
-status: 持续扩展中
+status: 持续维护
 difficulty: 进阶
 evidence: E2（截图直接证据 + 多来源交叉归纳）
 updated: 2026-05-16

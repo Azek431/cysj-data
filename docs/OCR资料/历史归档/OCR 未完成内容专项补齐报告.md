@@ -5,7 +5,7 @@ description: OCR 补齐专项报告，记录本次扫描、发现问题、补齐
 updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-05-13T18:49:45+08:00
 editor: Azek431
-status: 持续更新中
+status: 持续维护
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
 updated: 2026-05-16

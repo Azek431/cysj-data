@@ -5,7 +5,7 @@ updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-05-16T11:37:10+08:00
 created: 2026-05-16
 editor: Azek431
-status: 持续更新中
+status: 持续维护
 difficulty: 维护向
 evidence: E3（维护工程记录）
 updated: 2026-05-16

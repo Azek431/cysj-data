@@ -5,7 +5,7 @@ description: 整理 B 站上与创游世界相关的教程视频资源，按脚�
 updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-04-19T17:04:29+08:00
 editor: Azek431
-status: 深度整理
+status: 已整理
 difficulty: 入门
 evidence: E3（公开视频标题 + 搜索页摘要 + 本地资料交叉归纳）
 updated: 2026-05-16

@@ -5,7 +5,7 @@ updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-04-19T17:04:29+08:00
 created: 2026-04-19
 editor: Azek431
-status: 持续更新
+status: 持续维护
 difficulty: 维护向
 evidence: 资料整理
 updated: 2026-05-16

@@ -5,7 +5,7 @@ updatedAt: 2026-05-16T19:26:34+08:00
 createdAt: 2026-05-11T13:09:51+08:00
 created: 2026-05-11
 editor: Azek431
-status: 已完成
+status: 已整理
 difficulty: 入门
 evidence: E1（系统操作记录）
 updated: 2026-05-16
