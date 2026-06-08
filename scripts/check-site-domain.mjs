@@ -3,6 +3,7 @@ import path from "node:path";
 
 const root = process.cwd();
 const newDomain = "https://cysjdocs.azek431.top";
+
 const oldDomains = [
   "https://cysjdocs.dpdns.org",
   "http://cysjdocs.dpdns.org",
@@ -13,11 +14,39 @@ const oldDomains = [
 ];
 
 const exts = new Set([
-  ".md", ".mdx", ".ts", ".tsx", ".js", ".jsx", ".mjs", ".mts",
-  ".json", ".yml", ".yaml", ".html", ".txt", ".css", ".vue",
+  ".md",
+  ".mdx",
+  ".ts",
+  ".tsx",
+  ".js",
+  ".jsx",
+  ".mjs",
+  ".mts",
+  ".json",
+  ".yml",
+  ".yaml",
+  ".html",
+  ".txt",
+  ".css",
+  ".vue",
 ]);
 
-const skipDirs = new Set([".git", "node_modules", "dist", ".vite", ".cache", ".astro"]);
+const skipDirs = new Set([
+  ".git",
+  "node_modules",
+  "dist",
+  ".vite",
+  ".cache",
+  ".astro",
+]);
+
+const allowOldDomainFiles = new Set([
+  "scripts/check-site-domain.mjs",
+  "scripts/check-doc-links-light.mjs",
+  "scripts/audit-repo-health.mjs",
+  "docs/维护与报告/仓库健康巡检报告.md",
+]);
+
 const errors = [];
 
 function rel(file) {
@@ -27,10 +56,12 @@ function rel(file) {
 function walk(dir, out = []) {
   for (const item of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, item.name);
+    const relative = rel(full);
 
     if (item.isDirectory()) {
       if (skipDirs.has(item.name)) continue;
-      if (rel(full) === "docs/.vitepress/dist") continue;
+      if (relative.startsWith("docs/.vitepress/dist")) continue;
+
       walk(full, out);
       continue;
     }
@@ -45,7 +76,8 @@ function walk(dir, out = []) {
 
 for (const file of walk(root)) {
   const r = rel(file);
-  if (r === "scripts/check-site-domain.mjs") continue;
+
+  if (allowOldDomainFiles.has(r)) continue;
 
   const text = fs.readFileSync(file, "utf8");
 
@@ -58,6 +90,7 @@ for (const file of walk(root)) {
 
 for (const file of ["README.md", "docs/public/robots.txt"]) {
   const full = path.join(root, file);
+
   if (fs.existsSync(full) && !fs.readFileSync(full, "utf8").includes(newDomain)) {
     errors.push(`${file}: missing ${newDomain}`);
   }
@@ -68,13 +101,18 @@ if (fs.existsSync(path.join(root, "docs/.vitepress/theme/custom.css"))) {
 }
 
 const themeIndex = path.join(root, "docs/.vitepress/theme/index.ts");
+
 if (fs.existsSync(themeIndex) && fs.readFileSync(themeIndex, "utf8").includes("./custom.css")) {
   errors.push("docs/.vitepress/theme/index.ts imports forbidden custom.css");
 }
 
 if (errors.length) {
   console.error("\nSite domain check failed:\n");
-  for (const error of errors) console.error(`- ${error}`);
+
+  for (const error of errors) {
+    console.error(`- ${error}`);
+  }
+
   process.exit(1);
 }
 

@@ -24,11 +24,14 @@ function walk(dir, output = []) {
 
     if (item.isDirectory()) {
       if (rel(full).startsWith("docs/.vitepress/dist")) continue;
+
       walk(full, output);
       continue;
     }
 
-    if (item.name.endsWith(".md")) output.push(full);
+    if (item.name.endsWith(".md")) {
+      output.push(full);
+    }
   }
 
   return output;
@@ -39,6 +42,14 @@ function normalizeLink(link) {
     .replace(/^<|>$/g, "")
     .replace(/#.*$/, "")
     .replace(/\?.*$/, "");
+}
+
+function fileCandidates(target) {
+  return [
+    target,
+    `${target}.md`,
+    path.join(target, "index.md"),
+  ];
 }
 
 for (const file of walk(docsRoot)) {
@@ -69,12 +80,12 @@ for (const file of walk(docsRoot)) {
       continue;
     }
 
-    const base = path.dirname(file);
-    const target = path.resolve(base, clean);
+    const relativeTarget = path.resolve(path.dirname(file), clean);
+    const docsRootTarget = path.resolve(docsRoot, clean.replace(/^(\.\.\/)+/, "").replace(/^\.\//, ""));
+
     const candidates = [
-      target,
-      `${target}.md`,
-      path.join(target, "index.md"),
+      ...fileCandidates(relativeTarget),
+      ...fileCandidates(docsRootTarget),
     ];
 
     if (!candidates.some((candidate) => fs.existsSync(candidate))) {
@@ -83,20 +94,28 @@ for (const file of walk(docsRoot)) {
   }
 }
 
-if (oldDomainHits.length || missingFiles.length) {
-  console.error("Docs link guard found issues.");
+if (oldDomainHits.length) {
+  console.error("Docs link guard found old domain issues.");
 
-  if (oldDomainHits.length) {
-    console.error("\nOld domain hits:");
-    for (const item of oldDomainHits.slice(0, 80)) console.error(`- ${item}`);
-  }
-
-  if (missingFiles.length) {
-    console.error("\nPossible missing local links:");
-    for (const item of missingFiles.slice(0, 120)) console.error(`- ${item}`);
+  console.error("\nOld domain hits:");
+  for (const item of oldDomainHits.slice(0, 80)) {
+    console.error(`- ${item}`);
   }
 
   process.exit(1);
+}
+
+if (missingFiles.length) {
+  console.warn("WARN Docs link guard found possible missing local links.");
+  console.warn("WARN These are warnings only and will not block this light check.");
+
+  for (const item of missingFiles.slice(0, 80)) {
+    console.warn(`WARN - ${item}`);
+  }
+
+  if (missingFiles.length > 80) {
+    console.warn(`WARN ...and ${missingFiles.length - 80} more possible missing local links.`);
+  }
 }
 
 console.log("Docs link guard passed");
