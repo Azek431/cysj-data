@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const root = process.cwd();
+const strict = process.argv.includes("--strict");
 const reportPath = path.join(root, "docs/维护与报告/仓库健康巡检报告.md");
 
 const skipDirs = new Set([
@@ -42,18 +43,22 @@ const suspiciousPatterns = [
   {
     name: "绝对本地路径",
     pattern: /[A-Z]:\\|\/storage\/emulated\/0|\/home\/|\/mnt\//i,
+    level: "中",
   },
   {
     name: "旧域名",
     pattern: /cysjdocs\.dpdns\.org|cysjdocs\.pages\.dev/i,
+    level: "高",
   },
   {
     name: "疑似临时标记",
     pattern: /TODO|FIXME|待处理|临时|占位|随便写|测试内容/i,
+    level: "中",
   },
   {
     name: "冲突文件痕迹",
     pattern: /sync-conflict|<<<<<<<|=======|>>>>>>>/i,
+    level: "高",
   },
 ];
 
@@ -129,7 +134,7 @@ for (const file of files) {
   for (const item of suspiciousPatterns) {
     if (item.pattern.test(text)) {
       findings.push({
-        level: item.name === "旧域名" || item.name === "冲突文件痕迹" ? "高" : "中",
+        level: item.level,
         file: relative,
         issue: item.name,
       });
@@ -213,6 +218,10 @@ const lines = [
   "",
   `> 生成时间：${now}`,
   "",
+  strict
+    ? "> 当前模式：严格模式。高风险问题会让命令失败。"
+    : "> 当前模式：轻量模式。高风险问题只生成报告和警告，不阻塞日常小改提交。",
+  "",
   "## 巡检摘要",
   "",
   `- 文本文件数量：${stats.totalTextFiles}`,
@@ -245,7 +254,7 @@ const lines = [
   "- 优先处理旧域名、冲突文件痕迹、缺少 frontmatter、缺少标题的问题。",
   "- 重复标题不一定是错误，但建议检查是否存在内容重复或导航命名不清晰。",
   "- 文件偏大不一定需要立刻拆分，但如果阅读体验下降，可以拆为专题页、索引页和细分页。",
-  "- 本报告只做轻量巡检，不会替代完整构建检查。",
+  "- 日常轻量检查默认不因为历史问题失败，需要严格拦截时使用 `pnpm run docs:health:audit:strict`。",
   "",
 ];
 
@@ -255,6 +264,13 @@ fs.writeFileSync(reportPath, lines.join("\n") + "\n", "utf8");
 console.log(`Repository health report generated: ${path.relative(root, reportPath)}`);
 
 if (grouped["高"].length > 0) {
-  console.error(`Found ${grouped["高"].length} high-risk issue(s).`);
-  process.exit(1);
+  const message = `Found ${grouped["高"].length} high-risk issue(s).`;
+
+  if (strict) {
+    console.error(message);
+    process.exit(1);
+  }
+
+  console.warn(`WARN ${message}`);
+  console.warn("WARN Light audit mode will not block this command.");
 }

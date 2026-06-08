@@ -70,21 +70,30 @@ export default defineConfig({
 
     nav: [
       { text: '首页', link: '/' },
-      { text: '总导航', link: '/总索引与导航/创游世界知识库总导航' },
-      { text: '新手路线', link: '/总索引与导航/新手阅读路线' },
-      { text: '脚本系统', link: '/脚本系统/脚本界面与积木知识索引' },
-      { text: '项目设计', link: '/项目设计/项目设计导航' },
-      { text: 'OCR资料', link: '/OCR资料/OCR资料导航' },
-      { text: '维护', link: '/维护与报告/维护与报告导航' },
+      { text: '开始阅读', items: [
+        { text: '新手阅读路线', link: '/总索引与导航/新手阅读路线' },
+        { text: '快速入门索引', link: '/总索引与导航/快速入门索引' },
+        { text: '按问题查资料', link: '/总索引与导航/按问题查资料' },
+        { text: '知识库总导航', link: '/总索引与导航/创游世界知识库总导航' }
+      ] },
+      { text: '专题资料', items: [
+        { text: '脚本系统', link: '/脚本系统/脚本界面与积木知识索引' },
+        { text: '项目设计', link: '/项目设计/项目设计导航' },
+        { text: '核心研究', link: '/核心研究/核心研究导航' },
+        { text: '教程资料', link: '/教程资料/教程资料导航' },
+        { text: 'OCR 资料', link: '/OCR资料/OCR资料导航' },
+        { text: '引擎更新', link: '/引擎更新/引擎更新知识索引' }
+      ] },
+      { text: '维护', items: [
+        { text: '维护与报告', link: '/维护与报告/维护与报告导航' },
+        { text: '资料证据等级', link: '/维护与报告/资料证据等级说明' },
+        { text: '内容质量审计', link: '/维护与报告/内容质量审计清单' }
+      ] },
       { text: '关于', link: '/关于' }
     ],
-
     sidebar: generatedSidebar,
 
-    outline: {
-      label: '本页目录',
-      level: [2, 4]
-    },
+    outline: { label: '本页目录', level: [2, 3] },
 
     sidebarMenuLabel: '章节导航',
     returnToTopLabel: '返回顶部',
@@ -185,4 +194,3 @@ export default defineConfig({
     }
   }
 })
-
