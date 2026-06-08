@@ -32,7 +32,7 @@
     "docs:dates:fix": "node scripts/sync-doc-dates.mjs",
     "docs:domain:check": "node scripts/check-site-domain.mjs",
     "docs:css:check": "node scripts/check-css-health.mjs",
-    "quality:check": "pnpm run docs:ui:check && pnpm run docs:domain:check && pnpm run docs:css:check",
+    "quality:check": "node scripts/run-light-checks.mjs",
     "ci": "node scripts/run-ci-checks.mjs"
   },
   "name": "cysj-data",

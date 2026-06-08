@@ -9,7 +9,6 @@
 *.gif binary
 *.webp binary
 *.ico binary
-*.svg text eol=lf
 *.pdf binary
 *.zip binary
 *.7z binary

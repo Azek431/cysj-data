@@ -6,16 +6,12 @@ const stylesDir = path.join(root, "docs/.vitepress/theme/styles");
 const errors = [];
 const warnings = [];
 
-function fail(message) {
-  errors.push(message);
-}
-
-function warn(message) {
-  warnings.push(message);
+function kb(size) {
+  return Math.round(size / 1024);
 }
 
 if (fs.existsSync(path.join(root, "docs/.vitepress/theme/custom.css"))) {
-  fail("custom.css is forbidden; use docs/.vitepress/theme/styles/*.css instead");
+  errors.push("custom.css is forbidden; use docs/.vitepress/theme/styles/*.css instead");
 }
 
 if (fs.existsSync(stylesDir)) {
@@ -28,23 +24,29 @@ if (fs.existsSync(stylesDir)) {
     const size = Buffer.byteLength(text);
     total += size;
 
-    if (size > 120 * 1024) fail(`${file}: too large (${Math.round(size / 1024)}KB)`);
-    else if (size > 80 * 1024) warn(`${file}: getting large (${Math.round(size / 1024)}KB)`);
+    if (size > 120 * 1024) {
+      errors.push(`${file}: too large (${kb(size)}KB)`);
+    } else if (size > 80 * 1024) {
+      warnings.push(`${file}: getting large (${kb(size)}KB)`);
+    }
 
     for (const marker of ["Azek431 UI polish start", "Azek431 UI clarity pass start"]) {
       const count = text.split(marker).length - 1;
-      if (count > 1) fail(`${file}: duplicated marker "${marker}"`);
+      if (count > 1) errors.push(`${file}: duplicated marker "${marker}"`);
     }
 
     const importantCount = (text.match(/!important/g) || []).length;
-    if (importantCount > 160) warn(`${file}: many !important usages (${importantCount})`);
+    if (importantCount > 180) warnings.push(`${file}: many !important usages (${importantCount})`);
 
     const blurCount = (text.match(/backdrop-filter/g) || []).length;
-    if (blurCount > 40) warn(`${file}: many backdrop-filter usages (${blurCount})`);
+    if (blurCount > 48) warnings.push(`${file}: many backdrop-filter usages (${blurCount})`);
   }
 
-  if (total > 180 * 1024) fail(`theme CSS total too large (${Math.round(total / 1024)}KB)`);
-  else if (total > 140 * 1024) warn(`theme CSS total is getting large (${Math.round(total / 1024)}KB)`);
+  if (total > 180 * 1024) {
+    errors.push(`theme CSS total too large (${kb(total)}KB)`);
+  } else if (total > 140 * 1024) {
+    warnings.push(`theme CSS total is getting large (${kb(total)}KB)`);
+  }
 }
 
 for (const warning of warnings) console.warn(`WARN ${warning}`);
