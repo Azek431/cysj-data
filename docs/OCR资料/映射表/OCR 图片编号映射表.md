@@ -1,14 +1,14 @@
 ---
 title: OCR 图片编号映射表
 description: 建立图片编号到主题、文档归属、状态的统一映射，帮助知识库逐步从"高价值覆盖"推进到"逐图可追溯"。
-updatedAt: 2026-06-06T19:14:17+08:00
+updatedAt: 2026-06-08T13:08:02+08:00
 createdAt: 2026-04-22T21:30:57+08:00
 created: 2026-04-22
 editor: Azek431
 status: 持续维护
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-06-06
+updated: 2026-06-08
 category: OCR资料
 version: v0.2.x
 tags:

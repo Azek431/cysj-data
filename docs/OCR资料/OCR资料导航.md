@@ -1,14 +1,14 @@
 ---
 title: OCR资料导航
 description: 创游世界OCR资料的中文总入口。帮助理解原图、OCR文本、映射表、专题文档之间的关系。按"专题→映射表→OCR原文→原图"路径查证。覆盖基础写脚本界面、官方教程、引擎更新三类OCR原文入口。
-updatedAt: 2026-06-06T18:30:39+08:00
+updatedAt: 2026-06-08T13:08:02+08:00
 createdAt: 2026-04-22T21:30:57+08:00
 created: 2026-04-22
 editor: Azek431
 status: 已整理
 difficulty: 入门
 evidence: E3（多来源交叉归纳）
-updated: 2026-06-06
+updated: 2026-06-08
 category: OCR资料
 version: v0.3.x
 tags:

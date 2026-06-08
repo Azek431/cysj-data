@@ -1,14 +1,14 @@
 ---
 title: 创游世界知识库 FAQ
 description: 创游世界资料库的常见问题解答，帮助用户快速了解知识库的使用方式、贡献流程、文档规范和常见疑问。
-updatedAt: 2026-05-16T20:31:05+08:00
+updatedAt: 2026-06-08T13:08:02+08:00
 createdAt: 2026-05-16T11:37:10+08:00
 created: 2026-05-16
 editor: Azek431
 status: 已整理
 difficulty: 入门
 evidence: E3（多来源归纳）
-updated: 2026-05-16
+updated: 2026-06-08
 category: 总索引与导航
 version: v0.2.x
 tags:

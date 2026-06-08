@@ -2,13 +2,13 @@
 date: 2026-05-16
 title: OCR 未完成内容补齐报告 V3
 description: OCR 补齐专项报告，记录本次扫描、发现问题、补齐内容、更新索引的状态与下一步建议。
-updatedAt: 2026-06-06T19:14:17+08:00
+updatedAt: 2026-06-08T13:08:02+08:00
 createdAt: 2026-05-16T11:37:10+08:00
 editor: Azek431
 status: 持续维护
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-06-06
+updated: 2026-06-08
 category: OCR资料
 version: v0.3.x
 tags:

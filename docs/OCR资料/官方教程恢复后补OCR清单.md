@@ -1,14 +1,14 @@
 ---
 title: 官方教程恢复后补 OCR 清单
 description: 原始图片恢复后，对此前未进入 OCR 正文索引的 120 张官方教程截图重新读取的结果清单。
-updatedAt: 2026-05-16T20:31:05+08:00
+updatedAt: 2026-06-08T13:08:02+08:00
 createdAt: 2026-05-04T19:11:44+08:00
 created: 2026-05-04
 editor: Azek431
 status: 已整理
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-05-16
+updated: 2026-06-08
 category: OCR资料
 version: v0.2.x
 tags:

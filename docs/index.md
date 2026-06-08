@@ -2,8 +2,8 @@
 layout: home
 title: 创游世界资料库
 description: 系统整理创游世界脚本、组件、UI、项目设计、OCR 证据、教程资料与维护规范的中文知识库。
-updatedAt: 2026-06-06T19:01:14+08:00
-updated: 2026-06-06
+updatedAt: 2026-06-08T13:08:02+08:00
+updated: 2026-06-08
 createdAt: 2026-05-05T13:11:08+08:00
 created: 2026-05-05
 status: 已整理

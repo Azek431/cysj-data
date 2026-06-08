@@ -1,14 +1,14 @@
 ---
 title: OCR 完整化总表
 description: 创游世界 OCR 资料完整化现状总表，说明三类目录的历史整理规模、当前快照状态、已整理程度与下一步优先级。
-updatedAt: 2026-06-06T19:14:17+08:00
+updatedAt: 2026-06-08T13:08:02+08:00
 createdAt: 2026-04-19T17:04:29+08:00
 created: 2026-04-19
 editor: Azek431
 status: 持续维护
 difficulty: 维护向
 evidence: E3（多来源交叉归纳）
-updated: 2026-06-06
+updated: 2026-06-08
 category: OCR资料
 version: v0.3.x
 tags:
