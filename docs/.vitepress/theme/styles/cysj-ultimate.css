@@ -2720,3 +2720,158 @@ body {
   }
 }
 /* Azek431 UI clarity pass end */
+
+/* Azek431 article reading polish start */
+
+/*
+ * 文章阅读 UI 优化：
+ * - 控制文章标题尺寸，避免 h1 过大
+ * - 优化正文阅读节奏
+ * - 保持现有 VitePress 主题结构，不改组件逻辑
+ */
+
+.VPDoc .vp-doc {
+  font-size: 16.2px;
+  line-height: 1.86;
+  letter-spacing: 0.01em;
+}
+
+.VPDoc .vp-doc > h1:first-child,
+.VPDoc .vp-doc h1 {
+  margin: 0 0 1.15rem;
+  padding-bottom: 0.72rem;
+  font-size: clamp(1.62rem, 1.26rem + 1.05vw, 2.08rem);
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  font-weight: 760;
+}
+
+.VPDoc .vp-doc h2 {
+  margin-top: 2.45rem;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  font-size: clamp(1.32rem, 1.12rem + 0.58vw, 1.58rem);
+  line-height: 1.34;
+  letter-spacing: -0.018em;
+  font-weight: 720;
+}
+
+.VPDoc .vp-doc h3 {
+  margin-top: 1.85rem;
+  margin-bottom: 0.72rem;
+  font-size: clamp(1.12rem, 1.02rem + 0.32vw, 1.28rem);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  font-weight: 680;
+}
+
+.VPDoc .vp-doc h4 {
+  margin-top: 1.45rem;
+  margin-bottom: 0.55rem;
+  font-size: 1.04rem;
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.VPDoc .vp-doc p {
+  margin: 0.92rem 0;
+}
+
+.VPDoc .vp-doc ul,
+.VPDoc .vp-doc ol {
+  margin-top: 0.82rem;
+  margin-bottom: 0.98rem;
+  padding-left: 1.36rem;
+}
+
+.VPDoc .vp-doc li + li {
+  margin-top: 0.34rem;
+}
+
+.VPDoc .vp-doc blockquote {
+  margin: 1.25rem 0;
+  padding: 0.8rem 1rem;
+  border-left-width: 3px;
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, var(--vp-c-brand-soft) 34%, transparent);
+}
+
+.VPDoc .vp-doc blockquote > p {
+  margin: 0.32rem 0;
+}
+
+.VPDoc .vp-doc div[class*='language-'] {
+  margin: 1.15rem 0;
+  border-radius: 14px;
+}
+
+.VPDoc .vp-doc :not(pre) > code {
+  padding: 0.14em 0.38em;
+  border-radius: 6px;
+  font-size: 0.92em;
+}
+
+.VPDoc .vp-doc table {
+  display: table;
+  width: 100%;
+  margin: 1.2rem 0;
+  font-size: 0.95em;
+}
+
+.VPDoc .vp-doc th,
+.VPDoc .vp-doc td {
+  padding: 0.68rem 0.78rem;
+  vertical-align: top;
+}
+
+.VPDoc .vp-doc img {
+  border-radius: 14px;
+}
+
+.VPDoc .vp-doc hr {
+  margin: 2.2rem 0;
+}
+
+.VPDoc .vp-doc .custom-block {
+  margin: 1.15rem 0;
+  border-radius: 14px;
+}
+
+.VPDoc .vp-doc .custom-block-title {
+  margin-bottom: 0.35rem;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 768px) {
+  .VPDoc .vp-doc {
+    font-size: 15.8px;
+    line-height: 1.82;
+  }
+
+  .VPDoc .vp-doc > h1:first-child,
+  .VPDoc .vp-doc h1 {
+    margin-bottom: 0.95rem;
+    padding-bottom: 0.58rem;
+    font-size: clamp(1.42rem, 1.08rem + 4vw, 1.72rem);
+    line-height: 1.25;
+  }
+
+  .VPDoc .vp-doc h2 {
+    margin-top: 2rem;
+    font-size: 1.28rem;
+  }
+
+  .VPDoc .vp-doc h3 {
+    margin-top: 1.48rem;
+    font-size: 1.1rem;
+  }
+
+  .VPDoc .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Azek431 article reading polish end */
