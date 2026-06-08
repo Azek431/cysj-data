@@ -1,0 +1,16 @@
+
+
+# Azek431 line ending guard start
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.svg text eol=lf
+*.pdf binary
+*.zip binary
+*.7z binary
+# Azek431 line ending guard end

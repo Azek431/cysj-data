@@ -13,7 +13,7 @@ body:
     attributes:
       label: 问题页面
       description: 请填写出现体验问题的页面链接。
-      placeholder: "例如：https://cysjdocs.dpdns.org/"
+      placeholder: "例如：https://cysjdocs.azek431.top/"
     validations:
       required: true
 

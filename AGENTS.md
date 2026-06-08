@@ -1794,3 +1794,37 @@ AI 能检索
 
 *最后更新：2026-06-06*  
 *维护者：Azek431*
+
+<!-- Azek431 cysj-data agent rules start -->
+
+## Azek431 项目协作规则：cysj-data
+
+这个仓库是 **创游世界资料库 + VitePress 文档站**，正式站点为 `https://cysjdocs.azek431.top`。GitHub 是主仓库，Gitee 是国内镜像，Cloudflare Pages 用于部署。
+
+### 修改原则
+
+- 优先保持稳定，不要一次性大范围重构。
+- 修改前先阅读现有结构，不要重复造轮子。
+- 文档内容、UI 样式、自动化脚本、部署配置应尽量分开提交。
+- 不要把 UI 改动和大量自动日期同步混在一个提交里。
+- 不要新增 `docs/.vitepress/theme/custom.css`，主题样式必须放在 `docs/.vitepress/theme/styles/`。
+- 不要把旧域名重新写回项目，正式域名统一使用 `https://cysjdocs.azek431.top`。
+- 生成文件不要手动维护，优先通过脚本生成。
+
+### 常用检查
+
+- 轻量 UI 与质量检查：`pnpm run quality:check`
+- 完整 CI 检查：`pnpm run ci`
+- UI 文件规则检查：`pnpm run docs:ui:check`
+- 域名规则检查：`pnpm run docs:domain:check`
+- CSS 健康检查：`pnpm run docs:css:check`
+
+### 用户习惯
+
+- 提交信息使用中文。
+- 提交说明可以详细，但语气要自然，不要太机器化。
+- 日常小改不必每次建议 build。
+- 发布前、部署前、依赖变化、结构大改时再建议完整检查和构建。
+- 输出代码、配置、README、Markdown 时使用普通 Markdown 代码块，方便复制。
+
+<!-- Azek431 cysj-data agent rules end -->

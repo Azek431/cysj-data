@@ -13,7 +13,7 @@ body:
     attributes:
       label: OCR 相关页面
       description: 请填写 OCR 页面链接或文档路径。
-      placeholder: "例如：https://cysjdocs.dpdns.org/OCR资料/OCR%20完整化总表"
+      placeholder: "例如：https://cysjdocs.azek431.top/OCR资料/OCR%20完整化总表"
     validations:
       required: true
 

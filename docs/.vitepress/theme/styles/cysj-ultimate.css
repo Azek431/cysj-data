@@ -1153,7 +1153,7 @@
 /* =========================================================
    站内 / 站外链接区分
    ========================================================= */
-.vp-doc a[href^='http']:not([href*='cysjdocs.dpdns.org']):not([href*='cysj-data']):not([href*='/']):not([href^='#'])::after {
+.vp-doc a[href^='http']:not([href*='https://cysjdocs.azek431.top']):not([href*='cysj-data']):not([href*='/']):not([href^='#'])::after {
   content: '↗';
   display: inline-block;
   margin-left: 2px;

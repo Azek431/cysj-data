@@ -13,7 +13,7 @@ export default defineConfig({
   lastUpdated: true, metaChunk: true,
 
   sitemap: {
-    hostname: 'https://cysjdocs.dpdns.org'
+    hostname: 'https://cysjdocs.azek431.top'
   },
 
   head: [
@@ -39,12 +39,12 @@ export default defineConfig({
           '系统化整理创游世界脚本、UI、项目设计、OCR 证据、版本演进与维护规范的知识库。'
       }
     ],
-    ['meta', { property: 'og:url', content: 'https://cysjdocs.dpdns.org/' }],
+    ['meta', { property: 'og:url', content: 'https://cysjdocs.azek431.top/' }],
     [
       'meta',
       {
         property: 'og:image',
-        content: 'https://cysjdocs.dpdns.org/logo.png'
+        content: 'https://cysjdocs.azek431.top/logo.png'
       }
     ],
     ['meta', { property: 'og:site_name', content: '创游世界资料库' }],

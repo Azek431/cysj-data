@@ -29,7 +29,11 @@
     "docs:size:audit": "node scripts/audit-dist-size.mjs",
     "docs:perf:check": "pnpm run docs:frontmatter:check && pnpm run docs:ui:check && pnpm run docs:size:audit",
     "docs:dates:check": "node scripts/sync-doc-dates.mjs --check",
-    "docs:dates:fix": "node scripts/sync-doc-dates.mjs"
+    "docs:dates:fix": "node scripts/sync-doc-dates.mjs",
+    "docs:domain:check": "node scripts/check-site-domain.mjs",
+    "docs:css:check": "node scripts/check-css-health.mjs",
+    "quality:check": "pnpm run docs:ui:check && pnpm run docs:domain:check && pnpm run docs:css:check",
+    "ci": "node scripts/run-ci-checks.mjs"
   },
   "name": "cysj-data",
   "version": "0.1.0",
