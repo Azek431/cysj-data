@@ -3,10 +3,9 @@ import { generatedSidebar } from './sidebar.generated'
 
 export default defineConfig({
   lang: 'zh-CN',
-  title: 'Azek 创游世界引擎文档',
-  titleTemplate: ':title | 创游世界资料库',
-  description:
-    '系统整理创游世界脚本、组件、UI、项目设计、OCR 证据、引擎更新与维护规范的中文知识库。',
+  title: 'Azek创游世界文档',
+  titleTemplate: ':title | Azek创游世界文档',
+  description: 'Azek431 整理维护的创游世界中文文档站，系统收录创游世界脚本、组件、UI、项目设计、OCR 证据、引擎更新、新手路线和长期维护规范。',
 
   cleanUrls: true,
   ignoreDeadLinks: true,
@@ -16,27 +15,50 @@ export default defineConfig({
     hostname: 'https://cysjdocs.azek431.top'
   },
 
+  transformPageData(pageData) {
+    const pagePath = pageData.relativePath
+      .replace(/(^|\/)index\.md$/, '$1')
+      .replace(/\.md$/, '')
+      .replace(/\/$/, '')
+
+    const canonicalPath = pagePath ? `/${pagePath}` : '/'
+    const canonicalUrl = `https://cysjdocs.azek431.top${encodeURI(canonicalPath)}`
+
+    pageData.frontmatter.head ??= []
+
+    pageData.frontmatter.head = pageData.frontmatter.head.filter((entry) => {
+      if (!Array.isArray(entry)) return true
+
+      const [tag, attrs] = entry
+
+      return !(tag === 'link' && attrs?.rel === 'canonical')
+    })
+
+    pageData.frontmatter.head.push([
+      'link',
+      { rel: 'canonical', href: canonicalUrl }
+    ])
+  },
+
   head: [
     ['meta', { name: 'theme-color', content: '#2563eb' }],
     [
       'meta',
       {
         name: 'keywords',
-        content:
-          '创游世界, 创游世界文档, 创游世界教程, 创游世界脚本, 创游世界资料库, 创游世界知识库, OCR资料, 游戏引擎'
+        content: 'Azek创游世界文档, Azek431, 创游世界, 创游世界文档, 创游世界教程, 创游世界脚本, 创游世界知识库, 创游世界引擎, 创游世界UI, 创游世界组件, OCR资料, 游戏引擎'
       }
     ],
     ['meta', { name: 'author', content: 'Azek431' }],
     ['meta', { name: 'robots', content: 'index, follow' }],
 
     ['meta', { property: 'og:type', content: 'website' }],
-    ['meta', { property: 'og:title', content: 'Azek 创游世界引擎文档' }],
+    ['meta', { property: 'og:title', content: 'Azek创游世界文档' }],
     [
       'meta',
       {
         property: 'og:description',
-        content:
-          '系统化整理创游世界脚本、UI、项目设计、OCR 证据、版本演进与维护规范的知识库。'
+        content: 'Azek431 整理维护的创游世界中文文档站，系统收录创游世界脚本、组件、UI、项目设计、OCR 证据、引擎更新、新手路线和长期维护规范。'
       }
     ],
     ['meta', { property: 'og:url', content: 'https://cysjdocs.azek431.top/' }],
@@ -47,16 +69,15 @@ export default defineConfig({
         content: 'https://cysjdocs.azek431.top/logo.png'
       }
     ],
-    ['meta', { property: 'og:site_name', content: '创游世界资料库' }],
+    ['meta', { property: 'og:site_name', content: 'Azek创游世界文档' }],
 
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:title', content: 'Azek 创游世界引擎文档' }],
+    ['meta', { name: 'twitter:title', content: 'Azek创游世界文档' }],
     [
       'meta',
       {
         name: 'twitter:description',
-        content:
-          '系统化整理创游世界脚本、UI、项目设计、OCR 证据、版本演进与维护规范的中文知识库。'
+        content: 'Azek431 整理维护的创游世界中文文档站，系统收录创游世界脚本、组件、UI、项目设计、OCR 证据、引擎更新、新手路线和长期维护规范。'
       }
     ],
 
@@ -65,7 +86,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: '/logo.png',
-    siteTitle: '创游世界资料库',
+    siteTitle: 'Azek创游世界文档',
     repo: 'Azek431/cysj-data',
 
     nav: [
@@ -98,8 +119,8 @@ export default defineConfig({
     sidebarMenuLabel: '章节导航',
     returnToTopLabel: '返回顶部',
     darkModeSwitchLabel: '外观',
-    lightModeSwitchTitle: '切换到浅色模式',
-    darkModeSwitchTitle: '切换到深色模式',
+    lightModeSwitchtitle: 'Azek创游世界文档',
+    darkModeSwitchtitle: 'Azek创游世界文档',
 
     editLink: {
       pattern: 'https://github.com/Azek431/cysj-data/edit/main/docs/:path',
@@ -131,8 +152,8 @@ export default defineConfig({
               },
               modal: {
                 displayDetails: '显示详细列表',
-                resetButtonTitle: '清空搜索',
-                backButtonTitle: '关闭搜索',
+                resetButtontitle: 'Azek创游世界文档',
+                backButtontitle: 'Azek创游世界文档',
                 noResultsText: '没有找到相关结果',
                 footer: {
                   selectText: '选择',

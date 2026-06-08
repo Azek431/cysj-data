@@ -1,10 +1,10 @@
-# 创游世界资料库
+# Azek创游世界文档
 
 > 面向玩家学习、资料整理、AI 检索、脚本研究与长期维护的创游世界中文知识库。
 
 <p align="center">
   <a href="https://cysjdocs.azek431.top/">
-    <img src="https://img.shields.io/badge/在线文档-创游世界资料库-2563eb?style=for-the-badge" alt="在线文档" />
+    <img src="https://img.shields.io/badge/在线文档-Azek创游世界文档-2563eb?style=for-the-badge" alt="在线文档" />
   </a>
   <a href="https://github.com/Azek431/cysj-data">
     <img src="https://img.shields.io/badge/GitHub-Azek431%2Fcysj--data-111827?style=for-the-badge&logo=github" alt="GitHub 仓库" />
