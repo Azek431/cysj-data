@@ -3,7 +3,7 @@
 > 面向玩家学习、资料整理、AI 检索、脚本研究与长期维护的创游世界中文知识库。
 
 <p align="center">
-  <a href="https://cysjdocs.dpdns.org/">
+  <a href="https://cysjdocs.azek431.top/">
     <img src="https://img.shields.io/badge/在线文档-创游世界资料库-2563eb?style=for-the-badge" alt="在线文档" />
   </a>
   <a href="https://github.com/Azek431/cysj-data">
@@ -29,20 +29,20 @@
 
 如果你只是想查资料，推荐优先访问在线文档站，而不是直接翻仓库文件。
 
-- 在线文档站：https://cysjdocs.dpdns.org/
+- 在线文档站：https://cysjdocs.azek431.top/
 - GitHub 仓库：https://github.com/Azek431/cysj-data
 - Gitee 镜像：https://gitee.com/Azek431/cysj-data
 
 常用入口：
 
-- [资料库首页](https://cysjdocs.dpdns.org/)
-- [新手阅读路线](https://cysjdocs.dpdns.org/总索引与导航/新手阅读路线)
-- [按问题查资料](https://cysjdocs.dpdns.org/总索引与导航/按问题查资料)
-- [创游世界知识库总导航](https://cysjdocs.dpdns.org/总索引与导航/创游世界知识库总导航)
-- [脚本系统](https://cysjdocs.dpdns.org/脚本系统/脚本界面与积木知识索引)
-- [项目设计](https://cysjdocs.dpdns.org/项目设计/项目设计导航)
-- [OCR 资料导航](https://cysjdocs.dpdns.org/OCR资料/OCR资料导航)
-- [资料证据等级说明](https://cysjdocs.dpdns.org/元信息/资料证据等级说明)
+- [资料库首页](https://cysjdocs.azek431.top/)
+- [新手阅读路线](https://cysjdocs.azek431.top/总索引与导航/新手阅读路线)
+- [按问题查资料](https://cysjdocs.azek431.top/总索引与导航/按问题查资料)
+- [创游世界知识库总导航](https://cysjdocs.azek431.top/总索引与导航/创游世界知识库总导航)
+- [脚本系统](https://cysjdocs.azek431.top/脚本系统/脚本界面与积木知识索引)
+- [项目设计](https://cysjdocs.azek431.top/项目设计/项目设计导航)
+- [OCR 资料导航](https://cysjdocs.azek431.top/OCR资料/OCR资料导航)
+- [资料证据等级说明](https://cysjdocs.azek431.top/元信息/资料证据等级说明)
 
 ---
 
@@ -111,10 +111,10 @@
 
 推荐按这个顺序阅读：
 
-1. [资料库首页](https://cysjdocs.dpdns.org/)
-2. [新手阅读路线](https://cysjdocs.dpdns.org/总索引与导航/新手阅读路线)
-3. [按问题查资料](https://cysjdocs.dpdns.org/总索引与导航/按问题查资料)
-4. [创游世界知识库总导航](https://cysjdocs.dpdns.org/总索引与导航/创游世界知识库总导航)
+1. [资料库首页](https://cysjdocs.azek431.top/)
+2. [新手阅读路线](https://cysjdocs.azek431.top/总索引与导航/新手阅读路线)
+3. [按问题查资料](https://cysjdocs.azek431.top/总索引与导航/按问题查资料)
+4. [创游世界知识库总导航](https://cysjdocs.azek431.top/总索引与导航/创游世界知识库总导航)
 
 适合场景：
 
@@ -127,10 +127,10 @@
 
 推荐按这个顺序阅读：
 
-1. [脚本界面与积木知识索引](https://cysjdocs.dpdns.org/脚本系统/脚本界面与积木知识索引)
-2. [脚本实战架构入门](https://cysjdocs.dpdns.org/脚本系统/专题研究/创游世界脚本实战架构入门)
-3. [系统级脚本能力解析](https://cysjdocs.dpdns.org/脚本系统/专题研究/系统级脚本能力解析)
-4. [脚本作用域与数据流深度研究](https://cysjdocs.dpdns.org/脚本系统/专题研究/脚本作用域与数据流深度研究)
+1. [脚本界面与积木知识索引](https://cysjdocs.azek431.top/脚本系统/脚本界面与积木知识索引)
+2. [脚本实战架构入门](https://cysjdocs.azek431.top/脚本系统/专题研究/创游世界脚本实战架构入门)
+3. [系统级脚本能力解析](https://cysjdocs.azek431.top/脚本系统/专题研究/系统级脚本能力解析)
+4. [脚本作用域与数据流深度研究](https://cysjdocs.azek431.top/脚本系统/专题研究/脚本作用域与数据流深度研究)
 
 适合场景：
 
@@ -143,10 +143,10 @@
 
 推荐按这个顺序阅读：
 
-1. [项目设计导航](https://cysjdocs.dpdns.org/项目设计/项目设计导航)
-2. [项目结构与架构导航](https://cysjdocs.dpdns.org/项目设计/项目结构与架构导航)
-3. [系统设计专题导航](https://cysjdocs.dpdns.org/项目设计/系统设计专题导航)
-4. [教程引导与新手流程导航](https://cysjdocs.dpdns.org/项目设计/教程引导与新手流程导航)
+1. [项目设计导航](https://cysjdocs.azek431.top/项目设计/项目设计导航)
+2. [项目结构与架构导航](https://cysjdocs.azek431.top/项目设计/项目结构与架构导航)
+3. [系统设计专题导航](https://cysjdocs.azek431.top/项目设计/系统设计专题导航)
+4. [教程引导与新手流程导航](https://cysjdocs.azek431.top/项目设计/教程引导与新手流程导航)
 
 适合场景：
 
@@ -159,11 +159,11 @@
 
 推荐按这个顺序阅读：
 
-1. [OCR 资料导航](https://cysjdocs.dpdns.org/OCR资料/OCR资料导航)
-2. [OCR 当前状态与待补清单](https://cysjdocs.dpdns.org/OCR资料/OCR%20当前状态与待补清单)
-3. [OCR 完整化总表](https://cysjdocs.dpdns.org/OCR资料/OCR%20完整化总表)
-4. [OCR 证据链说明](https://cysjdocs.dpdns.org/OCR资料/OCR%20证据链说明)
-5. [资料证据等级说明](https://cysjdocs.dpdns.org/元信息/资料证据等级说明)
+1. [OCR 资料导航](https://cysjdocs.azek431.top/OCR资料/OCR资料导航)
+2. [OCR 当前状态与待补清单](https://cysjdocs.azek431.top/OCR资料/OCR%20当前状态与待补清单)
+3. [OCR 完整化总表](https://cysjdocs.azek431.top/OCR资料/OCR%20完整化总表)
+4. [OCR 证据链说明](https://cysjdocs.azek431.top/OCR资料/OCR%20证据链说明)
+5. [资料证据等级说明](https://cysjdocs.azek431.top/元信息/资料证据等级说明)
 
 适合场景：
 
@@ -177,10 +177,10 @@
 
 推荐先看：
 
-1. [内容质量审计清单](https://cysjdocs.dpdns.org/维护与报告/内容质量审计清单)
-2. [资料证据等级说明](https://cysjdocs.dpdns.org/元信息/资料证据等级说明)
-3. [导航体系说明](https://cysjdocs.dpdns.org/总索引与导航/导航体系说明)
-4. [维护与报告导航](https://cysjdocs.dpdns.org/维护与报告/维护与报告导航)
+1. [内容质量审计清单](https://cysjdocs.azek431.top/维护与报告/内容质量审计清单)
+2. [资料证据等级说明](https://cysjdocs.azek431.top/元信息/资料证据等级说明)
+3. [导航体系说明](https://cysjdocs.azek431.top/总索引与导航/导航体系说明)
+4. [维护与报告导航](https://cysjdocs.azek431.top/维护与报告/维护与报告导航)
 
 适合场景：
 
@@ -484,7 +484,7 @@ cysj-data
 
 详细说明：
 
-- [资料证据等级说明](https://cysjdocs.dpdns.org/元信息/资料证据等级说明)
+- [资料证据等级说明](https://cysjdocs.azek431.top/元信息/资料证据等级说明)
 
 ---
 

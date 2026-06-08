@@ -1,9 +1,9 @@
 ---
 date: 2026-04-19
 title: "B站创游世界视频资源研究"
-updatedAt: 2026-05-16T19:26:34+08:00
+updatedAt: 2026-06-06T19:01:14+08:00
 createdAt: 2026-04-19T17:04:29+08:00
-updated: 2026-05-16
+updated: 2026-06-06
 description: 整理 B 站可检索到的创游世界教程视频主题分类、代表作品和与本地官方 OCR 资料的对应关系。
 status: 整理中
 difficulty: 入门

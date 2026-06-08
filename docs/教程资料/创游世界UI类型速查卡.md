@@ -1,7 +1,7 @@
 ---
 title: 创游世界UI类型速查卡
 description: 创游世界三种UI类型的快速对比表，帮助快速理解地图UI、操作UI、物体UI的区别、使用场景和切换方法。
-updatedAt: 2026-05-16T19:26:34+08:00
+updatedAt: 2026-05-16T20:31:05+08:00
 createdAt: 2026-05-16T11:37:10+08:00
 created: 2026-05-16
 editor: Azek431

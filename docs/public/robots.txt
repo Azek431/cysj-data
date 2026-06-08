@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://cysjdocs.dpdns.org/sitemap.xml
+Sitemap: https://cysjdocs.azek431.top/sitemap.xml
