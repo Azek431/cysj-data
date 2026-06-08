@@ -33,7 +33,12 @@
     "docs:domain:check": "node scripts/check-site-domain.mjs",
     "docs:css:check": "node scripts/check-css-health.mjs",
     "quality:check": "node scripts/run-light-checks.mjs",
-    "ci": "node scripts/run-ci-checks.mjs"
+    "ci": "node scripts/run-ci-checks.mjs",
+    "docs:health:audit": "node scripts/audit-repo-health.mjs",
+    "docs:sync:clean": "node scripts/clean-sync-temp.mjs",
+    "docs:sync:clean:dry": "node scripts/clean-sync-temp.mjs --dry-run",
+    "docs:links:check:light": "node scripts/check-doc-links-light.mjs",
+    "docs:check:light": "pnpm run docs:ui:check && pnpm run docs:links:check:light && pnpm run docs:health:audit"
   },
   "name": "cysj-data",
   "version": "0.1.0",
