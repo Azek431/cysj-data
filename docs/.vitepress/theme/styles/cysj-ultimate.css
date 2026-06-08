@@ -2875,3 +2875,171 @@ body {
 }
 
 /* Azek431 article reading polish end */
+
+/* Azek431 doc reading balance start */
+
+/*
+ * 文档阅读体验收敛优化：
+ * - 文章页标题回到正常阅读尺寸
+ * - 保留原有主题风格，但降低压迫感
+ * - 重点优化长文、教程、索引、研究报告的阅读节奏
+ */
+
+.VPDoc .vp-doc {
+  max-width: 100%;
+  font-size: 16px;
+  line-height: 1.82;
+  letter-spacing: 0.005em;
+}
+
+.VPDoc .vp-doc > h1:first-child,
+.VPDoc .vp-doc h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.68rem;
+  font-size: clamp(1.52rem, 1.18rem + 0.9vw, 1.92rem);
+  line-height: 1.24;
+  letter-spacing: -0.024em;
+  font-weight: 760;
+}
+
+.VPDoc .vp-doc h2 {
+  margin-top: 2.35rem;
+  margin-bottom: 0.9rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.42rem;
+  font-size: clamp(1.26rem, 1.08rem + 0.52vw, 1.48rem);
+  line-height: 1.36;
+  letter-spacing: -0.016em;
+  font-weight: 720;
+}
+
+.VPDoc .vp-doc h3 {
+  margin-top: 1.72rem;
+  margin-bottom: 0.68rem;
+  font-size: clamp(1.08rem, 1rem + 0.28vw, 1.2rem);
+  line-height: 1.42;
+  letter-spacing: -0.008em;
+  font-weight: 680;
+}
+
+.VPDoc .vp-doc h4 {
+  margin-top: 1.36rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.02rem;
+  line-height: 1.45;
+  font-weight: 650;
+}
+
+.VPDoc .vp-doc p {
+  margin: 0.86rem 0;
+}
+
+.VPDoc .vp-doc ul,
+.VPDoc .vp-doc ol {
+  margin-top: 0.78rem;
+  margin-bottom: 0.94rem;
+  padding-left: 1.32rem;
+}
+
+.VPDoc .vp-doc li + li {
+  margin-top: 0.32rem;
+}
+
+.VPDoc .vp-doc blockquote {
+  margin: 1.18rem 0;
+  padding: 0.72rem 0.95rem;
+  border-left-width: 3px;
+  border-radius: 0 12px 12px 0;
+}
+
+.VPDoc .vp-doc blockquote > p {
+  margin: 0.28rem 0;
+}
+
+.VPDoc .vp-doc div[class*='language-'] {
+  margin: 1.12rem 0;
+  border-radius: 14px;
+}
+
+.VPDoc .vp-doc :not(pre) > code {
+  padding: 0.14em 0.36em;
+  border-radius: 6px;
+  font-size: 0.92em;
+}
+
+.VPDoc .vp-doc table {
+  display: table;
+  width: 100%;
+  margin: 1.16rem 0;
+  font-size: 0.95em;
+}
+
+.VPDoc .vp-doc th,
+.VPDoc .vp-doc td {
+  padding: 0.64rem 0.76rem;
+  vertical-align: top;
+}
+
+.VPDoc .vp-doc img {
+  border-radius: 14px;
+}
+
+.VPDoc .vp-doc hr {
+  margin: 2.1rem 0;
+}
+
+.VPDoc .vp-doc .custom-block {
+  margin: 1.12rem 0;
+  border-radius: 14px;
+}
+
+.VPDoc .vp-doc .custom-block-title {
+  margin-bottom: 0.32rem;
+  font-size: 0.96rem;
+}
+
+.VPDoc .outline-link {
+  line-height: 1.42;
+}
+
+@media (max-width: 768px) {
+  .VPDoc .vp-doc {
+    font-size: 15.75px;
+    line-height: 1.78;
+  }
+
+  .VPDoc .vp-doc > h1:first-child,
+  .VPDoc .vp-doc h1 {
+    margin-bottom: 0.88rem;
+    padding-bottom: 0.52rem;
+    font-size: clamp(1.38rem, 1.08rem + 3.6vw, 1.66rem);
+    line-height: 1.26;
+  }
+
+  .VPDoc .vp-doc h2 {
+    margin-top: 1.9rem;
+    font-size: 1.24rem;
+  }
+
+  .VPDoc .vp-doc h3 {
+    margin-top: 1.42rem;
+    font-size: 1.08rem;
+  }
+
+  .VPDoc .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .VPDoc .vp-doc *,
+  .VPDoc .vp-doc *::before,
+  .VPDoc .vp-doc *::after {
+    scroll-behavior: auto;
+  }
+}
+
+/* Azek431 doc reading balance end */
