@@ -1,61 +1,55 @@
 ---
 layout: home
+pageClass: cysj-home-page
 title: Azek创游世界文档
 description: Azek431 整理维护的创游世界中文文档站，系统收录创游世界脚本、组件、UI、项目设计、OCR 证据、引擎更新、新手路线和长期维护规范。
-updatedAt: 2026-06-08T13:08:02+08:00
-updated: 2026-06-08
-createdAt: 2026-05-05T13:11:08+08:00
-created: 2026-05-05
-status: 已整理
-difficulty: 入门
-editor: Azek431
-evidence: 资料整理
 
 hero:
   name: Azek创游世界文档
-  text: 面向玩家、创作者与研究者的系统化中文知识库
-  tagline: 系统整理创游世界脚本、组件机制、变量广播、UI 交互、项目设计、OCR 证据、教程资源与维护报告，让资料更好找、结论更可信、学习更有路线。
+  text: 创游世界脚本、组件、UI 与项目设计知识库
+  tagline: 系统整理创游世界脚本教程、组件机制、变量广播、UI 交互、项目设计、官方教程 OCR、引擎更新和新手入门路线，让资料更清晰、更好查、更适合长期维护。
   actions:
     - theme: brand
-      text: 从新手路线开始
-      link: /总索引与导航/新手阅读路线
-    - theme: alt
-      text: 查看知识库总导航
+      text: 开始阅读
       link: /总索引与导航/创游世界知识库总导航
     - theme: alt
-      text: 按问题查资料
-      link: /总索引与导航/按问题查资料
+      text: 新手路线
+      link: /总索引与导航/新手阅读路线
+    - theme: alt
+      text: GitHub
+      link: https://github.com/Azek431/cysj-data
 
 features:
   - icon: 🧭
-    title: Azek创游世界文档
-    details: 不知道从哪里开始时，先按路线阅读基础概念、教程资源、脚本入门和项目设计。
+    title: 新手阅读路线
+    details: 从编辑器基础、脚本入门、变量广播到项目结构，按学习顺序整理创游世界入门路径。
     link: /总索引与导航/新手阅读路线
-
-  - icon: 🧱
-    title: Azek创游世界文档
-    details: 整理脚本界面、积木能力、变量作用域、广播事件、组件体系和实战架构。
+    linkText: 查看路线
+  - icon: 🧩
+    title: 脚本与组件系统
+    details: 系统整理脚本积木、组件机制、自定义组件、触发时机、作用域和数据流等核心资料。
     link: /脚本系统/脚本界面与积木知识索引
-
-  - icon: 🎮
-    title: Azek创游世界文档
-    details: 面向实际作品设计，整理商店系统、多地图切换、新手引导、系统结构与玩法拆解。
+    linkText: 查看脚本资料
+  - icon: 🎨
+    title: UI 与交互设计
+    details: 汇总创游世界 UI、页面切换、广播驱动、交互反馈和界面结构设计相关资料。
+    link: /教程资料/专题研究/UI系统与切换机制解析
+    linkText: 查看 UI 资料
+  - icon: 🏗️
+    title: 项目设计实战
+    details: 沉淀商店、背包、任务、战斗、交互、动作状态机等项目系统设计方案。
     link: /项目设计/项目设计导航
-
-  - icon: 🔍
-    title: Azek创游世界文档
-    details: 管理截图转文本、OCR 识别内容、图片编号映射、缺失清单与证据链说明。
+    linkText: 查看项目设计
+  - icon: 🔎
+    title: OCR 与证据资料
+    details: 整理官方教程截图、引擎更新截图、界面截图转文本和资料证据等级，方便追溯来源。
     link: /OCR资料/OCR资料导航
-
-  - icon: 🧠
-    title: Azek创游世界文档
-    details: 深入研究 API、广播事件、UI 交互、数据流、组件对象系统与版本能力边界。
-    link: /核心研究/专题研究导航
-
+    linkText: 查看 OCR 资料
   - icon: 🛠️
-    title: Azek创游世界文档
-    details: 记录资料状态、维护流程、检查清单、更新日志、优化报告与后续整理方向。
+    title: 长期维护规范
+    details: 记录资料库结构、质量检查、域名规则、UI 维护、AI 协作边界和仓库维护流程。
     link: /维护与报告/维护与报告导航
+    linkText: 查看维护资料
 ---
 
 ## 这个资料库适合谁？

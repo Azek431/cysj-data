@@ -9,6 +9,8 @@ import "./styles/cysj-performance.css";
 import "./styles/cysj-mobile.css";
 import "./styles/cysj-clean.css";
 
+import "./styles/cysj-home.css";
+
 export default {
   extends: DefaultTheme,
   Layout,
