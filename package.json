@@ -42,7 +42,9 @@
     "docs:health:audit:strict": "node scripts/audit-repo-health.mjs --strict",
     "docs:kb:audit": "node scripts/audit-knowledge-content.mjs",
     "docs:style:fix:dry": "node scripts/fix-safe-doc-style.mjs --dry-run",
-    "docs:style:fix": "node scripts/fix-safe-doc-style.mjs"
+    "docs:style:fix": "node scripts/fix-safe-doc-style.mjs",
+    "docs:search-index:check": "node scripts/check-search-indexing.mjs",
+    "docs:search-index:dist": "node scripts/check-search-indexing.mjs --dist"
   },
   "name": "cysj-data",
   "version": "0.1.0",
