@@ -18,6 +18,7 @@ const guardFiles = new Set([
   "scripts/check-site-domain.mjs",
   "scripts/check-doc-links-light.mjs",
   "scripts/audit-repo-health.mjs",
+  "scripts/check-search-indexing.mjs",
   "docs/维护与报告/仓库健康巡检报告.md",
 ]);
 
