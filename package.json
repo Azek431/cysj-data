@@ -44,7 +44,8 @@
     "docs:style:fix:dry": "node scripts/fix-safe-doc-style.mjs --dry-run",
     "docs:style:fix": "node scripts/fix-safe-doc-style.mjs",
     "docs:search-index:check": "node scripts/check-search-indexing.mjs",
-    "docs:search-index:dist": "node scripts/check-search-indexing.mjs --dist"
+    "docs:search-index:dist": "node scripts/check-search-indexing.mjs --dist",
+    "docs:truth:audit": "node scripts/audit-doc-truth-language.mjs"
   },
   "name": "cysj-data",
   "version": "0.1.0",
