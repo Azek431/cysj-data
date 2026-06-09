@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-06-09T13:13:19.099Z",
+  "generatedAt": "2026-06-09T13:26:13.910Z",
   "mode": "audit",
   "aggressive": false,
-  "scanned": 209,
+  "scanned": 210,
   "candidates": [
     {
       "file": "docs/教程资料/创游世界游戏测试与质量保障指南.md",
@@ -18,6 +18,48 @@
       "keep": ""
     },
     {
+      "file": "docs/维护与报告/仓库健康巡检报告.md",
+      "title": "仓库健康巡检报告",
+      "level": "REVIEW",
+      "action": "有废弃信号但仍被引用，建议先改链接再删",
+      "referenced": true,
+      "sourceCount": 2,
+      "reasons": [
+        "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
+      ],
+      "warnings": [],
+      "keep": ""
+    },
+    {
+      "file": "docs/维护与报告/文档语法与真实性审计报告.md",
+      "title": "文档语法与真实性审计报告",
+      "level": "REVIEW",
+      "action": "有废弃信号但仍被引用，建议先改链接再删",
+      "referenced": true,
+      "sourceCount": 2,
+      "reasons": [
+        "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
+      ],
+      "warnings": [],
+      "keep": ""
+    },
+    {
+      "file": "docs/维护与报告/无用与废弃文档清理报告.md",
+      "title": "无用与废弃文档清理报告",
+      "level": "REVIEW",
+      "action": "有废弃信号但仍被引用，建议先改链接再删",
+      "referenced": true,
+      "sourceCount": 3,
+      "reasons": [
+        "文件名疑似临时/备份/废弃/冲突文件",
+        "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
+      ],
+      "warnings": [
+        "受保护目录或入口文件，不自动删除"
+      ],
+      "keep": ""
+    },
+    {
       "file": "docs/元信息/页面模板.md",
       "title": "页面模板与标准化文档结构",
       "level": "REVIEW",
@@ -28,6 +70,21 @@
         "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
       ],
       "warnings": [],
+      "keep": ""
+    },
+    {
+      "file": "docs/总索引与导航/自动生成文档目录.md",
+      "title": "自动生成文档目录",
+      "level": "REVIEW",
+      "action": "有废弃信号但仍被引用，建议先改链接再删",
+      "referenced": true,
+      "sourceCount": 31,
+      "reasons": [
+        "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
+      ],
+      "warnings": [
+        "受保护目录或入口文件，不自动删除"
+      ],
       "keep": ""
     }
   ],

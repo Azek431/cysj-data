@@ -404,6 +404,9 @@ WARN,truth-risk,docs/维护与报告/创游世界知识库文档格式规范.md,
 WARN,frontmatter,docs/维护与报告/轻量检查与维护流程.md,1,frontmatter 建议补充 category。,建议统一分类、标签和状态，方便后续大规模维护。
 WARN,frontmatter,docs/维护与报告/轻量检查与维护流程.md,1,frontmatter 建议补充 tags。,建议统一分类、标签和状态，方便后续大规模维护。
 WARN,frontmatter,docs/维护与报告/轻量检查与维护流程.md,1,frontmatter 建议补充 status。,建议统一分类、标签和状态，方便后续大规模维护。
+WARN,frontmatter,docs/维护与报告/无用与废弃文档清理报告.md,1,frontmatter 建议补充 category。,建议统一分类、标签和状态，方便后续大规模维护。
+WARN,frontmatter,docs/维护与报告/无用与废弃文档清理报告.md,1,frontmatter 建议补充 tags。,建议统一分类、标签和状态，方便后续大规模维护。
+WARN,frontmatter,docs/维护与报告/无用与废弃文档清理报告.md,1,frontmatter 建议补充 status。,建议统一分类、标签和状态，方便后续大规模维护。
 WARN,truth-risk,docs/维护与报告/知识库结构与维护指南.md,73,强结论缺少附近证据提示：- [创游世界广播命名规范与最佳实践](./创游世界广播命名规范与最佳实践.md) - 广播命名规范,建议补充 OCR、截图、官方教程、引擎更新、实测或待验证标记；没有证据时降低语气。
 WARN,truth-risk,docs/维护与报告/知识库结构与维护指南.md,78,强结论缺少附近证据提示：- [创游世界脚本入门完全指南](./专题研究/创游世界脚本入门完全指南.md) - 脚本入门完全指南,建议补充 OCR、截图、官方教程、引擎更新、实测或待验证标记；没有证据时降低语气。
 WARN,truth-risk,docs/维护与报告/知识库结构与维护指南.md,268,强结论缺少附近证据提示：5. **统一格式**：使用 `-` 分隔多词，例如 `创游世界脚本入门完全指南.md`,建议补充 OCR、截图、官方教程、引擎更新、实测或待验证标记；没有证据时降低语气。
