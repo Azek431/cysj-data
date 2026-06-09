@@ -45,7 +45,10 @@
     "docs:style:fix": "node scripts/fix-safe-doc-style.mjs",
     "docs:search-index:check": "node scripts/check-search-indexing.mjs",
     "docs:search-index:dist": "node scripts/check-search-indexing.mjs --dist",
-    "docs:truth:audit": "node scripts/audit-doc-truth-language.mjs"
+    "docs:truth:audit": "node scripts/audit-doc-truth-language.mjs",
+    "docs:prune:audit": "node scripts/prune-unused-docs.mjs",
+    "docs:prune:clean": "node scripts/prune-unused-docs.mjs --apply",
+    "docs:prune:clean:aggressive": "node scripts/prune-unused-docs.mjs --apply --aggressive"
   },
   "name": "cysj-data",
   "version": "0.1.0",

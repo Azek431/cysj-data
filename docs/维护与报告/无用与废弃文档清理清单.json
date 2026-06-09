@@ -1,0 +1,35 @@
+{
+  "generatedAt": "2026-06-09T13:13:19.099Z",
+  "mode": "audit",
+  "aggressive": false,
+  "scanned": 209,
+  "candidates": [
+    {
+      "file": "docs/教程资料/创游世界游戏测试与质量保障指南.md",
+      "title": "创游世界游戏测试与质量保障指南",
+      "level": "REVIEW",
+      "action": "有废弃信号但仍被引用，建议先改链接再删",
+      "referenced": true,
+      "sourceCount": 5,
+      "reasons": [
+        "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
+      ],
+      "warnings": [],
+      "keep": ""
+    },
+    {
+      "file": "docs/元信息/页面模板.md",
+      "title": "页面模板与标准化文档结构",
+      "level": "REVIEW",
+      "action": "有废弃信号但仍被引用，建议先改链接再删",
+      "referenced": true,
+      "sourceCount": 5,
+      "reasons": [
+        "正文或 frontmatter 明确出现废弃/过期/归档/草稿信号"
+      ],
+      "warnings": [],
+      "keep": ""
+    }
+  ],
+  "deleteList": []
+}
