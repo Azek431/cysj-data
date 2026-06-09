@@ -39,7 +39,10 @@
     "docs:sync:clean:dry": "node scripts/clean-sync-temp.mjs --dry-run",
     "docs:links:check:light": "node scripts/check-doc-links-light.mjs",
     "docs:check:light": "pnpm run docs:ui:check && pnpm run docs:links:check:light && pnpm run docs:health:audit",
-    "docs:health:audit:strict": "node scripts/audit-repo-health.mjs --strict"
+    "docs:health:audit:strict": "node scripts/audit-repo-health.mjs --strict",
+    "docs:kb:audit": "node scripts/audit-knowledge-content.mjs",
+    "docs:style:fix:dry": "node scripts/fix-safe-doc-style.mjs --dry-run",
+    "docs:style:fix": "node scripts/fix-safe-doc-style.mjs"
   },
   "name": "cysj-data",
   "version": "0.1.0",
