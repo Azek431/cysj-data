@@ -3043,3 +3043,283 @@ body {
 }
 
 /* Azek431 doc reading balance end */
+
+/* ============================================================
+ * 4. CYSJ Ultimate V4 - Premium Glass Aurora Grain
+ *    Loaded last, overrides earlier layers.
+ * ============================================================ */
+
+:root {
+  --cysj-grain: url("data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 200 200%27><filter id=%27n%27><feTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/><feColorMatrix values=%270 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.55 0%27/></filter><rect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/></svg>");
+  --cysj-glass-stroke: linear-gradient(135deg, rgba(255,255,255,.55), rgba(255,255,255,.12) 38%, rgba(255,255,255,0) 60%, rgba(255,255,255,.18));
+  --cysj-aurora-1: radial-gradient(60% 50% at 18% 12%, rgba(99,102,241,.30), transparent 70%);
+  --cysj-aurora-2: radial-gradient(55% 45% at 82% 24%, rgba(14,165,233,.28), transparent 70%);
+  --cysj-aurora-3: radial-gradient(70% 55% at 50% 92%, rgba(236,72,153,.22), transparent 70%);
+}
+
+.dark {
+  --cysj-glass-stroke: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.04) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,.08));
+  --cysj-aurora-1: radial-gradient(60% 50% at 18% 12%, rgba(99,102,241,.45), transparent 70%);
+  --cysj-aurora-2: radial-gradient(55% 45% at 82% 24%, rgba(14,165,233,.38), transparent 70%);
+  --cysj-aurora-3: radial-gradient(70% 55% at 50% 92%, rgba(236,72,153,.30), transparent 70%);
+}
+
+/* 4.1 Global grain overlay */
+html::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: var(--cysj-grain);
+  background-size: 200px 200px;
+  opacity: .045;
+  mix-blend-mode: overlay;
+}
+.dark html::after { opacity: .08; mix-blend-mode: soft-light; }
+
+/* 4.2 Aurora animated background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -10vh -10vw;
+  pointer-events: none;
+  z-index: -1;
+  background: var(--cysj-aurora-1), var(--cysj-aurora-2), var(--cysj-aurora-3);
+  filter: blur(40px) saturate(140%);
+  animation: cysjAurora 22s ease-in-out infinite alternate;
+}
+@keyframes cysjAurora {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  50%  { transform: translate3d(2vw,-1.5vh,0) scale(1.06); }
+  100% { transform: translate3d(-1.5vw,1vh,0) scale(0.97); }
+}
+
+/* 4.3 Premium glass card hairline */
+.VPFeature, .VPHero .VPImage, .VPDoc aside, .VPBadge {
+  position: relative;
+}
+.VPFeature::before, .VPDoc aside::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: var(--cysj-glass-stroke);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: .9;
+}
+
+/* 4.4 Shimmer sweep on hover */
+.VPFeature { overflow: hidden; isolation: isolate; }
+.VPFeature::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.28) 48%, rgba(255,255,255,.55) 50%, rgba(255,255,255,.28) 52%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform .9s cubic-bezier(.16,.84,.32,1);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+.VPFeature:hover::after { transform: translateX(120%); }
+.dark .VPFeature::after { background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.12) 48%, rgba(255,255,255,.22) 50%, rgba(255,255,255,.12) 52%, transparent 70%); }
+
+/* 4.5 Heading shine gradient */
+.VPDoc h1, .VPDoc h2, .VPDoc h3 {
+  background: linear-gradient(120deg, #2563eb 0%, #0ea5e9 50%, #6366f1 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  background-size: 200% 100%;
+  animation: cysjHeadShine 8s linear infinite;
+}
+@keyframes cysjHeadShine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* 4.6 Link arrow micro-anim */
+.vp-doc a:not(.VPButton):not(.no-icon):after,
+.VPDoc a:not(.VPButton):not(.no-icon):after {
+  content: "2192";
+  display: inline-block;
+  margin-left: .25em;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity .25s ease, transform .25s ease;
+  color: var(--cysj-brand, #2563eb);
+  -webkit-text-fill-color: currentColor;
+  background: none;
+}
+.vp-doc a:not(.VPButton):not(.no-icon):hover:after,
+.VPDoc a:not(.VPButton):not(.no-icon):hover:after { opacity: 1; transform: translateX(0); }
+
+/* 4.7 Inline code glass pill */
+.vp-doc :not(pre) > code, .VPDoc :not(pre) > code {
+  background: linear-gradient(180deg, rgba(99,102,241,.10), rgba(14,165,233,.08)) !important;
+  border: 1px solid rgba(99,102,241,.18);
+  border-radius: 6px;
+  padding: 0 .4em;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 1px 0 rgba(15,23,42,.04);
+  transition: transform .15s ease, box-shadow .2s ease;
+}
+.vp-doc :not(pre) > code:hover, .VPDoc :not(pre) > code:hover { transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255,255,255,.5), 0 4px 10px -4px rgba(99,102,241,.35); }
+.dark .vp-doc :not(pre) > code, .dark .VPDoc :not(pre) > code { background: linear-gradient(180deg, rgba(99,102,241,.18), rgba(14,165,233,.12)) !important; border-color: rgba(99,102,241,.30); box-shadow: inset 0 1px 0 rgba(255,255,255,.06); }
+
+/* 4.8 Selection tint */
+::selection { background: linear-gradient(120deg, rgba(99,102,241,.35), rgba(14,165,233,.30)); color: #fff; text-shadow: 0 1px 0 rgba(0,0,0,.2); }
+::-moz-selection { background: rgba(99,102,241,.35); color: #fff; }
+
+/* 4.9 Scrollbar gradient thumb */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(99,102,241,.55), rgba(14,165,233,.55));
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, rgba(99,102,241,.8), rgba(14,165,233,.8)); background-clip: padding-box; }
+
+/* 4.10 Sidebar active gradient bar */
+.VPSidebarItem.is-active > .item .link,
+.VPSidebarItem.is-active > .item .link:hover {
+  background: linear-gradient(90deg, rgba(99,102,241,.18), rgba(14,165,233,.10) 60%, transparent) !important;
+  color: var(--cysj-brand, #2563eb) !important;
+  font-weight: 600;
+  box-shadow: inset 3px 0 0 var(--cysj-brand, #2563eb);
+}
+
+/* 4.11 Hero name gradient */
+.VPHero .name, .VPHero .text .name {
+  background: linear-gradient(120deg, #2563eb 0%, #6366f1 30%, #0ea5e9 55%, #ec4899 90%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 250% 100%;
+  animation: cysjHeroName 10s ease-in-out infinite;
+  filter: drop-shadow(0 6px 20px rgba(99,102,241,.25));
+}
+@keyframes cysjHeroName {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
+}
+
+/* 4.12 Hero crystal float */
+.VPHero .VPImage, .VPHomeHero .image, .VPHero .container .image, .VPHero img.image {
+  animation: cysjFloat 6s ease-in-out infinite;
+}
+@keyframes cysjFloat {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50%     { transform: translateY(-10px) rotate(0.6deg); }
+}
+
+/* 4.13 Tag chips */
+.VPBadge, .vp-doc .badge, .VPHero .VPBadge {
+  background: linear-gradient(180deg, rgba(255,255,255,.6), rgba(255,255,255,.2)) !important;
+  border: 1px solid rgba(99,102,241,.25) !important;
+  backdrop-filter: blur(6px) saturate(160%);
+  box-shadow: 0 2px 6px rgba(15,23,42,.06), inset 0 1px 0 rgba(255,255,255,.5);
+  color: var(--cysj-brand, #2563eb) !important;
+}
+.dark .VPBadge, .dark .vp-doc .badge { background: linear-gradient(180deg, rgba(99,102,241,.18), rgba(14,165,233,.10)) !important; border-color: rgba(99,102,241,.40) !important; }
+
+/* 4.14 Tables premium header */
+.vp-doc table thead th, .VPDoc table thead th {
+  background: linear-gradient(180deg, rgba(99,102,241,.10), rgba(14,165,233,.05)) !important;
+  color: var(--cysj-brand, #2563eb) !important;
+  font-weight: 700;
+  letter-spacing: .02em;
+  border-bottom: 2px solid rgba(99,102,241,.25) !important;
+}
+
+/* 4.15 Blockquote gradient bar */
+.vp-doc blockquote, .VPDoc blockquote {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(99,102,241,.06), rgba(14,165,233,.04)),
+    var(--cysj-surface, #f8fafc) !important;
+  border-left: 4px solid transparent;
+  border-image: linear-gradient(180deg, #6366f1, #0ea5e9) 1;
+  box-shadow: 0 4px 18px -8px rgba(99,102,241,.35);
+}
+
+/* 4.16 Custom containers */
+.vp-doc .custom-block, .VPDoc .custom-block {
+  background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.4)) !important;
+  backdrop-filter: blur(8px) saturate(160%);
+  border: 1px solid rgba(99,102,241,.18);
+  box-shadow: 0 6px 24px -10px rgba(15,23,42,.10), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.dark .vp-doc .custom-block, .dark .VPDoc .custom-block { background: linear-gradient(180deg, rgba(30,41,59,.55), rgba(15,23,42,.45)) !important; border-color: rgba(99,102,241,.30); }
+
+/* 4.17 Footer glass */
+.VPFooter {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35)) !important;
+  backdrop-filter: blur(10px) saturate(160%);
+  border-top: 1px solid rgba(99,102,241,.18);
+  box-shadow: 0 -8px 24px -16px rgba(15,23,42,.18), inset 0 1px 0 rgba(255,255,255,.5);
+}
+.VPFooter::before {
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99,102,241,.6), rgba(14,165,233,.6), transparent);
+}
+.dark .VPFooter { background: linear-gradient(180deg, rgba(15,23,42,.6), rgba(15,23,42,.4)) !important; border-top-color: rgba(99,102,241,.3); }
+
+/* 4.18 Nav glass */
+.VPNavBar {
+  background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55)) !important;
+  backdrop-filter: saturate(180%) blur(18px) !important;
+  -webkit-backdrop-filter: saturate(180%) blur(18px) !important;
+  border-bottom: 1px solid rgba(99,102,241,.18) !important;
+  box-shadow: 0 6px 24px -16px rgba(15,23,42,.22), inset 0 -1px 0 rgba(99,102,241,.18);
+}
+.dark .VPNavBar { background: linear-gradient(180deg, rgba(15,23,42,.7), rgba(15,23,42,.5)) !important; border-bottom-color: rgba(99,102,241,.3) !important; }
+
+/* 4.19 Pager glass */
+.pager-link, .VPPager a {
+  background: linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,.35)) !important;
+  backdrop-filter: blur(8px) saturate(160%);
+  border: 1px solid rgba(99,102,241,.18) !important;
+  box-shadow: 0 4px 14px -8px rgba(15,23,42,.18), inset 0 1px 0 rgba(255,255,255,.55);
+  position: relative;
+  overflow: hidden;
+}
+.dark .pager-link, .dark .VPPager a { background: linear-gradient(180deg, rgba(30,41,59,.55), rgba(15,23,42,.45)) !important; border-color: rgba(99,102,241,.30) !important; }
+
+/* 4.20 Outline active */
+.outline-link.active, .VPDocOutline .outline-link.active {
+  color: var(--cysj-brand, #2563eb) !important;
+  font-weight: 600;
+  background: linear-gradient(90deg, rgba(99,102,241,.16), transparent) !important;
+  box-shadow: inset 2px 0 0 var(--cysj-brand, #2563eb) !important;
+}
+
+/* 4.21 Brand button shine */
+.VPButton.brand, button.VPButton.brand {
+  background-image: linear-gradient(135deg, #6366f1, #2563eb 50%, #0ea5e9) !important;
+  background-size: 200% 200% !important;
+  box-shadow: 0 10px 24px -10px rgba(99,102,241,.55), inset 0 1px 0 rgba(255,255,255,.4) !important;
+  animation: cysjBtnShine 5s ease-in-out infinite;
+  border: 1px solid rgba(255,255,255,.25) !important;
+}
+.VPButton.brand:hover { transform: translateY(-1px); box-shadow: 0 14px 30px -10px rgba(99,102,241,.7), inset 0 1px 0 rgba(255,255,255,.5) !important; }
+@keyframes cysjBtnShine {
+  0%,100% { background-position: 0% 50%; }
+  50%     { background-position: 100% 50%; }
+}
+
+/* 4.22 Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  body::before, .VPFeature::after, .VPHero .VPImage, .VPHomeHero .image, .VPHero img.image,
+  .VPHero .name, .VPHero .text .name, .VPDoc h1, .VPDoc h2, .VPDoc h3, .VPButton.brand { animation: none !important; }
+  html::after { display: none; }
+}
