@@ -1,141 +1,847 @@
 name: Sync GitHub Release to Gitee
 
+# =============================================================================
+# GitHub Release → Gitee Release 自动同步（方案 A：Gitee Pull 镜像）
+#
+# 职责划分与 cysj-data 一致：
+#
+# - Gitee Pull 镜像：同步 GitHub 的分支、提交和标签；
+# - GitHub Actions：读取 GitHub Release，并通过 Gitee API 创建或更新 Release。
+#
+# 相比 cysj-data 的固定 sleep 180，本版本增加：
+#
+# - 主动请求一次 Gitee Pull 镜像更新；
+# - 每 30 秒轮询标签，最长约 10 分钟；
+# - 比较 GitHub/Gitee 标签指向的提交，避免同名错标签；
+# - 自动触发和手动补同步共用同一套逻辑；
+# - 创建或更新同标签 Release，重复运行不会重复创建；
+# - 完整的 Token、仓库、镜像和 API 错误提示。
+#
+# 必需的 Repository Secrets：
+#
+# GITEE_OWNER = Azek431
+# GITEE_REPO  = azek431-home
+# GITEE_TOKEN = Gitee 私人令牌
+#
+# 前提：
+#
+# - Gitee 仓库必须配置 GitHub → Gitee 的 Pull 镜像；
+# - Pull 镜像必须能够同步 Tags；
+# - GitHub 是主仓库，不要在 Gitee 创建独立提交或改写发行标签；
+# - GitHub Release 手动上传的附件不会复制到 Gitee。
+# =============================================================================
+
 on:
+  # 首次发布 Release，或后来编辑标题和正文时自动同步。
   release:
-    types: [published, edited]
+    types:
+      - published
+      - edited
+
+  # 自动同步失败，或需要补同步历史版本时手动运行。
   workflow_dispatch:
     inputs:
       tag:
-        description: 'v0.4.0'
+        description: "需要同步的 GitHub Release 标签，例如 v0.1.0"
         required: true
         type: string
 
+permissions:
+  contents: read
+
+# 同一仓库、同一标签同时只运行一个同步任务。
+concurrency:
+  group: sync-gitee-release-${{ github.repository }}-${{ github.event.release.tag_name || inputs.tag }}
+  cancel-in-progress: false
+
+env:
+  # 为了与 cysj-data 保持相同配置方式，仓库信息继续从 Secrets 读取。
+  GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
+  GITEE_REPO: ${{ secrets.GITEE_REPO }}
+
 jobs:
   sync-gitee-release:
+    name: Create or update Gitee release
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
-      - name: Wait for Gitee mirror to sync tag
-        run: sleep 180
+      # -----------------------------------------------------------------------
+      # 1. 检查三个必需 Secret
+      # -----------------------------------------------------------------------
+      - name: Validate required configuration
+        shell: bash
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          set -Eeuo pipefail
 
-      - name: Get GitHub release data
-        id: gh_release
+          HAS_ERROR=false
+
+          if [[ -z "${GITEE_OWNER}" ]]; then
+            echo "::error::缺少 Repository Secret：GITEE_OWNER"
+            HAS_ERROR=true
+          fi
+
+          if [[ -z "${GITEE_REPO}" ]]; then
+            echo "::error::缺少 Repository Secret：GITEE_REPO"
+            HAS_ERROR=true
+          fi
+
+          if [[ -z "${GITEE_TOKEN}" ]]; then
+            echo "::error::缺少 Repository Secret：GITEE_TOKEN"
+            HAS_ERROR=true
+          fi
+
+          if [[ -n "${GITEE_OWNER}" ]] &&
+             [[ ! "${GITEE_OWNER}" =~ ^[A-Za-z0-9_.-]+$ ]]
+          then
+            echo "::error::GITEE_OWNER 包含不支持的字符。"
+            HAS_ERROR=true
+          fi
+
+          if [[ -n "${GITEE_REPO}" ]] &&
+             [[ ! "${GITEE_REPO}" =~ ^[A-Za-z0-9_.-]+$ ]]
+          then
+            echo "::error::GITEE_REPO 包含不支持的字符。"
+            HAS_ERROR=true
+          fi
+
+          if [[ "${HAS_ERROR}" == "true" ]]; then
+            echo
+            echo "请进入："
+            echo "Settings → Secrets and variables → Actions"
+            echo
+            echo "确认以下 Repository Secrets 已配置："
+            echo "- GITEE_OWNER"
+            echo "- GITEE_REPO"
+            echo "- GITEE_TOKEN"
+            exit 1
+          fi
+
+          echo "Gitee repository: ${GITEE_OWNER}/${GITEE_REPO}"
+
+      # -----------------------------------------------------------------------
+      # 2. 读取 GitHub Release，并确定 GitHub 标签指向的提交
+      #
+      # 自动运行使用 release 事件中的标签；
+      # 手动运行使用 workflow_dispatch 输入的标签。
+      #
+      # Release 正文保存在临时 JSON 文件中，避免多行 Markdown
+      # 通过 GITHUB_OUTPUT 传递时出现换行或特殊字符问题。
+      # -----------------------------------------------------------------------
+      - name: Fetch GitHub release metadata
+        id: github_release
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
           EVENT_TAG: ${{ github.event.release.tag_name }}
           INPUT_TAG: ${{ inputs.tag }}
         run: |
-          set -e
+          set -Eeuo pipefail
 
-          TAG="${EVENT_TAG:-$INPUT_TAG}"
+          TAG_NAME="${EVENT_TAG:-${INPUT_TAG:-}}"
+          TAG_NAME="$(printf '%s' "${TAG_NAME}" | xargs)"
 
-          if [ -z "$TAG" ]; then
-            echo "Missing release tag."
+          if [[ -z "${TAG_NAME}" ]]; then
+            echo "::error::没有取得需要同步的 GitHub Release 标签。"
             exit 1
           fi
 
-          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          if ! git check-ref-format "refs/tags/${TAG_NAME}" >/dev/null; then
+            echo "::error::无效的 Git 标签名称：${TAG_NAME}"
+            exit 1
+          fi
 
-          python3 <<'PY'
-          import json
-          import os
-          import urllib.request
+          ENCODED_TAG="$(
+            jq -rn \
+              --arg value "${TAG_NAME}" \
+              '$value | @uri'
+          )"
 
-          token = os.environ["GH_TOKEN"]
-          repo = os.environ["GITHUB_REPOSITORY"]
-          tag = os.environ.get("EVENT_TAG") or os.environ.get("INPUT_TAG")
+          RELEASE_FILE="${RUNNER_TEMP}/github-release.json"
 
-          url = f"https://api.github.com/repos/{repo}/releases/tags/{tag}"
-          req = urllib.request.Request(url)
-          req.add_header("Authorization", f"Bearer {token}")
-          req.add_header("Accept", "application/vnd.github+json")
+          RELEASE_STATUS="$(
+            curl \
+              --silent \
+              --show-error \
+              --output "${RELEASE_FILE}" \
+              --write-out '%{http_code}' \
+              --header "Authorization: Bearer ${GH_TOKEN}" \
+              --header "Accept: application/vnd.github+json" \
+              --header "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/tags/${ENCODED_TAG}"
+          )"
 
-          with urllib.request.urlopen(req, timeout=60) as res:
-              data = json.loads(res.read().decode("utf-8"))
+          if [[ "${RELEASE_STATUS}" != "200" ]]; then
+            echo "::error::读取 GitHub Release 失败，HTTP ${RELEASE_STATUS}。"
+            cat "${RELEASE_FILE}"
+            exit 1
+          fi
 
-          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
-              out.write(f"name={data.get('name') or tag}\n")
-              out.write(f"prerelease={str(data.get('prerelease', False)).lower()}\n")
-              out.write("body<<EOF\n")
-              out.write(data.get("body") or "")
-              out.write("\nEOF\n")
-          PY
+          ACTUAL_TAG="$(
+            jq -r '.tag_name // empty' \
+              "${RELEASE_FILE}"
+          )"
 
-      - name: Create or update Gitee release
+          IS_DRAFT="$(
+            jq -r '.draft // false' \
+              "${RELEASE_FILE}"
+          )"
+
+          if [[ "${IS_DRAFT}" == "true" ]]; then
+            echo "::error::目标 GitHub Release 仍然是草稿。"
+            exit 1
+          fi
+
+          if [[ "${ACTUAL_TAG}" != "${TAG_NAME}" ]]; then
+            echo "::error::GitHub API 返回的标签与请求标签不一致。"
+            echo "::error::请求：${TAG_NAME}"
+            echo "::error::返回：${ACTUAL_TAG}"
+            exit 1
+          fi
+
+          GITHUB_REMOTE="https://github.com/${GITHUB_REPOSITORY}.git"
+
+          if ! GITHUB_TAG_REFS="$(
+            git ls-remote \
+              --tags \
+              "${GITHUB_REMOTE}" \
+              "refs/tags/${TAG_NAME}" \
+              "refs/tags/${TAG_NAME}^{}"
+          )"
+          then
+            echo "::error::无法读取 GitHub 标签 ${TAG_NAME}。"
+            exit 1
+          fi
+
+          DIRECT_SHA="$(
+            printf '%s\n' "${GITHUB_TAG_REFS}" |
+              awk \
+                -v ref="refs/tags/${TAG_NAME}" \
+                '$2 == ref { print $1; exit }'
+          )"
+
+          PEELED_SHA="$(
+            printf '%s\n' "${GITHUB_TAG_REFS}" |
+              awk \
+                -v ref="refs/tags/${TAG_NAME}^{}" \
+                '$2 == ref { print $1; exit }'
+          )"
+
+          EXPECTED_TAG_SHA="${PEELED_SHA:-${DIRECT_SHA}}"
+
+          if [[ -z "${EXPECTED_TAG_SHA}" ]]; then
+            echo "::error::GitHub Release 存在，但找不到对应标签。"
+            exit 1
+          fi
+
+          RELEASE_NAME="$(
+            jq -r \
+              '.name // .tag_name // empty' \
+              "${RELEASE_FILE}"
+          )"
+
+          PRERELEASE="$(
+            jq -r '.prerelease // false' \
+              "${RELEASE_FILE}"
+          )"
+
+          RELEASE_URL="$(
+            jq -r '.html_url // empty' \
+              "${RELEASE_FILE}"
+          )"
+
+          echo "Release tag: ${TAG_NAME}"
+          echo "Release name: ${RELEASE_NAME}"
+          echo "Prerelease: ${PRERELEASE}"
+          echo "GitHub URL: ${RELEASE_URL}"
+          echo "Tag commit: ${EXPECTED_TAG_SHA}"
+
+          echo "tag=${TAG_NAME}" >> "${GITHUB_OUTPUT}"
+          echo "expected_tag_sha=${EXPECTED_TAG_SHA}" >> "${GITHUB_OUTPUT}"
+
+          {
+            echo "## GitHub 发行版"
+            echo
+            echo "- 标签：\`${TAG_NAME}\`"
+            echo "- 标签提交：\`${EXPECTED_TAG_SHA}\`"
+            echo "- 仓库：\`${GITHUB_REPOSITORY}\`"
+            echo "- 触发方式：\`${GITHUB_EVENT_NAME}\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      # -----------------------------------------------------------------------
+      # 3. 验证 Gitee Token 和目标仓库
+      #
+      # 在等待镜像前先验证：
+      # - Token 是否有效；
+      # - 仓库名是否正确；
+      # - 当前 Token 是否能够访问目标仓库。
+      #
+      # 配置错误会立即失败，不会先浪费十分钟等待镜像。
+      # -----------------------------------------------------------------------
+      - name: Validate Gitee API access
+        shell: bash
         env:
           GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
-          GITEE_OWNER: ${{ secrets.GITEE_OWNER }}
-          GITEE_REPO: ${{ secrets.GITEE_REPO }}
-          TAG_NAME: ${{ steps.gh_release.outputs.tag }}
-          RELEASE_NAME: ${{ steps.gh_release.outputs.name }}
-          RELEASE_BODY: ${{ steps.gh_release.outputs.body }}
-          PRERELEASE: ${{ steps.gh_release.outputs.prerelease }}
         run: |
-          python3 <<'PY'
-          import json
-          import os
-          import urllib.parse
-          import urllib.request
-          import urllib.error
+          set -Eeuo pipefail
 
-          required = ["GITEE_TOKEN", "GITEE_OWNER", "GITEE_REPO", "TAG_NAME"]
-          missing = [key for key in required if not os.environ.get(key)]
+          USER_RESPONSE="${RUNNER_TEMP}/gitee-user.json"
 
-          if missing:
-              raise SystemExit(f"Missing required env/secrets: {', '.join(missing)}")
+          USER_STATUS="$(
+            curl \
+              --silent \
+              --show-error \
+              --output "${USER_RESPONSE}" \
+              --write-out '%{http_code}' \
+              --get \
+              --data-urlencode "access_token=${GITEE_TOKEN}" \
+              "https://gitee.com/api/v5/user"
+          )"
 
-          token = os.environ["GITEE_TOKEN"]
-          owner = os.environ["GITEE_OWNER"]
-          repo = os.environ["GITEE_REPO"]
-          tag = os.environ["TAG_NAME"]
-          name = os.environ.get("RELEASE_NAME") or tag
-          body = os.environ.get("RELEASE_BODY") or ""
-          prerelease = os.environ.get("PRERELEASE", "false").lower() == "true"
+          if [[ "${USER_STATUS}" != "200" ]]; then
+            echo "::error::GITEE_TOKEN 验证失败，HTTP ${USER_STATUS}。"
+            cat "${USER_RESPONSE}"
+            exit 1
+          fi
 
-          base = f"https://gitee.com/api/v5/repos/{owner}/{repo}"
+          REPO_RESPONSE="${RUNNER_TEMP}/gitee-repository.json"
 
-          def request(method, url, data=None):
-              req = urllib.request.Request(url, method=method)
+          REPO_STATUS="$(
+            curl \
+              --silent \
+              --show-error \
+              --output "${REPO_RESPONSE}" \
+              --write-out '%{http_code}' \
+              --get \
+              --data-urlencode "access_token=${GITEE_TOKEN}" \
+              "https://gitee.com/api/v5/repos/${GITEE_OWNER}/${GITEE_REPO}"
+          )"
 
-              encoded = None
-              if data is not None:
-                  encoded = urllib.parse.urlencode(data).encode("utf-8")
-                  req.add_header("Content-Type", "application/x-www-form-urlencoded")
+          if [[ "${REPO_STATUS}" != "200" ]]; then
+            echo "::error::无法访问目标 Gitee 仓库，HTTP ${REPO_STATUS}。"
+            cat "${REPO_RESPONSE}"
+            exit 1
+          fi
 
-              try:
-                  with urllib.request.urlopen(req, data=encoded, timeout=60) as res:
-                      text = res.read().decode("utf-8")
-                      return json.loads(text) if text else None
-              except urllib.error.HTTPError as e:
-                  text = e.read().decode("utf-8", errors="replace")
-                  print(f"HTTP {e.code}: {text}")
-                  raise
+          AUTHENTICATED_USER="$(
+            jq -r '.login // .name // "unknown"' \
+              "${USER_RESPONSE}"
+          )"
 
-          releases_url = f"{base}/releases?access_token={urllib.parse.quote(token)}&per_page=100"
-          releases = request("GET", releases_url) or []
+          TARGET_REPOSITORY="$(
+            jq -r \
+              '.full_name // .human_name // "unknown"' \
+              "${REPO_RESPONSE}"
+          )"
 
-          existing = None
-          for item in releases:
-              if item.get("tag_name") == tag:
-                  existing = item
-                  break
+          echo "Authenticated Gitee user: ${AUTHENTICATED_USER}"
+          echo "Target Gitee repository: ${TARGET_REPOSITORY}"
 
-          payload = {
-              "access_token": token,
-              "tag_name": tag,
-              "name": name,
-              "body": body,
-              "prerelease": "true" if prerelease else "false",
-              "target_commitish": "main",
+      # -----------------------------------------------------------------------
+      # 4. 主动请求 Gitee Pull 镜像更新
+      #
+      # cysj-data 只固定等待 180 秒，假设自动镜像已经自行触发。
+      #
+      # 此处仍然使用方案 A，不使用 SSH；只是额外请求一次
+      # Gitee remote_mirror/pull 接口，让已配置的 Pull 镜像尽快更新。
+      #
+      # 如果标签已经存在且提交正确，则直接跳过镜像请求。
+      # 若请求受到最短同步间隔限制或镜像正在运行，则发出警告并继续轮询。
+      # -----------------------------------------------------------------------
+      - name: Request Gitee pull mirror update
+        id: mirror_request
+        shell: bash
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          TAG_NAME: ${{ steps.github_release.outputs.tag }}
+          EXPECTED_TAG_SHA: ${{ steps.github_release.outputs.expected_tag_sha }}
+        run: |
+          set -Eeuo pipefail
+
+          GITEE_REMOTE="https://gitee.com/${GITEE_OWNER}/${GITEE_REPO}.git"
+
+          read_tag_sha() {
+            local refs
+            local direct_sha
+            local peeled_sha
+
+            refs="$(
+              git ls-remote \
+                --tags \
+                "${GITEE_REMOTE}" \
+                "refs/tags/${TAG_NAME}" \
+                "refs/tags/${TAG_NAME}^{}" \
+                2>/dev/null || true
+            )"
+
+            direct_sha="$(
+              printf '%s\n' "${refs}" |
+                awk \
+                  -v ref="refs/tags/${TAG_NAME}" \
+                  '$2 == ref { print $1; exit }'
+            )"
+
+            peeled_sha="$(
+              printf '%s\n' "${refs}" |
+                awk \
+                  -v ref="refs/tags/${TAG_NAME}^{}" \
+                  '$2 == ref { print $1; exit }'
+            )"
+
+            printf '%s' "${peeled_sha:-${direct_sha}}"
           }
 
-          if existing:
-              release_id = existing.get("id")
-              print(f"Updating Gitee release: {tag}, id={release_id}")
-              request("PATCH", f"{base}/releases/{release_id}", payload)
-          else:
-              print(f"Creating Gitee release: {tag}")
-              request("POST", f"{base}/releases", payload)
+          CURRENT_TAG_SHA="$(read_tag_sha)"
 
-          print("Gitee release sync done.")
-          PY
+          if [[
+            -n "${CURRENT_TAG_SHA}" &&
+            "${CURRENT_TAG_SHA}" == "${EXPECTED_TAG_SHA}"
+          ]]
+          then
+            echo "Gitee 标签已经存在且提交正确，无需更新镜像。"
+            echo "result=skipped" >> "${GITHUB_OUTPUT}"
+            echo "http_status=not-needed" >> "${GITHUB_OUTPUT}"
+            exit 0
+          fi
+
+          ENCODED_TOKEN="$(
+            jq -rn \
+              --arg value "${GITEE_TOKEN}" \
+              '$value | @uri'
+          )"
+
+          MIRROR_RESPONSE="${RUNNER_TEMP}/gitee-mirror-request.json"
+          MIRROR_URL="https://gitee.com/api/v5/repos/${GITEE_OWNER}/${GITEE_REPO}/remote_mirror/pull?access_token=${ENCODED_TOKEN}"
+
+          MIRROR_STATUS="$(
+            curl \
+              --silent \
+              --show-error \
+              --output "${MIRROR_RESPONSE}" \
+              --write-out '%{http_code}' \
+              --request POST \
+              --header "Accept: application/json" \
+              --header "Content-Type: application/json" \
+              --data '{}' \
+              "${MIRROR_URL}"
+          )"
+
+          echo "http_status=${MIRROR_STATUS}" >> "${GITHUB_OUTPUT}"
+
+          case "${MIRROR_STATUS}" in
+            200|201|202|204)
+              echo "Gitee Pull 镜像更新请求已提交，HTTP ${MIRROR_STATUS}。"
+              echo "result=requested" >> "${GITHUB_OUTPUT}"
+              ;;
+
+            401|403)
+              echo "::error::Gitee 镜像接口拒绝访问，HTTP ${MIRROR_STATUS}。"
+              cat "${MIRROR_RESPONSE}"
+              exit 1
+              ;;
+
+            404)
+              echo "::error::找不到 Gitee Pull 镜像更新接口。"
+              echo "::error::请确认目标仓库已配置 GitHub → Gitee Pull 镜像。"
+              cat "${MIRROR_RESPONSE}"
+              exit 1
+              ;;
+
+            *)
+              echo "::warning::Gitee 镜像请求返回 HTTP ${MIRROR_STATUS}。"
+              echo "::warning::镜像可能正在运行，或受到最短更新时间限制。"
+
+              if [[ -s "${MIRROR_RESPONSE}" ]]; then
+                cat "${MIRROR_RESPONSE}"
+              fi
+
+              echo "result=warning" >> "${GITHUB_OUTPUT}"
+              ;;
+          esac
+
+      # -----------------------------------------------------------------------
+      # 5. 等待 Gitee 出现相同标签，并验证标签提交
+      #
+      # - 立即检查一次；
+      # - 每 30 秒检查一次；
+      # - 最多检查 20 次；
+      # - 总等待时间约 9 分 30 秒。
+      #
+      # 不仅检查标签名称，还要求 Gitee 标签与 GitHub 标签指向同一提交。
+      # -----------------------------------------------------------------------
+      - name: Wait for matching Gitee tag
+        id: gitee_tag
+        shell: bash
+        env:
+          TAG_NAME: ${{ steps.github_release.outputs.tag }}
+          EXPECTED_TAG_SHA: ${{ steps.github_release.outputs.expected_tag_sha }}
+          MIRROR_RESULT: ${{ steps.mirror_request.outputs.result }}
+          MIRROR_HTTP_STATUS: ${{ steps.mirror_request.outputs.http_status }}
+        run: |
+          set -Eeuo pipefail
+
+          GITEE_REMOTE="https://gitee.com/${GITEE_OWNER}/${GITEE_REPO}.git"
+          MAX_ATTEMPTS=20
+          WAIT_SECONDS=30
+          TAG_MATCHED=false
+          LAST_TAG_SHA=""
+
+          for ATTEMPT in $(seq 1 "${MAX_ATTEMPTS}"); do
+            echo
+            echo "第 ${ATTEMPT}/${MAX_ATTEMPTS} 次检查 Gitee 标签……"
+
+            if REFS="$(
+              git ls-remote \
+                --tags \
+                "${GITEE_REMOTE}" \
+                "refs/tags/${TAG_NAME}" \
+                "refs/tags/${TAG_NAME}^{}" \
+                2>"${RUNNER_TEMP}/gitee-ls-remote-error.txt"
+            )"
+            then
+              DIRECT_SHA="$(
+                printf '%s\n' "${REFS}" |
+                  awk \
+                    -v ref="refs/tags/${TAG_NAME}" \
+                    '$2 == ref { print $1; exit }'
+              )"
+
+              PEELED_SHA="$(
+                printf '%s\n' "${REFS}" |
+                  awk \
+                    -v ref="refs/tags/${TAG_NAME}^{}" \
+                    '$2 == ref { print $1; exit }'
+              )"
+
+              LAST_TAG_SHA="${PEELED_SHA:-${DIRECT_SHA}}"
+
+              if [[ -z "${LAST_TAG_SHA}" ]]; then
+                echo "Gitee 尚未出现标签 ${TAG_NAME}。"
+
+              elif [[ "${LAST_TAG_SHA}" == "${EXPECTED_TAG_SHA}" ]]; then
+                echo "Gitee 标签已同步并通过提交校验："
+                echo "- 标签：${TAG_NAME}"
+                echo "- 提交：${LAST_TAG_SHA}"
+
+                TAG_MATCHED=true
+                break
+
+              else
+                echo "Gitee 已存在同名标签，但提交暂不一致："
+                echo "- GitHub：${EXPECTED_TAG_SHA}"
+                echo "- Gitee： ${LAST_TAG_SHA}"
+                echo "等待镜像继续更新……"
+              fi
+
+            else
+              echo "::warning::本次无法读取 Gitee 标签。"
+
+              if [[ -s "${RUNNER_TEMP}/gitee-ls-remote-error.txt" ]]; then
+                cat "${RUNNER_TEMP}/gitee-ls-remote-error.txt"
+              fi
+            fi
+
+            if [[ "${ATTEMPT}" -lt "${MAX_ATTEMPTS}" ]]; then
+              echo "${WAIT_SECONDS} 秒后重新检查……"
+              sleep "${WAIT_SECONDS}"
+            fi
+          done
+
+          if [[ "${TAG_MATCHED}" != "true" ]]; then
+            echo "::error::等待约十分钟后，Gitee 标签仍未正确同步。"
+            echo "::error::目标标签：${TAG_NAME}"
+            echo "::error::GitHub 标签提交：${EXPECTED_TAG_SHA}"
+
+            if [[ -n "${LAST_TAG_SHA}" ]]; then
+              echo "::error::Gitee 标签提交：${LAST_TAG_SHA}"
+            else
+              echo "::error::Gitee 中仍不存在该标签。"
+            fi
+
+            echo "::error::镜像请求结果：${MIRROR_RESULT:-unknown}"
+            echo "::error::镜像请求 HTTP：${MIRROR_HTTP_STATUS:-unknown}"
+            echo "::error::请检查 Gitee 的 GitHub → Gitee Pull 镜像配置。"
+            exit 1
+          fi
+
+          echo "tag_sha=${LAST_TAG_SHA}" >> "${GITHUB_OUTPUT}"
+
+      # -----------------------------------------------------------------------
+      # 6. 创建或更新 Gitee Release
+      #
+      # 沿用 cysj-data 的幂等策略：
+      #
+      # - 分页查询 Gitee Release；
+      # - 按 tag_name 查找；
+      # - 不存在时 POST 创建；
+      # - 已存在时 PATCH 更新；
+      # - 重复执行不会产生重复发行版。
+      # -----------------------------------------------------------------------
+      - name: Create or update Gitee release
+        id: gitee_release
+        shell: bash
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          TAG_NAME: ${{ steps.github_release.outputs.tag }}
+        run: |
+          set -Eeuo pipefail
+
+          RELEASE_FILE="${RUNNER_TEMP}/github-release.json"
+          BODY_FILE="${RUNNER_TEMP}/gitee-release-body.md"
+
+          RELEASE_NAME="$(
+            jq -r \
+              '.name // .tag_name // empty' \
+              "${RELEASE_FILE}"
+          )"
+
+          TARGET_COMMITISH="$(
+            jq -r \
+              '.target_commitish // "main"' \
+              "${RELEASE_FILE}"
+          )"
+
+          PRERELEASE="$(
+            jq -r '.prerelease // false' \
+              "${RELEASE_FILE}"
+          )"
+
+          GITHUB_RELEASE_URL="$(
+            jq -r '.html_url // empty' \
+              "${RELEASE_FILE}"
+          )"
+
+          jq -r '.body // ""' \
+            "${RELEASE_FILE}" \
+            > "${BODY_FILE}"
+
+          if [[ -s "${BODY_FILE}" ]]; then
+            printf '\n\n---\n\n' >> "${BODY_FILE}"
+          fi
+
+          {
+            echo "## 镜像说明"
+            echo
+            echo "本发行版由 GitHub Actions 自动同步。"
+            echo
+            echo "- GitHub 原始发行版：${GITHUB_RELEASE_URL}"
+            echo "- GitHub 仓库：https://github.com/${GITHUB_REPOSITORY}"
+            echo "- Gitee 镜像：https://gitee.com/${GITEE_OWNER}/${GITEE_REPO}"
+            echo
+            echo "> GitHub Release 手动上传的附件暂未同步到 Gitee。"
+          } >> "${BODY_FILE}"
+
+          EXISTING_RELEASE_ID=""
+
+          # 最多查询 10 页，每页 100 个 Release。
+          for PAGE in $(seq 1 10); do
+            LIST_RESPONSE="${RUNNER_TEMP}/gitee-releases-${PAGE}.json"
+
+            LIST_STATUS="$(
+              curl \
+                --silent \
+                --show-error \
+                --output "${LIST_RESPONSE}" \
+                --write-out '%{http_code}' \
+                --get \
+                --data-urlencode "access_token=${GITEE_TOKEN}" \
+                --data-urlencode "page=${PAGE}" \
+                --data-urlencode "per_page=100" \
+                "https://gitee.com/api/v5/repos/${GITEE_OWNER}/${GITEE_REPO}/releases"
+            )"
+
+            if [[ "${LIST_STATUS}" != "200" ]]; then
+              echo "::error::查询 Gitee Release 失败，HTTP ${LIST_STATUS}。"
+              cat "${LIST_RESPONSE}"
+              exit 1
+            fi
+
+            if ! jq -e 'type == "array"' \
+              "${LIST_RESPONSE}" >/dev/null
+            then
+              echo "::error::Gitee Releases API 返回了非数组数据。"
+              cat "${LIST_RESPONSE}"
+              exit 1
+            fi
+
+            EXISTING_RELEASE_ID="$(
+              jq -r \
+                --arg tag "${TAG_NAME}" \
+                '.[] | select(.tag_name == $tag) | .id' \
+                "${LIST_RESPONSE}" |
+                head -n 1
+            )"
+
+            if [[ -n "${EXISTING_RELEASE_ID}" ]]; then
+              break
+            fi
+
+            PAGE_SIZE="$(
+              jq 'length' "${LIST_RESPONSE}"
+            )"
+
+            if [[ "${PAGE_SIZE}" -lt 100 ]]; then
+              break
+            fi
+          done
+
+          API_RESPONSE="${RUNNER_TEMP}/gitee-release-result.json"
+
+          COMMON_CURL_ARGS=(
+            --silent
+            --show-error
+            --output "${API_RESPONSE}"
+            --write-out '%{http_code}'
+            --data-urlencode "access_token=${GITEE_TOKEN}"
+            --data-urlencode "tag_name=${TAG_NAME}"
+            --data-urlencode "target_commitish=${TARGET_COMMITISH}"
+            --data-urlencode "name=${RELEASE_NAME}"
+            --data-urlencode "body@${BODY_FILE}"
+            --data-urlencode "prerelease=${PRERELEASE}"
+          )
+
+          if [[ -n "${EXISTING_RELEASE_ID}" ]]; then
+            echo "Updating Gitee release: ${TAG_NAME}, id=${EXISTING_RELEASE_ID}"
+
+            API_STATUS="$(
+              curl \
+                "${COMMON_CURL_ARGS[@]}" \
+                --request PATCH \
+                "https://gitee.com/api/v5/repos/${GITEE_OWNER}/${GITEE_REPO}/releases/${EXISTING_RELEASE_ID}"
+            )"
+
+            OPERATION="updated"
+            EXPECTED_STATUS="200"
+
+          else
+            echo "Creating Gitee release: ${TAG_NAME}"
+
+            API_STATUS="$(
+              curl \
+                "${COMMON_CURL_ARGS[@]}" \
+                --request POST \
+                "https://gitee.com/api/v5/repos/${GITEE_OWNER}/${GITEE_REPO}/releases"
+            )"
+
+            OPERATION="created"
+            EXPECTED_STATUS="200|201"
+          fi
+
+          if [[ ! "${API_STATUS}" =~ ^(${EXPECTED_STATUS})$ ]]; then
+            echo "::error::Gitee Release ${OPERATION} 失败，HTTP ${API_STATUS}。"
+            cat "${API_RESPONSE}"
+            exit 1
+          fi
+
+          GITEE_RELEASE_URL="$(
+            jq -r '.html_url // empty' \
+              "${API_RESPONSE}"
+          )"
+
+          if [[ -z "${GITEE_RELEASE_URL}" ]]; then
+            ENCODED_TAG="$(
+              jq -rn \
+                --arg value "${TAG_NAME}" \
+                '$value | @uri'
+            )"
+
+            GITEE_RELEASE_URL="https://gitee.com/${GITEE_OWNER}/${GITEE_REPO}/releases/tag/${ENCODED_TAG}"
+          fi
+
+          echo "operation=${OPERATION}" >> "${GITHUB_OUTPUT}"
+          echo "url=${GITEE_RELEASE_URL}" >> "${GITHUB_OUTPUT}"
+
+          echo "Gitee release sync completed: ${OPERATION}"
+          echo "Gitee release URL: ${GITEE_RELEASE_URL}"
+
+      # -----------------------------------------------------------------------
+      # 7. 输出成功摘要
+      # -----------------------------------------------------------------------
+      - name: Write synchronization summary
+        shell: bash
+        env:
+          TAG_NAME: ${{ steps.github_release.outputs.tag }}
+          TAG_SHA: ${{ steps.gitee_tag.outputs.tag_sha }}
+          MIRROR_RESULT: ${{ steps.mirror_request.outputs.result }}
+          RELEASE_OPERATION: ${{ steps.gitee_release.outputs.operation }}
+          GITEE_RELEASE_URL: ${{ steps.gitee_release.outputs.url }}
+        run: |
+          set -Eeuo pipefail
+
+          case "${MIRROR_RESULT}" in
+            requested)
+              MIRROR_TEXT="已主动请求 Gitee Pull 镜像更新"
+              ;;
+            skipped)
+              MIRROR_TEXT="标签原本已经同步，无需更新镜像"
+              ;;
+            warning)
+              MIRROR_TEXT="镜像请求返回提示，但标签随后同步成功"
+              ;;
+            *)
+              MIRROR_TEXT="${MIRROR_RESULT:-unknown}"
+              ;;
+          esac
+
+          case "${RELEASE_OPERATION}" in
+            created)
+              RELEASE_TEXT="已创建 Gitee 发行版"
+              ;;
+            updated)
+              RELEASE_TEXT="已更新 Gitee 发行版"
+              ;;
+            *)
+              RELEASE_TEXT="${RELEASE_OPERATION:-unknown}"
+              ;;
+          esac
+
+          {
+            echo
+            echo "## Gitee 同步完成"
+            echo
+            echo "- 镜像：${MIRROR_TEXT}"
+            echo "- 标签：\`${TAG_NAME}\`"
+            echo "- 标签提交：\`${TAG_SHA}\`"
+            echo "- 发行版：${RELEASE_TEXT}"
+            echo "- Gitee 仓库：https://gitee.com/${GITEE_OWNER}/${GITEE_REPO}"
+            echo "- Gitee 发行版：${GITEE_RELEASE_URL}"
+            echo
+            echo "> 分支、提交和标签由 Gitee Pull 镜像同步；"
+            echo "> Release 元数据由 GitHub Actions 调用 Gitee API 同步。"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+      # -----------------------------------------------------------------------
+      # 8. 失败时输出排查提示
+      # -----------------------------------------------------------------------
+      - name: Write failure guidance
+        if: failure()
+        shell: bash
+        env:
+          TAG_NAME: >-
+            ${{
+              steps.github_release.outputs.tag ||
+              github.event.release.tag_name ||
+              inputs.tag
+            }}
+        run: |
+          {
+            echo
+            echo "## Gitee 同步失败排查"
+            echo
+            echo "请依次检查："
+            echo
+            echo "1. \`GITEE_OWNER\` 是否为正确的 Gitee 用户名；"
+            echo "2. \`GITEE_REPO\` 是否为正确的 Gitee 仓库名；"
+            echo "3. \`GITEE_TOKEN\` 是否未过期并拥有 project/projects 权限；"
+            echo "4. Gitee 仓库是否配置了 GitHub → Gitee 的 Pull 镜像；"
+            echo "5. Pull 镜像使用的 GitHub Token 是否仍然有效；"
+            echo "6. 自动镜像 Webhook 是否启用，或是否需要手动点击更新；"
+            echo "7. Gitee 镜像是否因连续失败而被强制停止；"
+            echo "8. Gitee 是否存在指向其他提交的同名标签；"
+            echo
+            echo "目标标签：\`${TAG_NAME:-unknown}\`"
+            echo
+            echo "本方案不使用 SSH，代码和标签完全依赖 Gitee Pull 镜像。"
+          } >> "${GITHUB_STEP_SUMMARY}"
