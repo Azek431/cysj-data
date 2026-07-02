@@ -1,0 +1,207 @@
+/* =========================================================
+   CYSJ Docs — Typography & Global Reset
+   排版层：全局字体、标题、段落、链接、列表
+   ========================================================= */
+
+/* ---------- 全局重置 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg);
+}
+
+/* ---------- 焦点可见 ---------- */
+:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.32);
+  border-radius: var(--cysj-radius-sm);
+}
+
+.dark :focus-visible {
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.42);
+}
+
+/* ---------- 文档正文排版 ---------- */
+.vp-doc {
+  font-size: 16px;
+  line-height: 1.82;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc p {
+  margin: 1rem 0;
+  line-height: 1.82;
+  color: var(--vp-c-text-2);
+  max-width: var(--cysj-max-width);
+}
+
+.vp-doc p a,
+.vp-doc li a,
+.vp-doc td a {
+  font-weight: 600;
+  text-decoration-color: rgba(37, 99, 235, 0.4);
+}
+
+.dark .vp-doc p a,
+.dark .vp-doc li a,
+.dark .vp-doc td a {
+  text-decoration-color: rgba(96, 165, 250, 0.4);
+}
+
+/* ---------- 标题系统 ---------- */
+.vp-doc h1 {
+  font-size: clamp(1.52rem, 1.18rem + 0.9vw, 1.92rem);
+  line-height: 1.24;
+  letter-spacing: -0.024em;
+  font-weight: 760;
+  color: var(--vp-c-text-1);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.68rem;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+}
+
+.vp-doc h2 {
+  font-size: clamp(1.26rem, 1.08rem + 0.52vw, 1.48rem);
+  line-height: 1.36;
+  letter-spacing: -0.016em;
+  font-weight: 720;
+  color: var(--vp-c-text-1);
+  margin-top: 2.35rem;
+  margin-bottom: 0.9rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.42rem;
+  scroll-margin-top: var(--cysj-nav-height);
+  position: relative;
+}
+
+.vp-doc h2::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--cysj-gradient-brand);
+  opacity: 0.6;
+}
+
+.vp-doc > h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.vp-doc h3 {
+  font-size: clamp(1.08rem, 1rem + 0.28vw, 1.2rem);
+  line-height: 1.42;
+  letter-spacing: -0.008em;
+  font-weight: 680;
+  color: var(--vp-c-text-1);
+  margin-top: 1.72rem;
+  margin-bottom: 0.68rem;
+  scroll-margin-top: var(--cysj-nav-height);
+}
+
+.vp-doc h4 {
+  font-size: 1.02rem;
+  line-height: 1.45;
+  font-weight: 650;
+  color: var(--vp-c-text-1);
+  margin-top: 1.36rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- 链接 ---------- */
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.vp-doc a:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
+/* 外部链接箭头 */
+.vp-doc a[href^='http']:not([href*='cysjdocs']):not([href*='cysj-data']):not([href*='/']):not([href^='#'])::after {
+  content: '↗';
+  display: inline-block;
+  margin-left: 2px;
+  font-size: 0.85em;
+  color: var(--vp-c-text-3);
+  vertical-align: 0.05em;
+}
+
+/* ---------- 列表 ---------- */
+.vp-doc ul,
+.vp-doc ol {
+  margin-top: 0.86rem;
+  margin-bottom: 0.94rem;
+  padding-left: 1.32rem;
+}
+
+.vp-doc ul > li,
+.vp-doc ol > li {
+  padding-left: 4px;
+  margin-top: 0.34rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.78;
+}
+
+.vp-doc ul > li::marker {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
+.vp-doc ol > li::marker {
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
+/* ---------- 分隔线 ---------- */
+.vp-doc hr {
+  margin: 2.2rem 0;
+  border: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, var(--vp-c-divider) 20%, var(--vp-c-divider) 80%, transparent 100%);
+}
+
+/* ---------- 强调 ---------- */
+.vp-doc strong {
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc em {
+  font-style: italic;
+}
+
+/* ---------- 选区 ---------- */
+::selection {
+  background: rgba(37, 99, 235, 0.2);
+  color: var(--vp-c-text-1);
+}
+
+.dark ::selection {
+  background: rgba(96, 165, 250, 0.25);
+}

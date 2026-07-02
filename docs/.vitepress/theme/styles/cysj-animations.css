@@ -1,0 +1,77 @@
+/* =========================================================
+   CYSJ Docs — Subtle Animations
+   微动效层：克制、简洁、高性能
+   仅保留必要的过渡和淡入效果
+   ========================================================= */
+
+/* ---------- 首页元素入场 ---------- */
+.cysj-home-page .VPHomeHero .name {
+  animation: cysjFadeUp 0.5s var(--cysj-ease-out) both;
+}
+
+.cysj-home-page .VPHomeHero .text {
+  animation: cysjFadeUp 0.5s var(--cysj-ease-out) 0.06s both;
+}
+
+.cysj-home-page .VPHomeHero .tagline {
+  animation: cysjFadeUp 0.5s var(--cysj-ease-out) 0.12s both;
+}
+
+.cysj-home-page .VPHomeHero .actions {
+  animation: cysjFadeUp 0.5s var(--cysj-ease-out) 0.18s both;
+}
+
+.cysj-home-page .VPFeatures {
+  animation: cysjFadeUp 0.5s var(--cysj-ease-out) 0.24s both;
+}
+
+@keyframes cysjFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- 正文元素淡入 ---------- */
+.vp-doc > * {
+  animation: cysjFadeIn 0.4s var(--cysj-ease) both;
+}
+
+.vp-doc > *:nth-child(1) { animation-delay: 0.02s; }
+.vp-doc > *:nth-child(2) { animation-delay: 0.06s; }
+.vp-doc > *:nth-child(3) { animation-delay: 0.1s; }
+.vp-doc > *:nth-child(4) { animation-delay: 0.14s; }
+.vp-doc > *:nth-child(5) { animation-delay: 0.18s; }
+
+@keyframes cysjFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- 组件 hover 微动效 ---------- */
+.cysj-home-page .VPFeature,
+.cysj-home-page .VPHomeHero .VPButton,
+.pager-link,
+.cysj-action-btn {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ---------- 代码块语言标签 ---------- */
+.vp-doc div[class*='language-']::after {
+  content: '';
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--vp-c-text-3);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}

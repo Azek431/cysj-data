@@ -1,99 +1,64 @@
 /* =========================================================
    CYSJ Docs Performance Layer
-   性能优化层：保留视觉效果，减少 GPU 压力
-   必须在 pro/ultimate/ambient 之后加载
+   性能优化层：硬件加速、防布局偏移、降级策略
    ========================================================= */
 
-:root {
-  --cysj-perf-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
-  --cysj-perf-shadow-hover: 0 14px 36px rgba(15, 23, 42, 0.1);
+/* ---------- 全局性能优化 ---------- */
+html {
+  overflow-x: hidden;
 }
 
-.dark {
-  --cysj-perf-shadow: 0 8px 22px rgba(0, 0, 0, 0.28);
-  --cysj-perf-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.36);
-}
-
-/* =========================================================
-   全局降低绘制压力
-   ========================================================= */
 body {
-  background-attachment: scroll !important;
+  min-height: 100vh;
+  background: var(--vp-c-bg);
+  -webkit-overflow-scrolling: touch;
+  background-attachment: scroll;
 }
 
-/* 颗粒层降级 */
-body::before {
-  opacity: 0.18 !important;
-  background-size: 80px 80px !important;
+/* ---------- 防止布局偏移 ---------- */
+.VPNavBar {
+  min-height: var(--cysj-nav-height, 64px);
 }
 
-/* Hero 光晕降级 */
-:root {
-  --vp-home-hero-image-filter: blur(48px);
+.VPSidebar {
+  contain: layout style;
 }
 
-.VPHomeHero::after {
-  filter: blur(1px) saturate(1.1) !important;
-  opacity: 0.6 !important;
-  will-change: transform, opacity;
+.VPDoc {
+  contain: layout;
 }
 
-/* =========================================================
-   阴影降级 —— 保留层次但更轻
-   ========================================================= */
+/* ---------- GPU 加速 ---------- */
 .VPFeature,
-.VPHome .vp-doc,
-.vp-doc table,
-.vp-doc blockquote,
-.vp-doc div[class*='language-'],
+.VPButton,
 .pager-link,
+.cysj-action-btn,
 .cysj-author-card,
-.cysj-actions {
-  box-shadow: var(--cysj-perf-shadow) !important;
+.DocSearch-Button,
+.VPLocalSearchBox {
+  will-change: transform, box-shadow;
 }
 
-.VPFeature:hover,
-.pager-link:hover {
-  box-shadow: var(--cysj-perf-shadow-hover) !important;
-}
-
-/* =========================================================
-   hover 动画更克制
-   ========================================================= */
-.VPFeature:hover {
-  transform: translateY(-3px) !important;
-}
-
-.VPHomeHero .VPButton:hover,
-.cysj-author-card__links a:hover,
-.pager-link:hover,
-.cysj-action-btn:hover {
-  transform: translateY(-1px) !important;
-}
-
-/* =========================================================
-   content-visibility：非可视区域跳过渲染
-   ========================================================= */
-.VPFeature,
+/* ---------- 避免重绘 ---------- */
+.vp-doc div[class*='language-'],
 .vp-doc table,
 .vp-doc blockquote,
-.vp-doc div[class*='language-'],
-.vp-doc .custom-block,
-.pager-link {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 200px;
+.vp-doc .custom-block {
+  contain: layout style;
 }
 
-.vp-doc table {
-  contain-intrinsic-size: auto 280px;
-}
+/* ---------- 移动端性能降级 ---------- */
+@media (max-width: 640px) {
+  .vp-doc > * {
+    animation: none !important;
+  }
 
-/* =========================================================
-   触屏 / 中低性能设备：自动降级
-   ========================================================= */
-@media (max-width: 960px), (pointer: coarse) {
-  body::before {
-    display: none !important;
+  .cysj-home-page .VPHomeHero .name,
+  .cysj-home-page .VPHomeHero .text,
+  .cysj-home-page .VPHomeHero .tagline,
+  .cysj-home-page .VPHomeHero .actions,
+  .cysj-home-page .VPFeatures {
+    animation: none !important;
   }
 
   .VPFeature,
@@ -127,37 +92,23 @@ body::before {
   .dark .cysj-actions {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24) !important;
   }
-
-  .VPHomeHero::after {
-    filter: none !important;
-    opacity: 0.32 !important;
-  }
 }
 
-@media (max-width: 720px) {
-  .VPHome .vp-doc {
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-}
-
-/* =========================================================
-   低动画偏好：彻底降级
-   ========================================================= */
+/* ---------- 低性能设备降级 ---------- */
 @media (prefers-reduced-motion: reduce) {
-  body::before,
-  .VPHomeHero::after {
-    display: none !important;
+  .vp-doc > *,
+  .cysj-home-page .VPHomeHero .name,
+  .cysj-home-page .VPHomeHero .text,
+  .cysj-home-page .VPHomeHero .tagline,
+  .cysj-home-page .VPHomeHero .actions,
+  .cysj-home-page .VPFeatures {
+    animation: none !important;
   }
 
-  .VPFeature,
-  .VPHomeHero .VPButton,
-  .pager-link,
-  .cysj-author-card__links a,
-  .outline-link,
-  .cysj-action-btn {
-    transition: none !important;
-    transform: none !important;
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
   }
 
   .VPFeature:hover,
@@ -168,13 +119,13 @@ body::before {
   }
 }
 
-/* =========================================================
-   打印场景
-   ========================================================= */
+/* ---------- 打印时移除所有动效 ---------- */
 @media print {
-  body::before,
-  .VPHomeHero::after {
-    display: none !important;
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 
   .VPFeature,

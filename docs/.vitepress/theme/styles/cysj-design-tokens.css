@@ -1,0 +1,105 @@
+/* =========================================================
+   CYSJ Docs — Design Tokens
+   设计令牌层：所有颜色、间距、圆角、阴影、动效时长
+   这是整个样式的唯一数据源
+   ========================================================= */
+
+/* ---------- 浅色模式 ---------- */
+:root {
+  /* 品牌色 */
+  --cysj-brand: #2563eb;
+  --cysj-brand-hover: #1d4ed8;
+  --cysj-brand-active: #1e40af;
+  --cysj-brand-soft: rgba(37, 99, 235, 0.08);
+  --cysj-brand-soft-hover: rgba(37, 99, 235, 0.14);
+  --cysj-brand-border: rgba(37, 99, 235, 0.18);
+
+  /* 辅助色 */
+  --cysj-cyan: #0891b2;
+  --cysj-purple: #7c3aed;
+  --cysj-gradient-brand: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #0891b2 100%);
+  --cysj-gradient-subtle: linear-gradient(135deg, rgba(37, 99, 235, 0.06) 0%, rgba(124, 58, 236, 0.04) 100%);
+
+  /* 文本 */
+  --cysj-text-1: #0f172a;
+  --cysj-text-2: #475569;
+  --cysj-text-3: #64748b;
+  --cysj-text-inverse: #ffffff;
+
+  /* 背景 */
+  --cysj-bg: #ffffff;
+  --cysj-bg-secondary: #f8fafc;
+  --cysj-bg-tertiary: #f1f5f9;
+  --cysj-bg-elevated: #ffffff;
+
+  /* 边框 */
+  --cysj-border: #e2e8f0;
+  --cysj-border-strong: #cbd5e1;
+  --cysj-border-soft: rgba(226, 232, 240, 0.6);
+
+  /* 分割线 */
+  --cysj-divider: rgba(15, 23, 42, 0.06);
+  --cysj-divider-strong: rgba(15, 23, 42, 0.1);
+
+  /* 阴影 */
+  --cysj-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --cysj-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --cysj-shadow-md: 0 4px 6px rgba(15, 23, 42, 0.04), 0 2px 4px rgba(15, 23, 42, 0.03);
+  --cysj-shadow-lg: 0 10px 15px rgba(15, 23, 42, 0.06), 0 4px 6px rgba(15, 23, 42, 0.04);
+  --cysj-shadow-xl: 0 20px 25px rgba(15, 23, 42, 0.08), 0 8px 10px rgba(15, 23, 42, 0.04);
+
+  /* 圆角 */
+  --cysj-radius-sm: 6px;
+  --cysj-radius-md: 10px;
+  --cysj-radius-lg: 14px;
+  --cysj-radius-xl: 20px;
+  --cysj-radius-pill: 999px;
+
+  /* 动效 */
+  --cysj-speed-fast: 150ms;
+  --cysj-speed-normal: 220ms;
+  --cysj-speed-slow: 320ms;
+  --cysj-ease: cubic-bezier(0.32, 0.72, 0.27, 1);
+  --cysj-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* 布局 */
+  --cysj-max-width: 840px;
+  --cysj-home-max-width: 1120px;
+  --cysj-sidebar-width: 256px;
+  --cysj-nav-height: 64px;
+}
+
+/* ---------- 深色模式 ---------- */
+.dark {
+  --cysj-brand: #60a5fa;
+  --cysj-brand-hover: #93c5fd;
+  --cysj-brand-active: #bfdbfe;
+  --cysj-brand-soft: rgba(96, 165, 250, 0.12);
+  --cysj-brand-soft-hover: rgba(96, 165, 250, 0.18);
+  --cysj-brand-border: rgba(96, 165, 250, 0.28);
+
+  --cysj-text-1: #f1f5f9;
+  --cysj-text-2: #cbd5e1;
+  --cysj-text-3: #94a3b8;
+  --cysj-text-inverse: #0f172a;
+
+  --cysj-bg: #0b0f19;
+  --cysj-bg-secondary: #111827;
+  --cysj-bg-tertiary: #1e293b;
+  --cysj-bg-elevated: #161d2e;
+
+  --cysj-border: #1e293b;
+  --cysj-border-strong: #334155;
+  --cysj-border-soft: rgba(30, 41, 59, 0.8);
+
+  --cysj-divider: rgba(148, 163, 184, 0.08);
+  --cysj-divider-strong: rgba(148, 163, 184, 0.12);
+
+  --cysj-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --cysj-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.15);
+  --cysj-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.12);
+  --cysj-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.25), 0 4px 6px rgba(0, 0, 0, 0.15);
+  --cysj-shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.3), 0 8px 10px rgba(0, 0, 0, 0.2);
+
+  --cysj-gradient-subtle: linear-gradient(135deg, rgba(96, 165, 250, 0.08) 0%, rgba(167, 139, 250, 0.06) 100%);
+}

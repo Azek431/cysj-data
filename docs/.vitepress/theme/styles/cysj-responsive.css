@@ -1,0 +1,214 @@
+/* =========================================================
+   CYSJ Docs — Responsive & Accessibility
+   响应式与无障碍层
+   ========================================================= */
+
+/* ---------- 移动端文档页 ---------- */
+@media (max-width: 960px) {
+  .vp-doc {
+    font-size: 15.5px;
+    line-height: 1.8;
+  }
+
+  .vp-doc h2 {
+    margin-top: 2rem;
+    font-size: clamp(1.26rem, 1.08rem + 0.52vw, 1.48rem);
+  }
+
+  .vp-doc h3 {
+    margin-top: 1.6rem;
+    font-size: clamp(1.08rem, 1rem + 0.28vw, 1.2rem);
+  }
+
+  .vp-doc p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 15px;
+  }
+
+  .vp-doc {
+    font-size: 15px;
+    line-height: 1.78;
+  }
+
+  .vp-doc > h1:first-child,
+  .vp-doc h1 {
+    font-size: clamp(1.42rem, 1.08rem + 3.6vw, 1.72rem);
+    line-height: 1.25;
+    margin-bottom: 0.88rem;
+    padding-bottom: 0.52rem;
+  }
+
+  .vp-doc h2 {
+    margin-top: 1.9rem;
+    font-size: 1.28rem;
+    padding-left: 0;
+  }
+
+  .vp-doc h2::before {
+    display: none;
+  }
+
+  .vp-doc h3 {
+    margin-top: 1.42rem;
+    font-size: 1.12rem;
+  }
+
+  .vp-doc h4 {
+    margin-top: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .vp-doc p {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .vp-doc ul,
+  .vp-doc ol {
+    padding-left: 1.2rem;
+  }
+
+  .vp-doc table {
+    font-size: 0.85rem;
+  }
+
+  .vp-doc th,
+  .vp-doc td {
+    padding: 0.55rem 0.65rem;
+  }
+
+  .vp-doc blockquote {
+    font-size: 0.95rem;
+    padding: 0.7rem 0.95rem;
+  }
+
+  .vp-doc div[class*='language-'] {
+    font-size: 0.9rem;
+    padding: 0.95rem 1rem 1rem;
+  }
+
+  .vp-doc div[class*='language-']::before {
+    left: 0.75rem;
+    top: 0.75rem;
+  }
+
+  .vp-doc details {
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .cysj-meta-line {
+    font-size: 11.5px;
+  }
+
+  .cysj-actions {
+    padding: 18px;
+  }
+
+  .cysj-actions__title {
+    font-size: 18px;
+  }
+}
+
+/* ---------- 平板端 ---------- */
+@media (min-width: 641px) and (max-width: 960px) {
+  .vp-doc {
+    font-size: 15.5px;
+  }
+
+  .vp-doc h2 {
+    font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.45rem);
+  }
+
+  .vp-doc h3 {
+    font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.18rem);
+  }
+}
+
+/* ---------- 无障碍：减少动画偏好 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cysj-home-page .VPFeature:hover,
+  .cysj-home-page .VPHomeHero .VPButton:hover,
+  .pager-link:hover,
+  .cysj-action-btn:hover {
+    transform: none !important;
+  }
+}
+
+/* ---------- 触摸设备优化 ---------- */
+@media (hover: none) and (pointer: coarse) {
+  .cysj-home-page .VPFeature:hover {
+    transform: none !important;
+    box-shadow: var(--cysj-shadow-sm) !important;
+  }
+
+  .cysj-home-page .VPHomeHero .VPButton:hover {
+    transform: none !important;
+  }
+
+  .vp-doc img:hover {
+    transform: none !important;
+  }
+
+  .pager-link:hover {
+    transform: none !important;
+  }
+}
+
+/* ---------- 打印样式 ---------- */
+@media print {
+  .VPNav,
+  .VPSidebar,
+  .VPDocAside,
+  .VPLocalNav,
+  .VPFooter,
+  .reading-progress,
+  .cysj-tools,
+  .cysj-actions {
+    display: none !important;
+  }
+
+  .VPDoc .content-container {
+    max-width: none !important;
+  }
+
+  .vp-doc {
+    color: #111827 !important;
+    font-size: 11pt;
+    line-height: 1.7;
+  }
+
+  .vp-doc a {
+    color: #111827 !important;
+    text-decoration: underline !important;
+  }
+
+  .vp-doc table {
+    border: 1px solid #ccc;
+  }
+
+  .vp-doc th,
+  .vp-doc td {
+    border: 1px solid #ccc;
+  }
+
+  .vp-doc div[class*='language-'] {
+    border: 1px solid #ccc;
+    background: #f9f9f9 !important;
+    page-break-inside: avoid;
+  }
+}

@@ -1,59 +1,31 @@
-/*
- * Azek431 CYSJ Home Polish
- * 首页专用优化层
- *
- * 目标：
- * - 解决首页品牌名换成两行的问题
- * - 让首页更清亮、更专业、更像长期维护型文档站
- * - 只作用于首页和顶部站点名，不影响文章正文结构
- */
+/* =========================================================
+   CYSJ Docs — Home Page
+   首页层：Hero、Feature 卡片、首页内容区
+   ========================================================= */
 
-/* ============================================================
- * 1. 顶部站点名：防止导航栏品牌名断行
- * ============================================================ */
-
-.VPNavBarTitle .title,
-.VPNavBarTitle .title span {
-  max-width: min(52vw, 360px);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-@media (max-width: 520px) {
-  .VPNavBarTitle .title,
-  .VPNavBarTitle .title span {
-    max-width: 58vw;
-    font-size: 14px;
-  }
-}
-
-/* ============================================================
- * 2. 首页整体：清亮背景和更舒服的留白
- * ============================================================ */
-
+/* ---------- 首页容器 ---------- */
 .cysj-home-page .VPHome {
   position: relative;
   overflow: hidden;
 }
 
 .cysj-home-page .VPHome::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 14% 10%, rgba(37, 99, 235, 0.16), transparent 26rem),
-    radial-gradient(circle at 86% 16%, rgba(14, 165, 233, 0.12), transparent 24rem),
-    radial-gradient(circle at 50% 72%, rgba(96, 165, 250, 0.08), transparent 30rem);
+    radial-gradient(circle at 20% 15%, rgba(37, 99, 235, 0.05) 0%, transparent 35%),
+    radial-gradient(circle at 80% 25%, rgba(124, 58, 236, 0.04) 0%, transparent 30%),
+    radial-gradient(circle at 50% 85%, rgba(8, 145, 178, 0.03) 0%, transparent 35%);
 }
 
 .dark .cysj-home-page .VPHome::before {
   background:
-    radial-gradient(circle at 14% 10%, rgba(37, 99, 235, 0.2), transparent 28rem),
-    radial-gradient(circle at 86% 16%, rgba(14, 165, 233, 0.14), transparent 24rem),
-    radial-gradient(circle at 50% 72%, rgba(96, 165, 250, 0.08), transparent 30rem);
+    radial-gradient(circle at 20% 15%, rgba(96, 165, 250, 0.08) 0%, transparent 35%),
+    radial-gradient(circle at 80% 25%, rgba(167, 139, 250, 0.06) 0%, transparent 30%),
+    radial-gradient(circle at 50% 85%, rgba(34, 211, 238, 0.05) 0%, transparent 35%);
 }
 
 .cysj-home-page .VPHome > * {
@@ -61,17 +33,14 @@
   z-index: 1;
 }
 
-/* ============================================================
- * 3. Hero：品牌名固定一行，副标题降权
- * ============================================================ */
-
+/* ---------- Hero ---------- */
 .cysj-home-page .VPHomeHero {
-  padding-top: clamp(54px, 8vw, 96px);
-  padding-bottom: clamp(34px, 5vw, 68px);
+  padding-top: clamp(56px, 8vw, 96px);
+  padding-bottom: clamp(32px, 5vw, 64px);
 }
 
 .cysj-home-page .VPHomeHero .container {
-  gap: clamp(28px, 5vw, 58px);
+  gap: clamp(28px, 5vw, 52px);
 }
 
 .cysj-home-page .VPHomeHero .main {
@@ -87,6 +56,15 @@
   letter-spacing: -0.06em;
   font-weight: 850;
   text-wrap: nowrap;
+  background: var(--cysj-gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 16px rgba(37, 99, 235, 0.12));
+}
+
+.dark .cysj-home-page .VPHomeHero .name {
+  filter: drop-shadow(0 4px 16px rgba(96, 165, 250, 0.18));
 }
 
 .cysj-home-page .VPHomeHero .text {
@@ -116,43 +94,46 @@
   padding: 0;
 }
 
+/* ---------- Hero 按钮 ---------- */
 .cysj-home-page .VPHomeHero .VPButton {
   min-height: 42px;
-  padding: 0 18px;
-  border-radius: 999px;
+  padding: 0 20px;
+  border-radius: var(--cysj-radius-pill);
   font-size: 14px;
   font-weight: 760;
-  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.12);
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease,
-    background-color 0.18s ease;
-}
-
-.cysj-home-page .VPHomeHero .VPButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 38px rgba(37, 99, 235, 0.18);
+  letter-spacing: -0.005em;
+  transition: transform var(--cysj-speed-normal) var(--cysj-ease),
+    box-shadow var(--cysj-speed-normal) var(--cysj-ease);
 }
 
 .cysj-home-page .VPHomeHero .VPButton.brand {
-  border-color: rgba(37, 99, 235, 0.16);
-  background:
-    linear-gradient(135deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  border: 0;
+  background: var(--cysj-gradient-brand);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.22);
+}
+
+.cysj-home-page .VPHomeHero .VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37, 99, 235, 0.32);
 }
 
 .cysj-home-page .VPHomeHero .VPButton.alt {
-  border-color: rgba(37, 99, 235, 0.14);
-  background: color-mix(in srgb, var(--vp-c-bg-soft) 86%, transparent);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
 }
 
-/* ============================================================
- * 4. Hero 右侧图形：轻量化，不喧宾夺主
- * ============================================================ */
+.cysj-home-page .VPHomeHero .VPButton.alt:hover {
+  transform: translateY(-2px);
+  border-color: var(--cysj-brand-border);
+  color: var(--vp-c-brand-1);
+  box-shadow: var(--cysj-shadow-sm);
+}
 
+/* ---------- Hero 图像 ---------- */
 .cysj-home-page .VPHomeHero .image {
-  filter: drop-shadow(0 28px 58px rgba(37, 99, 235, 0.16));
+  filter: drop-shadow(0 24px 48px rgba(37, 99, 235, 0.12));
 }
 
 .cysj-home-page .VPHomeHero .image-container {
@@ -160,72 +141,74 @@
 }
 
 .cysj-home-page .VPHomeHero .image-bg {
-  opacity: 0.68;
-  filter: blur(46px);
+  opacity: 0.6;
+  filter: blur(40px);
 }
 
 .cysj-home-page .VPHomeHero .image-src {
-  border-radius: 28px;
+  border-radius: var(--cysj-radius-xl);
 }
 
-/* ============================================================
- * 5. Feature 卡片：更像知识库入口
- * ============================================================ */
-
+/* ---------- Features 区段 ---------- */
 .cysj-home-page .VPFeatures {
-  padding-top: 12px;
-  padding-bottom: clamp(56px, 7vw, 92px);
+  padding-top: 8px;
+  padding-bottom: clamp(56px, 7vw, 88px);
 }
 
 .cysj-home-page .VPFeatures .container {
-  max-width: 1180px;
+  max-width: var(--cysj-home-max-width);
 }
 
+/* ---------- Feature 卡片 ---------- */
 .cysj-home-page .VPFeature {
   height: 100%;
-  border: 1px solid color-mix(in srgb, var(--vp-c-brand-1) 14%, transparent);
-  border-radius: 22px;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--vp-c-bg-soft) 96%, transparent),
-      color-mix(in srgb, var(--vp-c-bg-soft) 86%, transparent)
-    );
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.055);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-lg);
+  background: var(--vp-c-bg);
+  box-shadow: var(--cysj-shadow-sm);
+  transition: transform var(--cysj-speed-normal) var(--cysj-ease),
+    box-shadow var(--cysj-speed-normal) var(--cysj-ease),
+    border-color var(--cysj-speed-normal) var(--cysj-ease);
 }
 
 .dark .cysj-home-page .VPFeature {
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--cysj-shadow-md);
 }
 
 .cysj-home-page .VPFeature:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--vp-c-brand-1) 28%, transparent);
-  box-shadow: 0 20px 48px rgba(15, 23, 42, 0.095);
+  transform: translateY(-3px);
+  border-color: var(--cysj-brand-border);
+  box-shadow: var(--cysj-shadow-lg);
 }
 
 .cysj-home-page .VPFeature .box {
-  padding: 24px;
+  padding: 22px;
+  position: relative;
+  z-index: 1;
 }
 
 .cysj-home-page .VPFeature .icon {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
-  margin-bottom: 18px;
-  border-radius: 16px;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(37, 99, 235, 0.12),
-      rgba(14, 165, 233, 0.08)
-    );
-  font-size: 24px;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 16px;
+  border-radius: var(--cysj-radius-md);
+  background: var(--cysj-brand-soft);
+  font-size: 22px;
+  transition: background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.cysj-home-page .VPFeature:hover .icon {
+  background: var(--cysj-brand-soft-hover);
+}
+
+.dark .cysj-home-page .VPFeature .icon {
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.dark .cysj-home-page .VPFeature:hover .icon {
+  background: rgba(96, 165, 250, 0.18);
 }
 
 .cysj-home-page .VPFeature .title {
@@ -239,7 +222,7 @@
 .cysj-home-page .VPFeature .details {
   margin-top: 8px;
   color: var(--vp-c-text-2);
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.78;
 }
 
@@ -248,14 +231,57 @@
   font-weight: 720;
 }
 
-/* ============================================================
- * 6. 首页移动端：尽量保持主标题一行
- * ============================================================ */
+/* ---------- 首页内容卡片 ---------- */
+.cysj-home-page .VPHome .vp-doc {
+  max-width: var(--cysj-home-max-width);
+  margin: 0 auto;
+  padding: 28px 32px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-xl);
+  box-shadow: var(--cysj-shadow-sm);
+}
 
+.cysj-home-page .VPHome .vp-doc > ul,
+.cysj-home-page .VPHome .vp-doc > ol {
+  margin: 16px 0 24px;
+  padding: 16px 20px 16px 36px;
+  border: 1px solid var(--vp-c-divider-light);
+  border-radius: var(--cysj-radius-md);
+  background: var(--vp-c-bg-secondary);
+}
+
+.cysj-home-page .VPHome .vp-doc table {
+  max-width: 100%;
+}
+
+.cysj-home-page .VPHome .vp-doc h2 {
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--vp-c-divider-light);
+}
+
+.cysj-home-page .VPHome .vp-doc h2:first-of-type {
+  margin-top: 28px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+/* Features 与正文区间隔 */
+.cysj-home-page .VPFeatures::after {
+  content: '';
+  display: block;
+  width: min(600px, calc(100vw - 64px));
+  height: 1px;
+  margin: 28px auto 0;
+  background: linear-gradient(90deg, transparent, var(--cysj-brand-border), transparent);
+}
+
+/* ---------- 首页移动端 ---------- */
 @media (max-width: 960px) {
   .cysj-home-page .VPHomeHero {
-    padding-top: 48px;
-    padding-bottom: 36px;
+    padding-top: 44px;
+    padding-bottom: 32px;
   }
 
   .cysj-home-page .VPHomeHero .main {
@@ -290,17 +316,26 @@
   }
 
   .cysj-home-page .VPHomeHero .actions {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 10px;
+    width: 100%;
   }
 
   .cysj-home-page .VPHomeHero .VPButton {
+    width: 100%;
     min-height: 40px;
-    padding: 0 15px;
+    padding: 0 16px;
     font-size: 13.5px;
   }
 
   .cysj-home-page .VPFeature .box {
-    padding: 21px;
+    padding: 20px;
+  }
+
+  .cysj-home-page .VPHome .vp-doc {
+    padding: 20px 22px;
+    border-radius: var(--cysj-radius-lg);
   }
 }
 
@@ -308,25 +343,5 @@
   .cysj-home-page .VPHomeHero .name {
     font-size: clamp(1.42rem, 1rem + 5vw, 1.86rem);
     letter-spacing: -0.046em;
-  }
-
-  .cysj-home-page .VPHomeHero .text {
-    font-size: 1.02rem;
-  }
-}
-
-/* ============================================================
- * 7. 减少动效偏好
- * ============================================================ */
-
-@media (prefers-reduced-motion: reduce) {
-  .cysj-home-page .VPHomeHero .VPButton,
-  .cysj-home-page .VPFeature {
-    transition: none;
-  }
-
-  .cysj-home-page .VPHomeHero .VPButton:hover,
-  .cysj-home-page .VPFeature:hover {
-    transform: none;
   }
 }

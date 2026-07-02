@@ -1,0 +1,360 @@
+/* =========================================================
+   CYSJ Docs — Navigation & Layout
+   导航与布局层：顶部导航栏、侧边栏、右侧目录、分页、页脚
+   ========================================================= */
+
+/* ---------- 顶部导航栏 ---------- */
+.VPNavBar {
+  background: var(--vp-c-bg) !important;
+  border-bottom: 1px solid var(--vp-c-divider-light) !important;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+  transition: box-shadow var(--cysj-speed-normal) var(--cysj-ease);
+}
+
+.VPNavBarTitle .title {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--vp-c-text-1);
+}
+
+.VPNavBarMenuLink {
+  font-weight: 650;
+  color: var(--vp-c-text-2);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+  position: relative;
+}
+
+.VPNavBarMenuLink::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 1px;
+  transform: translateX(-50%) scaleX(0);
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cysj-gradient-brand);
+  opacity: 0.5;
+  transition: transform var(--cysj-speed-fast) var(--cysj-ease),
+    opacity var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavBarMenuLink:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.VPNavBarMenuLink:hover::after,
+.VPNavBarMenuLink.active::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 0.8;
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* ---------- 搜索框 ---------- */
+.DocSearch-Button,
+.VPLocalSearchBox .shell {
+  border-radius: var(--cysj-radius-pill) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  background: var(--vp-c-bg) !important;
+  transition: border-color var(--cysj-speed-fast) var(--cysj-ease),
+    box-shadow var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.DocSearch-Button:hover,
+.VPLocalSearchBox .shell:hover {
+  border-color: var(--cysj-brand-border) !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.dark .DocSearch-Button:hover,
+.dark .VPLocalSearchBox .shell:hover {
+  border-color: rgba(96, 165, 250, 0.32) !important;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+/* ---------- 侧边栏 ---------- */
+.VPSidebar {
+  background: var(--vp-c-bg) !important;
+  border-right: 1px solid var(--vp-c-divider-light) !important;
+  padding-top: 8px;
+}
+
+.VPSidebarItem .text {
+  font-weight: 650;
+  color: var(--vp-c-text-2);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPSidebarItem .item .link {
+  position: relative;
+  border-radius: var(--cysj-radius-sm);
+  transition: background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPSidebarItem .item .link:hover {
+  background: var(--vp-c-bg-secondary);
+}
+
+.VPSidebarItem.is-active > .item .link {
+  background: var(--cysj-brand-soft);
+}
+
+.VPSidebarItem.is-active > .item .link > .text {
+  color: var(--vp-c-brand-1);
+  font-weight: 800;
+}
+
+.VPSidebarItem.is-active > .item::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 6px;
+  width: 3px;
+  height: calc(100% - 12px);
+  border-radius: 3px;
+  background: var(--cysj-gradient-brand);
+  opacity: 0.7;
+}
+
+.VPSidebarItem.level-1 > .item > .link > .text {
+  font-weight: 800;
+  color: var(--vp-c-text-1);
+  font-size: 13.5px;
+  letter-spacing: -0.01em;
+}
+
+.VPSidebarItem.level-1 {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--vp-c-divider-light);
+}
+
+.VPSidebarItem.level-1:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.VPSidebarItem.level-0 > .item > .link > .text {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+  padding: 0 12px;
+}
+
+/* ---------- 右侧目录 ---------- */
+.VPDocAsideOutline .content {
+  border-left-color: var(--vp-c-divider-light);
+  padding-left: 12px;
+}
+
+.outline-link {
+  font-size: 13px;
+  color: var(--vp-c-text-2);
+  font-weight: 600;
+  transition: color var(--cysj-speed-fast) var(--cysj-ease),
+    background var(--cysj-speed-fast) var(--cysj-ease),
+    padding-left var(--cysj-speed-fast) var(--cysj-ease);
+  display: block;
+  padding: 4px 0;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+  margin-left: -10px;
+  border-radius: var(--cysj-radius-sm);
+  line-height: 1.55;
+}
+
+.outline-link:hover {
+  color: var(--vp-c-brand-1);
+  background: var(--cysj-brand-soft);
+  border-left-color: var(--cysj-brand-border);
+  padding-left: 12px;
+}
+
+.outline-link.active {
+  color: var(--vp-c-brand-1);
+  font-weight: 800;
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.10), transparent 80%);
+  border-left-color: transparent;
+}
+
+.outline-link.depth-3 {
+  padding-left: 20px;
+  font-size: 12.5px;
+}
+
+.outline-link.depth-4 {
+  padding-left: 30px;
+  font-size: 12px;
+  color: var(--vp-c-text-3);
+}
+
+/* ---------- 分页导航 ---------- */
+.prev-next {
+  gap: 14px;
+  margin-top: 48px;
+}
+
+.pager-link {
+  border-radius: var(--cysj-radius-lg) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+  background: var(--vp-c-bg) !important;
+  box-shadow: var(--cysj-shadow-sm) !important;
+  transition: transform var(--cysj-speed-normal) var(--cysj-ease),
+    box-shadow var(--cysj-speed-normal) var(--cysj-ease),
+    border-color var(--cysj-speed-normal) var(--cysj-ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.pager-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cysj-gradient-brand);
+  opacity: 0.3;
+  transition: opacity var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.pager-link.next::before {
+  right: 0;
+  border-radius: 2px 0 0 2px;
+}
+
+.pager-link.prev::before {
+  left: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+.pager-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cysj-shadow-md) !important;
+  border-color: var(--cysj-brand-border) !important;
+}
+
+.pager-link:hover::before {
+  opacity: 0.8;
+}
+
+.pager-link .desc {
+  color: var(--vp-c-text-3);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.pager-link .title {
+  color: var(--vp-c-text-1);
+  font-weight: 700;
+  letter-spacing: -0.012em;
+}
+
+/* ---------- 页脚 ---------- */
+.VPFooter {
+  border-top: 1px solid var(--vp-c-divider-light) !important;
+  background: transparent !important;
+  padding: 32px 24px 48px;
+  margin-top: 48px;
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  color: var(--vp-c-text-3);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.7;
+}
+
+.VPFooter .copyright {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* ---------- 文档页内容区 ---------- */
+.VPDoc .content-container {
+  max-width: var(--cysj-max-width);
+  padding: 0;
+}
+
+/* 文档页标题 */
+.VPDoc .vp-doc > h1:first-child,
+.VPDoc .vp-doc h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.68rem;
+  font-size: clamp(1.52rem, 1.18rem + 0.9vw, 1.92rem);
+  line-height: 1.24;
+  letter-spacing: -0.024em;
+  font-weight: 760;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+}
+
+/* ---------- 滚动条 ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(100, 116, 139, 0.3) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: var(--cysj-radius-pill);
+  background-clip: padding-box;
+  background-color: rgba(100, 116, 139, 0.25);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(37, 99, 235, 0.4);
+}
+
+.dark * {
+  scrollbar-color: rgba(148, 163, 184, 0.2) transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(96, 165, 250, 0.45);
+}
+
+/* ---------- 移动端 ---------- */
+@media (max-width: 960px) {
+  .VPDoc .content-container {
+    max-width: 100%;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .VPSidebar {
+    padding-top: 4px;
+  }
+}
+
+@media (max-width: 640px) {
+  .VPDoc .content-container {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .prev-next {
+    flex-direction: column;
+  }
+
+  .pager-link {
+    border-radius: var(--cysj-radius-md) !important;
+  }
+}

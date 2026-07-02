@@ -1,0 +1,353 @@
+/* =========================================================
+   CYSJ Docs — Components
+   组件层：代码块、引用块、表格、自定义块、内联代码、详情面板
+   ========================================================= */
+
+/* ---------- 内联代码 ---------- */
+.vp-doc :not(pre) > code {
+  border-radius: var(--cysj-radius-sm);
+  padding: 0.14em 0.4em;
+  font-size: 0.875em;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  background: var(--cysj-brand-soft);
+  border: 1px solid var(--cysj-brand-border);
+  transition: background var(--cysj-speed-fast) var(--cysj-ease),
+    border-color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.vp-doc :not(pre) > code:hover {
+  background: var(--cysj-brand-soft-hover);
+  border-color: rgba(37, 99, 235, 0.32);
+}
+
+.dark .vp-doc :not(pre) > code {
+  color: #93c5fd;
+  background: rgba(96, 165, 250, 0.12);
+  border-color: rgba(96, 165, 250, 0.24);
+}
+
+/* ---------- 代码块 ---------- */
+.vp-doc div[class*='language-'] {
+  margin: 1.15rem 0;
+  padding: 1.15rem 1.25rem 1.25rem;
+  border-radius: var(--cysj-radius-md);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-alt);
+  overflow: hidden;
+  position: relative;
+}
+
+/* macOS 窗口装饰点 */
+.vp-doc div[class*='language-']::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 16px 0 0 #febc2e, 32px 0 0 #28c840;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.vp-doc div[class*='language-']::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  top: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.dark .vp-doc div[class*='language-']::before {
+  opacity: 0.5;
+}
+
+.vp-doc div[class*='language-'] pre {
+  margin: 0 !important;
+  padding: 0.5rem 0 !important;
+  background: transparent !important;
+  overflow-x: auto;
+}
+
+/* 语言标签 */
+.vp-doc div[class*='language-'] .highlight-lines {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .vp-doc div[class*='language-'] .highlight-lines {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ---------- 引用块 ---------- */
+.vp-doc blockquote {
+  margin: 1.25rem 0;
+  padding: 0.85rem 1.15rem;
+  border-left: 3px solid var(--vp-c-brand-1);
+  border-radius: 0 var(--cysj-radius-md) var(--cysj-radius-md) 0;
+  background: var(--cysj-brand-soft);
+  color: var(--vp-c-text-2);
+  line-height: 1.78;
+}
+
+.vp-doc blockquote p {
+  margin: 0.25rem 0;
+  color: inherit;
+}
+
+.dark .vp-doc blockquote {
+  background: rgba(96, 165, 250, 0.08);
+  border-left-color: #60a5fa;
+}
+
+/* ---------- 自定义块 ---------- */
+.vp-doc .custom-block {
+  margin: 1.15rem 0;
+  padding: 0.95rem 1.15rem 0.85rem 1.15rem;
+  border-radius: var(--cysj-radius-md);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  box-shadow: var(--cysj-shadow-xs);
+}
+
+.vp-doc .custom-block-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.35rem;
+}
+
+.vp-doc .custom-block.tip {
+  border-color: rgba(37, 99, 235, 0.2);
+  background: rgba(37, 99, 235, 0.04);
+}
+
+.dark .vp-doc .custom-block.tip {
+  background: rgba(96, 165, 250, 0.06);
+  border-color: rgba(96, 165, 250, 0.24);
+}
+
+.vp-doc .custom-block.warning {
+  border-color: rgba(245, 158, 11, 0.24);
+  background: rgba(245, 158, 11, 0.05);
+}
+
+.dark .vp-doc .custom-block.warning {
+  background: rgba(245, 158, 11, 0.07);
+  border-color: rgba(245, 158, 11, 0.32);
+}
+
+.vp-doc .custom-block.danger {
+  border-color: rgba(239, 68, 68, 0.24);
+  background: rgba(239, 68, 68, 0.04);
+}
+
+.dark .vp-doc .custom-block.danger {
+  background: rgba(239, 68, 68, 0.07);
+  border-color: rgba(239, 68, 68, 0.32);
+}
+
+.vp-doc .custom-block.info {
+  border-color: rgba(6, 182, 212, 0.24);
+  background: rgba(6, 182, 212, 0.04);
+}
+
+.dark .vp-doc .custom-block.info {
+  background: rgba(6, 182, 212, 0.07);
+  border-color: rgba(6, 182, 212, 0.32);
+}
+
+/* ---------- 表格 ---------- */
+.vp-doc table {
+  display: table;
+  width: 100%;
+  margin: 1.2rem 0;
+  border-collapse: collapse;
+  border-radius: var(--cysj-radius-md);
+  border: 1px solid var(--vp-c-divider);
+  overflow: hidden;
+  font-size: 0.9em;
+}
+
+.vp-doc th,
+.vp-doc td {
+  padding: 0.68rem 0.78rem;
+  text-align: left;
+  border-bottom: 1px solid var(--vp-c-divider);
+  line-height: 1.7;
+  vertical-align: top;
+}
+
+.vp-doc th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+}
+
+.vp-doc tr:last-child td {
+  border-bottom: 0;
+}
+
+.vp-doc tbody tr:nth-child(even) {
+  background: var(--vp-c-bg-secondary);
+}
+
+.vp-doc tbody tr:hover {
+  background: var(--cysj-brand-soft-hover);
+}
+
+.dark .vp-doc tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.3);
+}
+
+.dark .vp-doc tbody tr:hover {
+  background: rgba(96, 165, 250, 0.08);
+}
+
+/* 移动端横向滚动 */
+@media (max-width: 768px) {
+  .vp-doc table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* ---------- 详情折叠面板 ---------- */
+.vp-doc details {
+  margin: 1.25rem 0;
+  padding: 0.95rem 1.15rem;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-md);
+  background: var(--vp-c-bg-soft);
+  transition: border-color var(--cysj-speed-fast) var(--cysj-ease),
+    background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.vp-doc details:hover {
+  border-color: var(--cysj-brand-border);
+}
+
+.vp-doc details[open] {
+  background: var(--vp-c-bg);
+  border-color: var(--cysj-brand-border);
+  box-shadow: var(--cysj-shadow-sm);
+}
+
+.vp-doc details summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.vp-doc details summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc details summary::before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid var(--vp-c-text-3);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform var(--cysj-speed-fast) var(--cysj-ease);
+  flex: 0 0 auto;
+}
+
+.vp-doc details[open] summary::before {
+  transform: rotate(90deg);
+  border-left-color: var(--vp-c-brand-1);
+}
+
+.vp-doc details > :not(summary) {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px dashed var(--vp-c-divider);
+  color: var(--vp-c-text-2);
+}
+
+/* ---------- 键盘键 ---------- */
+.vp-doc kbd {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border: 1px solid var(--vp-c-divider);
+  border-bottom-width: 2px;
+  border-radius: var(--cysj-radius-sm);
+  background: var(--vp-c-bg-secondary);
+  color: var(--vp-c-text-1);
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1.4;
+  box-shadow: var(--cysj-shadow-xs);
+}
+
+/* ---------- 标记高亮 ---------- */
+.vp-doc mark {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--vp-c-text-1);
+  font-weight: 600;
+  padding: 0.05em 0.2em;
+  border-radius: 3px;
+}
+
+/* ---------- 任务清单 ---------- */
+.vp-doc .task-list-item {
+  list-style: none;
+  margin-left: -1.25rem;
+  padding-left: 0.25rem;
+}
+
+.vp-doc .task-list-item input[type='checkbox'] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  vertical-align: -3px;
+  border: 1.5px solid var(--vp-c-default-3);
+  border-radius: 4px;
+  background: var(--vp-c-bg);
+  cursor: pointer;
+  position: relative;
+  transition: background var(--cysj-speed-fast) var(--cysj-ease),
+    border-color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.vp-doc .task-list-item input[type='checkbox']:checked {
+  background: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
+
+.vp-doc .task-list-item input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ---------- 图片 ---------- */
+.vp-doc img {
+  max-width: 100%;
+  border-radius: var(--cysj-radius-md);
+  transition: transform var(--cysj-speed-normal) var(--cysj-ease),
+    box-shadow var(--cysj-speed-normal) var(--cysj-ease);
+}
+
+.vp-doc img:hover {
+  transform: scale(1.005);
+}
