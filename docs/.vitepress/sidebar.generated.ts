@@ -837,6 +837,10 @@ export const generatedSidebar = [
         "link": "/维护与报告/仓库健康巡检报告"
       },
       {
+        "text": "仓库健康巡检报告",
+        "link": "/维护与报告/仓库健康巡检报告.sync-conflict-20260610-203434-XQC7BPH"
+      },
+      {
         "text": "创游世界知识库文档格式规范",
         "link": "/维护与报告/创游世界知识库文档格式规范"
       },
