@@ -28,15 +28,13 @@ body {
   contain: layout;
 }
 
-/* ---------- GPU 加速 ---------- */
+/* ---------- GPU 加速（仅用于会变换的元素）---------- */
 .VPFeature,
-.VPButton,
 .pager-link,
 .cysj-action-btn,
-.cysj-author-card,
-.DocSearch-Button,
-.VPLocalSearchBox {
-  will-change: transform, box-shadow;
+.cysj-author-card {
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 /* ---------- 避免重绘 ---------- */
@@ -47,12 +45,13 @@ body {
   contain: layout style;
 }
 
-/* ---------- 移动端性能降级 ---------- */
+/* =========================================================
+   移动端降级（640px 以下）
+   统一合并所有媒体查询，避免跨文件重复
+   ========================================================= */
 @media (max-width: 640px) {
-  .vp-doc > * {
-    animation: none !important;
-  }
-
+  /* 禁用所有动画 */
+  .vp-doc > *,
   .cysj-home-page .VPHomeHero .name,
   .cysj-home-page .VPHomeHero .text,
   .cysj-home-page .VPHomeHero .tagline,
@@ -61,6 +60,7 @@ body {
     animation: none !important;
   }
 
+  /* 移除 backdrop-filter（移动端性能杀手） */
   .VPFeature,
   .VPHome .vp-doc,
   .vp-doc table,
@@ -73,6 +73,7 @@ body {
     -webkit-backdrop-filter: none !important;
   }
 
+  /* 简化阴影 */
   .VPFeature,
   .VPHome .vp-doc,
   .vp-doc table,
@@ -94,32 +95,30 @@ body {
   }
 }
 
-/* ---------- 低性能设备降级 ---------- */
+/* =========================================================
+   减少动画偏好
+   ========================================================= */
 @media (prefers-reduced-motion: reduce) {
-  .vp-doc > *,
-  .cysj-home-page .VPHomeHero .name,
-  .cysj-home-page .VPHomeHero .text,
-  .cysj-home-page .VPHomeHero .tagline,
-  .cysj-home-page .VPHomeHero .actions,
-  .cysj-home-page .VPFeatures {
-    animation: none !important;
-  }
-
   *,
   *::before,
   *::after {
-    transition-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 
-  .VPFeature:hover,
-  .VPHomeHero .VPButton:hover,
+  .cysj-home-page .VPFeature:hover,
+  .cysj-home-page .VPHomeHero .VPButton:hover,
   .pager-link:hover,
   .cysj-action-btn:hover {
     transform: none !important;
   }
 }
 
-/* ---------- 打印时移除所有动效 ---------- */
+/* =========================================================
+   打印样式
+   ========================================================= */
 @media print {
   *,
   *::before,

@@ -38,6 +38,22 @@ export default defineConfig({
       'link',
       { rel: 'canonical', href: canonicalUrl }
     ])
+
+    // 将 PerPageHead 运行时 DOM 操作提升到 SSR，避免客户端重绘
+    const pageTitle = pageData.frontmatter.title || pageData.title || 'Azek创游世界文档'
+    const pageDesc = pageData.frontmatter.description || pageData.description || 'Azek431 整理维护的创游世界中文文档站'
+    const pageImage = pageData.frontmatter.image || '/logo.png'
+
+    pageData.frontmatter.head.push(
+      ['meta', { name: 'title', content: String(pageTitle) }],
+      ['meta', { name: 'description', content: pageDesc }],
+      ['meta', { property: 'og:title', content: String(pageTitle) }],
+      ['meta', { property: 'og:description', content: pageDesc }],
+      ['meta', { name: 'twitter:title', content: String(pageTitle) }],
+      ['meta', { name: 'twitter:description', content: pageDesc }],
+      ['meta', { property: 'og:image', content: `https://cysjdocs.azek431.top${pageImage.startsWith('/') ? pageImage : '/' + pageImage}` }],
+      ['meta', { name: 'twitter:image', content: `https://cysjdocs.azek431.top${pageImage.startsWith('/') ? pageImage : '/' + pageImage}` }]
+    )
   },
 
   head: [

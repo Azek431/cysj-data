@@ -331,6 +331,12 @@
   background-color: rgba(96, 165, 250, 0.45);
 }
 
+/* ---------- 移动端汉堡导航栏 ---------- */
+.VPLocalNav {
+  border-bottom: 1px solid var(--vp-c-divider-light) !important;
+  background: var(--vp-c-bg) !important;
+}
+
 /* ---------- 移动端 ---------- */
 @media (max-width: 960px) {
   .VPDoc .content-container {
@@ -341,6 +347,11 @@
 
   .VPSidebar {
     padding-top: 4px;
+  }
+
+  /* 移动端文档页内容避开 VPLocalNav */
+  .VPDoc .content {
+    padding-top: 64px;
   }
 }
 

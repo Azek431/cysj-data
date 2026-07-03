@@ -280,8 +280,8 @@
 /* ---------- 首页移动端 ---------- */
 @media (max-width: 960px) {
   .cysj-home-page .VPHomeHero {
-    padding-top: 44px;
-    padding-bottom: 32px;
+    padding-top: clamp(44px, 6vw, 56px);
+    padding-bottom: clamp(24px, 4vw, 32px);
   }
 
   .cysj-home-page .VPHomeHero .main {
@@ -295,6 +295,11 @@
   .cysj-home-page .VPHomeHero .text {
     max-width: 680px;
     font-size: clamp(1.18rem, 0.98rem + 1.8vw, 1.68rem);
+  }
+
+  /* 首页移动端内容避开 VPLocalNav */
+  .cysj-home-page .VPHome {
+    padding-top: 64px;
   }
 }
 
