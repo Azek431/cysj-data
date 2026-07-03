@@ -7,11 +7,18 @@ const isDoc = ref(false);
 const progress = ref(0);
 
 let raf = 0;
-let pending = false;
+let ticking = false;
+let lastScrollY = -1;
+let lastComputedProgress = -1;
 
 function compute() {
-  pending = false;
-  if (!isDoc.value) return;
+  ticking = false;
+  if (!isDoc.value) {
+    progress.value = 0;
+    lastScrollY = -1;
+    lastComputedProgress = -1;
+    return;
+  }
 
   const article = document.querySelector(".vp-doc");
   if (!article) {
@@ -19,45 +26,63 @@ function compute() {
     return;
   }
 
-  const doc = document.documentElement;
   const rect = article.getBoundingClientRect();
-  const total = rect.height + window.innerHeight * 0.4;
-  const scrolled = window.scrollY + window.innerHeight * 0.6 - rect.top;
-
-  if (total <= 0) {
+  if (rect.height <= 0) {
     progress.value = 0;
     return;
   }
 
-  const ratio = scrolled / total;
-  const next = Math.max(0, Math.min(1, ratio));
+  const docHeight = rect.height - window.innerHeight;
+  if (docHeight <= 0) {
+    progress.value = 0;
+    return;
+  }
 
-  if (Math.abs(next - progress.value) > 0.005) {
-    progress.value = next;
+  const scrolled = window.scrollY;
+  const ratio = Math.max(0, Math.min(scrolled / docHeight, 1));
+
+  // 仅在变化超过阈值时更新 DOM（减少重排）
+  if (Math.abs(ratio - lastComputedProgress) > 0.008) {
+    progress.value = ratio;
+    lastComputedProgress = ratio;
   }
 }
 
 function onScroll() {
-  if (pending) return;
-  pending = true;
-  raf = window.requestAnimationFrame(compute);
+  lastScrollY = window.scrollY;
+  if (!ticking) {
+    ticking = true;
+    raf = window.requestAnimationFrame(compute);
+  }
+}
+
+function onResize() {
+  if (!ticking) {
+    ticking = true;
+    raf = window.requestAnimationFrame(compute);
+  }
 }
 
 function updateDocFlag() {
   isDoc.value = frontmatter.value?.layout !== "home";
-  progress.value = 0;
-  onScroll();
+  if (!isDoc.value) {
+    progress.value = 0;
+    lastComputedProgress = -1;
+    lastScrollY = -1;
+  } else {
+    onScroll();
+  }
 }
 
 onMounted(() => {
   updateDocFlag();
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll, { passive: true });
+  window.addEventListener("resize", onResize, { passive: true });
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", onScroll);
-  window.removeEventListener("resize", onScroll);
+  window.removeEventListener("resize", onResize);
   if (raf) window.cancelAnimationFrame(raf);
 });
 </script>

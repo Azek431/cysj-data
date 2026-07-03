@@ -192,10 +192,6 @@ body {
   color: var(--vp-c-text-1);
 }
 
-.vp-doc em {
-  font-style: italic;
-}
-
 /* ---------- 选区 ---------- */
 ::selection {
   background: rgba(37, 99, 235, 0.2);

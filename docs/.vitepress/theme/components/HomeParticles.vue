@@ -49,6 +49,8 @@ let targetMouseActive = 0;
 let reduceMotion = false;
 let coarsePointer = false;
 let pageHidden = false;
+let prefersReducedMotion = false;
+let isMobile = false;
 
 const TAU = Math.PI * 2;
 
@@ -68,6 +70,15 @@ function ease(value: number) {
 function getCounts() {
   const area = width * height;
   const scale = clamp(area / 900000, 0.72, 1.24);
+
+  // 移动端/粗指针设备大幅减少粒子数以降低渲染压力
+  if (isMobile) {
+    return {
+      nodes: Math.round(6 * scale),
+      dust: Math.round(8 * scale),
+      sparks: Math.round(4 * scale),
+    };
+  }
 
   if (coarsePointer) {
     return {
@@ -301,7 +312,8 @@ function resize() {
   height = Math.max(window.innerHeight, 720);
 
   // 控制 DPR，避免高分屏下粒子层像素量暴涨。
-  dpr = Math.min(window.devicePixelRatio || 1, coarsePointer ? 1.15 : 1.55);
+  // 移动端限制 DPR 为 1 以降低渲染压力。
+  dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : coarsePointer ? 1.15 : 1.55);
 
   canvas.width = Math.floor(width * dpr);
   canvas.height = Math.floor(height * dpr);
@@ -571,8 +583,11 @@ function render(time = 0) {
     return;
   }
 
-  if (pageHidden || !isHome.value || reduceMotion) {
-    ctx.clearRect(0, 0, width, height);
+  // 页面隐藏、非首页、减少动画偏好或移动端直接跳过渲染循环
+  if (pageHidden || !isHome.value || reduceMotion || isMobile) {
+    if (!isMobile) {
+      ctx.clearRect(0, 0, width, height);
+    }
     raf = window.requestAnimationFrame(render);
     return;
   }
@@ -605,6 +620,16 @@ function setup() {
   reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   coarsePointer = window.matchMedia("(pointer: coarse)").matches;
   pageHidden = document.hidden;
+  prefersReducedMotion = reduceMotion;
+  isMobile = window.innerWidth < 768;
+
+  // 监听窗口大小变化，进入移动端范围时暂停渲染
+  const mqListener = (e: MediaQueryListEvent) => {
+    isMobile = e.matches;
+  };
+  const mq = window.matchMedia("(max-width: 767px)");
+  mq.addEventListener("change", mqListener);
+  isMobile = mq.matches;
 
   targetMouseX = window.innerWidth * 0.72;
   targetMouseY = 180;
