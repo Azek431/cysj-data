@@ -6,7 +6,20 @@ const requiredFiles = [
   "docs/.vitepress/theme/Layout.vue",
   "docs/.vitepress/theme/components/PageInfo.vue",
   "docs/.vitepress/theme/components/PageActions.vue",
-  "docs/.vitepress/theme/components/HomeParticles.vue",
+  "docs/.vitepress/theme/components/SiteTools.vue",
+  "docs/.vitepress/theme/components/ReadingProgress.vue",
+  "docs/.vitepress/theme/styles/tokens.css",
+  "docs/.vitepress/theme/styles/typography.css",
+  "docs/.vitepress/theme/styles/components.css",
+  "docs/.vitepress/theme/styles/layout.css",
+  "docs/.vitepress/theme/styles/custom.css",
+  "docs/public/_headers",
+  "docs/public/llms.txt",
+  "docs/public/robots.txt",
+];
+
+const forbiddenFiles = [
+  "docs/.vitepress/theme/custom.css",
   "docs/.vitepress/theme/styles/cysj-design-tokens.css",
   "docs/.vitepress/theme/styles/cysj-typography.css",
   "docs/.vitepress/theme/styles/cysj-components.css",
@@ -16,13 +29,7 @@ const requiredFiles = [
   "docs/.vitepress/theme/styles/cysj-animations.css",
   "docs/.vitepress/theme/styles/cysj-performance.css",
   "docs/.vitepress/theme/styles/cysj-responsive.css",
-  "docs/public/_headers",
-  "docs/public/llms.txt",
-  "docs/public/robots.txt",
-];
-
-const forbiddenFiles = [
-  "docs/.vitepress/theme/custom.css",
+  "docs/.vitepress/theme/components/HomeParticles.vue",
   "docs/.vitepress/theme/styles/cysj-pro.css",
   "docs/.vitepress/theme/styles/cysj-mobile.css",
   "docs/.vitepress/theme/styles/cysj-ambient.css",
@@ -79,6 +86,3 @@ if (failed) {
 } else {
   console.log("\nResult: all good");
 }
-
-
-

@@ -1,31 +1,33 @@
 /* =========================================================
    CYSJ Docs — Custom Components
-   自定义组件层：PageInfo、PageActions、SiteTools、AuthorCard
+   自定义组件层：PageInfo、PageActions、SiteTools、ReadingProgress
    ========================================================= */
 
 /* ---------- 页面顶部元信息 ---------- */
 .cysj-meta-line {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 0 0 24px;
-  padding: 12px 0;
+  gap: 6px;
+  margin: 0 0 20px;
+  padding: 8px 0;
   border-bottom: 1px solid var(--vp-c-divider-light);
   color: var(--vp-c-text-3);
-  font-size: 12.5px;
+  font-size: 12px;
   line-height: 1.6;
 }
 
 .cysj-meta-line > span {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 3px 10px;
+  gap: 3px;
+  padding: 2px 8px;
   border-radius: var(--cysj-radius-pill);
   background: var(--vp-c-bg-secondary);
   border: 1px solid var(--vp-c-divider-light);
   white-space: nowrap;
   color: var(--vp-c-text-3);
+  font-size: 11.5px;
+  font-weight: 600;
   transition: color var(--cysj-speed-fast) var(--cysj-ease),
     border-color var(--cysj-speed-fast) var(--cysj-ease),
     background var(--cysj-speed-fast) var(--cysj-ease);
@@ -46,21 +48,20 @@
 .cysj-author-card {
   position: absolute;
   left: 0;
-  top: calc(100% + 10px);
+  top: calc(100% + 8px);
   z-index: 50;
   display: grid;
-  min-width: 240px;
-  max-width: 300px;
-  gap: 10px;
-  padding: 16px;
+  min-width: 220px;
+  max-width: 280px;
+  gap: 8px;
+  padding: 14px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--cysj-radius-lg);
   background: var(--vp-c-bg-elevated);
-  box-shadow: var(--cysj-shadow-xl);
   color: var(--vp-c-text-1);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   transition: opacity var(--cysj-speed-normal) var(--cysj-ease),
     visibility var(--cysj-speed-normal) var(--cysj-ease),
     transform var(--cysj-speed-normal) var(--cysj-ease);
@@ -76,10 +77,10 @@
 .cysj-author-card::before {
   content: '';
   position: absolute;
-  left: 22px;
-  top: -6px;
-  width: 10px;
-  height: 10px;
+  left: 20px;
+  top: -5px;
+  width: 8px;
+  height: 8px;
   border-left: 1px solid var(--vp-c-divider);
   border-top: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-elevated);
@@ -90,34 +91,34 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--cysj-gradient-brand);
+  background: var(--vp-c-brand-1);
   color: #fff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 .cysj-author-card__name {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.016em;
   color: var(--vp-c-text-1);
 }
 
 .cysj-author-card__role {
-  margin-top: -4px;
+  margin-top: -3px;
   color: var(--vp-c-text-2);
-  font-size: 12px;
-  line-height: 1.55;
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .cysj-author-card__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   margin-top: 2px;
 }
 
@@ -125,32 +126,31 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
-  padding: 4px 11px;
+  min-height: 26px;
+  padding: 3px 10px;
   border: 1px solid var(--vp-c-divider-light);
   border-radius: var(--cysj-radius-pill);
   background: var(--vp-c-bg-secondary);
   color: var(--vp-c-text-2);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-decoration: none;
-  transition: transform var(--cysj-speed-fast) var(--cysj-ease),
+  transition: color var(--cysj-speed-fast) var(--cysj-ease),
     border-color var(--cysj-speed-fast) var(--cysj-ease),
-    color var(--cysj-speed-fast) var(--cysj-ease);
+    background var(--cysj-speed-fast) var(--cysj-ease);
 }
 
 .cysj-author-card__links a:hover {
-  transform: translateY(-1px);
   border-color: var(--cysj-brand-border);
   color: var(--vp-c-brand-1);
   text-decoration: none;
 }
 
 .cysj-author-card__contact {
-  padding-top: 8px;
+  padding-top: 6px;
   border-top: 1px dashed var(--vp-c-divider-light);
   color: var(--vp-c-text-2);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .cysj-author-card__contact strong {
@@ -162,25 +162,15 @@
 .cysj-actions {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
-  margin-top: 56px;
-  padding: 28px;
+  margin-top: 48px;
+  padding: 24px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--cysj-radius-xl);
   background: var(--vp-c-bg-secondary);
-  box-shadow: var(--cysj-shadow-sm);
   position: relative;
   overflow: hidden;
-}
-
-.cysj-actions::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: var(--cysj-gradient-subtle);
-  opacity: 0.7;
 }
 
 .cysj-actions > * {
@@ -190,11 +180,11 @@
 .cysj-actions__eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin: 0 0 6px;
+  gap: 6px;
+  margin: 0 0 4px;
   padding: 0;
   color: var(--vp-c-brand-1);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -202,7 +192,7 @@
 
 .cysj-actions__eyebrow::before {
   content: '';
-  width: 20px;
+  width: 16px;
   height: 1px;
   background: var(--vp-c-brand-1);
 }
@@ -211,98 +201,91 @@
   margin: 0;
   border: 0;
   padding: 0;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 800;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.022em;
   color: var(--vp-c-text-1);
 }
 
 .cysj-actions__desc {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   color: var(--vp-c-text-2);
-  font-size: 14px;
-  line-height: 1.78;
-  max-width: 56ch;
+  font-size: 13px;
+  line-height: 1.72;
+  max-width: 52ch;
 }
 
 .cysj-actions__buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .cysj-action-btn {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 36px;
   align-items: center;
   justify-content: center;
-  padding: 8px 18px;
+  padding: 6px 16px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--cysj-radius-pill);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-1);
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.004em;
   text-decoration: none;
   cursor: pointer;
-  transition: transform var(--cysj-speed-fast) var(--cysj-ease),
-    border-color var(--cysj-speed-fast) var(--cysj-ease),
+  transition: border-color var(--cysj-speed-fast) var(--cysj-ease),
     color var(--cysj-speed-fast) var(--cysj-ease),
-    background var(--cysj-speed-fast) var(--cysj-ease),
-    box-shadow var(--cysj-speed-fast) var(--cysj-ease);
+    background var(--cysj-speed-fast) var(--cysj-ease);
 }
 
 .cysj-action-btn:hover {
-  transform: translateY(-1px);
   border-color: var(--cysj-brand-border);
   color: var(--vp-c-brand-1);
   text-decoration: none;
-  box-shadow: var(--cysj-shadow-sm);
 }
 
 .cysj-action-btn.is-primary {
   border-color: transparent;
   background: var(--vp-c-brand-1);
   color: #fff;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.28);
 }
 
 .cysj-action-btn.is-primary:hover {
-  background: var(--vp-c-brand-3);
+  background: var(--vp-c-brand-2);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.36);
 }
 
 .cysj-action-btn.is-success {
-  border-color: rgba(16, 185, 129, 0.4);
-  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.35);
+  background: rgba(16, 185, 129, 0.06);
   color: #047857;
 }
 
 .dark .cysj-action-btn.is-success {
   color: #6ee7b7;
-  background: rgba(16, 185, 129, 0.12);
-  border-color: rgba(16, 185, 129, 0.32);
+  background: rgba(16, 185, 129, 0.10);
+  border-color: rgba(16, 185, 129, 0.30);
 }
 
 /* ---------- 右侧工具面板 ---------- */
 .cysj-tools {
-  margin-bottom: 18px;
-  padding: 16px;
+  margin-bottom: 16px;
+  padding: 14px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--cysj-radius-lg);
   background: var(--vp-c-bg-secondary);
-  box-shadow: var(--cysj-shadow-sm);
 }
 
 .cysj-tools__title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
+  gap: 6px;
+  margin-bottom: 10px;
   color: var(--vp-c-text-1);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -310,26 +293,25 @@
 
 .cysj-tools__title::before {
   content: '';
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background: var(--vp-c-brand-1);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
 .cysj-tools__links {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
 }
 
 .cysj-tools__links a {
   display: inline-flex;
-  padding: 5px 11px;
+  padding: 4px 10px;
   border-radius: var(--cysj-radius-pill);
   background: var(--vp-c-bg);
   color: var(--vp-c-text-2);
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
   text-decoration: none;
   border: 1px solid var(--vp-c-divider-light);
@@ -351,7 +333,7 @@
   left: 0;
   width: 0%;
   height: 2px;
-  background: var(--cysj-gradient-brand);
+  background: var(--vp-c-brand-1);
   z-index: 100;
   transition: width 100ms linear;
 }
@@ -361,7 +343,7 @@
   color: #c71d23;
 }
 
-.VPSocialLink[aria-label='Gitee 镜像仓库']:hover {
+.dark .VPSocialLink[aria-label='Gitee 镜像仓库'] {
   color: #ef4444;
 }
 
@@ -369,12 +351,12 @@
 .vp-doc div[class*='meta'] {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12.5px;
+  gap: 5px;
+  font-size: 12px;
   color: var(--vp-c-text-3);
   font-weight: 600;
-  margin-top: 32px;
-  padding-top: 16px;
+  margin-top: 28px;
+  padding-top: 14px;
   border-top: 1px dashed var(--vp-c-divider-light);
 }
 
@@ -386,7 +368,7 @@
 
   .cysj-actions {
     grid-template-columns: 1fr;
-    padding: 22px;
+    padding: 20px;
   }
 
   .cysj-actions__buttons {
@@ -401,28 +383,28 @@
 
 @media (max-width: 640px) {
   .cysj-meta-line {
-    font-size: 12px;
-    gap: 6px;
+    font-size: 11px;
+    gap: 5px;
   }
 
   .cysj-meta-line > span {
-    padding: 2px 8px;
-    font-size: 11.5px;
+    padding: 2px 7px;
+    font-size: 10.5px;
   }
 
   .cysj-actions {
-    padding: 18px;
+    padding: 16px;
     border-radius: var(--cysj-radius-lg);
   }
 
   .cysj-author-card {
     left: auto;
     right: 0;
-    min-width: 220px;
+    min-width: 200px;
   }
 
   .cysj-author-card::before {
     left: auto;
-    right: 22px;
+    right: 20px;
   }
 }

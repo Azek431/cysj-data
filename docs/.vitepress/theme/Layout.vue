@@ -4,14 +4,12 @@ import DefaultTheme from "vitepress/theme";
 import PageInfo from "./components/PageInfo.vue";
 import PageActions from "./components/PageActions.vue";
 import SiteTools from "./components/SiteTools.vue";
-import HomeParticles from "./components/HomeParticles.vue";
 import ReadingProgress from "./components/ReadingProgress.vue";
 
 const { Layout } = DefaultTheme;
 </script>
 
 <template>
-  <HomeParticles />
   <ReadingProgress />
 
   <Layout>
