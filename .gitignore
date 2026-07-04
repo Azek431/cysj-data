@@ -396,3 +396,12 @@ pack-interrupt-backup-*/
 #   依赖锁定文件，建议提交。
 #
 # =========================================================
+
+# Local debug logs and generated build output
+/*tmp_logcat*.txt
+/build.log
+/.verify-*.log
+/dist/
+/.astro/
+/docs/.vitepress/cache/
+/docs/.vitepress/dist/
