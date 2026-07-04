@@ -3,79 +3,106 @@
    设计令牌层：所有颜色、间距、圆角、动效、布局
    ========================================================= */
 
-/* ---------- 浅色模式 ---------- */
+/* ---------- 覆盖 VitePress 原生颜色令牌 ---------- */
 :root {
-  /* 品牌色 */
-  --cysj-brand: #2563eb;
-  --cysj-brand-hover: #1d4ed8;
-  --cysj-brand-active: #1e40af;
-  --cysj-brand-soft: rgba(37, 99, 235, 0.06);
-  --cysj-brand-soft-hover: rgba(37, 99, 235, 0.10);
-  --cysj-brand-border: rgba(37, 99, 235, 0.18);
+  /* 品牌色 — 从 VP 默认的 indigo 改为蓝色 */
+  --vp-c-brand-1: #2563eb;
+  --vp-c-brand-2: #1d4ed8;
+  --vp-c-brand-3: #1e40af;
+  --vp-c-brand-soft: rgba(37, 99, 235, 0.10);
 
-  /* 文本 */
-  --cysj-text-1: #111111;
-  --cysj-text-2: #555555;
-  --cysj-text-3: #888888;
+  /* 背景色 — 更柔和 */
+  --vp-c-bg: #fafafa;
+  --vp-c-bg-alt: #f5f5f5;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f0f0f0;
 
-  /* 背景 */
-  --cysj-bg: #fafafa;
-  --cysj-bg-secondary: #f5f5f5;
-  --cysj-bg-tertiary: #eeeeee;
-  --cysj-bg-elevated: #ffffff;
+  /* 文本色 — 更深的对比度 */
+  --vp-c-text-1: #111111;
+  --vp-c-text-2: #555555;
+  --vp-c-text-3: #888888;
 
-  /* 边框 */
-  --cysj-border: #e5e5e5;
-  --cysj-border-strong: #d4d4d4;
-  --cysj-border-soft: rgba(229, 229, 229, 0.8);
+  /* 边框色 — 更中性 */
+  --vp-c-border: #d4d4d4;
+  --vp-c-divider: #e5e5e5;
+  --vp-c-divider-light: #eeeeee;
 
-  /* 分割线 */
-  --cysj-divider: rgba(17, 17, 17, 0.06);
-  --cysj-divider-strong: rgba(17, 17, 17, 0.1);
+  /* 代码块 */
+  --vp-code-block-bg: #f5f5f5;
+  --vp-code-color: #2563eb;
+  --vp-code-link-color: #2563eb;
+  --vp-code-link-hover-color: #1d4ed8;
+  --vp-code-bg: rgba(37, 99, 235, 0.06);
 
-  /* 圆角 */
+  /* 导航栏 */
+  --vp-nav-height: 56px;
+
+  /* 侧边栏 */
+  --vp-sidebar-width: 240px;
+  --vp-sidebar-bg-color: #fafafa;
+}
+
+/* ---------- 深色模式 ---------- */
+.dark {
+  /* 品牌色 — 更沉稳的蓝 */
+  --vp-c-brand-1: #4d9de6;
+  --vp-c-brand-2: #6db3f0;
+  --vp-c-brand-3: #8fc4f5;
+  --vp-c-brand-soft: rgba(77, 157, 230, 0.14);
+
+  /* 背景色 — 纯黑基调 */
+  --vp-c-bg: #0a0a0a;
+  --vp-c-bg-alt: #111111;
+  --vp-c-bg-elv: #141414;
+  --vp-c-bg-soft: #141414;
+
+  /* 文本色 — 柔和白色 */
+  --vp-c-text-1: #ededed;
+  --vp-c-text-2: #aaaaaa;
+  --vp-c-text-3: #777777;
+
+  /* 边框色 */
+  --vp-c-border: #222222;
+  --vp-c-divider: #222222;
+  --vp-c-divider-light: #1a1a1a;
+
+  /* 代码块 */
+  --vp-code-block-bg: #141414;
+  --vp-code-color: #6db3f0;
+  --vp-code-link-color: #6db3f0;
+  --vp-code-link-hover-color: #8fc4f5;
+  --vp-code-bg: rgba(77, 157, 230, 0.10);
+
+  /* 侧边栏 */
+  --vp-sidebar-bg-color: #0a0a0a;
+}
+
+/* ---------- 首页 Hero 文字色 ---------- */
+:root {
+  --vp-home-hero-name-color: var(--vp-c-text-1);
+  --vp-home-hero-name-background: transparent;
+}
+
+/* ---------- 圆角 ---------- */
+:root {
   --cysj-radius-sm: 4px;
   --cysj-radius-md: 6px;
   --cysj-radius-lg: 8px;
   --cysj-radius-xl: 12px;
   --cysj-radius-pill: 999px;
+}
 
-  /* 动效 */
+/* ---------- 动效 ---------- */
+:root {
   --cysj-speed-fast: 120ms;
   --cysj-speed-normal: 160ms;
   --cysj-speed-slow: 200ms;
   --cysj-ease: cubic-bezier(0.2, 0, 0, 1);
   --cysj-ease-out: cubic-bezier(0.0, 0, 0.2, 1);
-
-  /* 布局 */
-  --cysj-max-width: 780px;
-  --cysj-home-max-width: 1080px;
-  --cysj-sidebar-width: 240px;
-  --cysj-nav-height: 56px;
 }
 
-/* ---------- 深色模式 ---------- */
-.dark {
-  --cysj-brand: #4d9de6;
-  --cysj-brand-hover: #6db3f0;
-  --cysj-brand-active: #8fc4f5;
-  --cysj-brand-soft: rgba(77, 157, 230, 0.10);
-  --cysj-brand-soft-hover: rgba(77, 157, 230, 0.16);
-  --cysj-brand-border: rgba(77, 157, 230, 0.28);
-
-  --cysj-text-1: #ededed;
-  --cysj-text-2: #aaaaaa;
-  --cysj-text-3: #777777;
-
-  --cysj-bg: #0a0a0a;
-  --cysj-bg-secondary: #141414;
-  --cysj-bg-tertiary: #1a1a1a;
-  --cysj-bg-elevated: #111111;
-
-  --cysj-border: #222222;
-  --cysj-border-strong: #333333;
-  --cysj-border-soft: rgba(34, 34, 34, 0.8);
-
-  --cysj-divider: rgba(170, 170, 170, 0.06);
-  --cysj-divider-strong: rgba(170, 170, 170, 0.10);
+/* ---------- 布局 ---------- */
+:root {
+  --cysj-max-width: 780px;
+  --cysj-home-max-width: 1080px;
 }

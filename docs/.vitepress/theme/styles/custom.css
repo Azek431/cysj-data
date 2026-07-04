@@ -35,7 +35,7 @@
 
 .cysj-meta-line > span:hover {
   color: var(--vp-c-text-2);
-  border-color: var(--cysj-brand-border);
+  border-color: var(--vp-c-brand-1);
   background: var(--vp-c-bg);
 }
 
@@ -57,7 +57,7 @@
   padding: 14px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--cysj-radius-lg);
-  background: var(--vp-c-bg-elevated);
+  background: var(--vp-c-bg-elv);
   color: var(--vp-c-text-1);
   opacity: 0;
   visibility: hidden;
@@ -83,7 +83,7 @@
   height: 8px;
   border-left: 1px solid var(--vp-c-divider);
   border-top: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-elevated);
+  background: var(--vp-c-bg-elv);
   transform: rotate(45deg);
 }
 
@@ -141,7 +141,7 @@
 }
 
 .cysj-author-card__links a:hover {
-  border-color: var(--cysj-brand-border);
+  border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
   text-decoration: none;
 }
@@ -242,7 +242,7 @@
 }
 
 .cysj-action-btn:hover {
-  border-color: var(--cysj-brand-border);
+  border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
   text-decoration: none;
 }
@@ -322,7 +322,7 @@
 
 .cysj-tools__links a:hover {
   color: var(--vp-c-brand-1);
-  border-color: var(--cysj-brand-border);
+  border-color: var(--vp-c-brand-1);
   background: var(--vp-c-bg);
 }
 

@@ -30,6 +30,30 @@
   color: var(--vp-c-brand-1) !important;
 }
 
+/* 下拉菜单 */
+.VPNavBarMenuGroup .dropdown .item {
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavBarMenuGroup .dropdown .item:hover {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+}
+
+.VPNavBarMenuGroup .dropdown .indicator {
+  color: var(--vp-c-text-3);
+}
+
+/* 移动端下拉菜单 */
+.VPNavBarSearch .dropdown {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-lg);
+  background: var(--vp-c-bg);
+  box-shadow: none;
+}
+
 /* ---------- 搜索框 ---------- */
 .DocSearch-Button,
 .VPLocalSearchBox .shell {
@@ -42,19 +66,19 @@
 
 .DocSearch-Button:hover,
 .VPLocalSearchBox .shell:hover {
-  border-color: var(--cysj-brand-border) !important;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.06);
+  border-color: var(--vp-c-brand-1) !important;
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
 .dark .DocSearch-Button:hover,
 .dark .VPLocalSearchBox .shell:hover {
-  border-color: rgba(77, 157, 230, 0.28) !important;
-  box-shadow: 0 0 0 3px rgba(77, 157, 230, 0.08);
+  border-color: var(--vp-c-brand-1) !important;
+  box-shadow: 0 0 0 3px var(--vp-c-brand-soft);
 }
 
 /* ---------- 侧边栏 ---------- */
 .VPSidebar {
-  background: var(--vp-c-bg) !important;
+  background: var(--vp-sidebar-bg-color) !important;
   border-right: 1px solid var(--vp-c-divider-light) !important;
   padding-top: 8px;
 }
@@ -72,11 +96,11 @@
 }
 
 .VPSidebarItem .item .link:hover {
-  background: var(--vp-c-bg-secondary);
+  background: var(--vp-c-bg-soft);
 }
 
 .VPSidebarItem.is-active > .item .link {
-  background: var(--cysj-brand-soft);
+  background: var(--vp-c-brand-soft);
 }
 
 .VPSidebarItem.is-active > .item .link > .text {
@@ -124,6 +148,16 @@
   padding: 0 12px;
 }
 
+/* 侧边栏折叠按钮 */
+.VPSidebarItem .collapse {
+  color: var(--vp-c-text-3);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPSidebarItem .collapse:hover {
+  color: var(--vp-c-text-2);
+}
+
 /* ---------- 右侧目录 ---------- */
 .VPDocAsideOutline .content {
   border-left-color: var(--vp-c-divider-light);
@@ -148,14 +182,15 @@
 
 .outline-link:hover {
   color: var(--vp-c-brand-1);
-  background: var(--cysj-brand-soft);
-  border-left-color: var(--cysj-brand-border);
+  background: var(--vp-c-brand-soft);
+  border-left-color: var(--vp-c-brand-1);
   padding-left: 12px;
 }
 
 .outline-link.active {
   color: var(--vp-c-brand-1);
   font-weight: 800;
+  border-left-color: var(--vp-c-brand-1);
 }
 
 .outline-link.depth-3 {
@@ -184,7 +219,7 @@
 }
 
 .pager-link:hover {
-  border-color: var(--cysj-brand-border) !important;
+  border-color: var(--vp-c-brand-1) !important;
 }
 
 .pager-link .desc {
@@ -319,11 +354,8 @@
   letter-spacing: -0.05em;
   font-weight: 850;
   text-wrap: nowrap;
-  color: var(--vp-c-text-1);
-}
-
-.dark .cysj-home-page .VPHomeHero .name {
-  color: var(--vp-c-text-1);
+  color: var(--vp-home-hero-name-color);
+  background: var(--vp-home-hero-name-background);
 }
 
 .cysj-home-page .VPHomeHero .text {
@@ -383,8 +415,9 @@
 }
 
 .cysj-home-page .VPHomeHero .VPButton.alt:hover {
-  border-color: var(--cysj-brand-border);
+  border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
 }
 
 /* Hero 图像 */
@@ -430,8 +463,8 @@
 }
 
 .cysj-home-page .VPFeature:hover {
-  border-color: var(--cysj-brand-border);
-  background: var(--cysj-brand-soft);
+  border-color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
 }
 
 .cysj-home-page .VPFeature .box {
@@ -447,13 +480,13 @@
   height: 40px;
   margin-bottom: 14px;
   border-radius: var(--cysj-radius-md);
-  background: var(--cysj-brand-soft);
+  background: var(--vp-c-brand-soft);
   font-size: 20px;
   transition: background var(--cysj-speed-fast) var(--cysj-ease);
 }
 
 .cysj-home-page .VPFeature:hover .icon {
-  background: var(--cysj-brand-soft-hover);
+  background: var(--vp-c-brand-soft-hover);
 }
 
 .dark .cysj-home-page .VPFeature .icon {
@@ -526,8 +559,8 @@
   width: min(600px, calc(100vw - 48px));
   height: 1px;
   margin: 24px auto 0;
-  background: var(--cysj-brand-border);
-  opacity: 0.5;
+  background: var(--vp-c-brand-1);
+  opacity: 0.2;
 }
 
 /* ---------- 移动端 ---------- */
