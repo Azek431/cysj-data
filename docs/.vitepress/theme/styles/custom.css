@@ -408,3 +408,414 @@
     right: 20px;
   }
 }
+
+/* ---------- VPBadge 徽章 ---------- */
+.VPBadge {
+  display: inline-block;
+  border-radius: var(--cysj-radius-pill);
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.VPBadge.info {
+  background: var(--vp-c-default-soft);
+  color: var(--vp-c-text-2);
+}
+
+.VPBadge.tip {
+  background: var(--vp-c-tip-soft);
+  color: var(--vp-c-tip-1);
+}
+
+.VPBadge.warning {
+  background: var(--vp-c-warning-soft);
+  color: var(--vp-c-warning-1);
+}
+
+.VPBadge.danger {
+  background: var(--vp-c-danger-soft);
+  color: var(--vp-c-danger-1);
+}
+
+/* ---------- VPSkipLink 跳过链接 ---------- */
+.VPSkipLink {
+  position: fixed;
+  z-index: 60;
+  padding: 12px 24px;
+  bottom: 24px;
+  right: 24px;
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--cysj-radius-md);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--cysj-speed-fast) var(--cysj-ease),
+    transform var(--cysj-speed-fast) var(--cysj-ease);
+  pointer-events: none;
+}
+
+.VPSkipLink:focus {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ---------- VPLink 通用链接 ---------- */
+.VPLink.no-icon::after {
+  display: none !important;
+}
+
+/* ---------- VPButton sponsor 变体 ---------- */
+.VPButton.sponsor {
+  border-color: var(--vp-button-sponsor-border);
+  color: var(--vp-button-sponsor-text);
+  background: var(--vp-button-sponsor-bg);
+  transition: border-color var(--cysj-speed-fast) var(--cysj-ease),
+    color var(--cysj-speed-fast) var(--cysj-ease),
+    background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPButton.sponsor:hover {
+  border-color: var(--vp-button-sponsor-hover-border);
+  color: var(--vp-button-sponsor-hover-text);
+  background: var(--vp-button-sponsor-hover-bg);
+}
+
+/* ---------- VPSwitch 主题切换 ---------- */
+.VPSwitch {
+  border: 1px solid var(--vp-input-border-color);
+  border-radius: var(--cysj-radius-pill);
+  background: var(--vp-input-bg-color);
+  transition: border-color var(--cysj-speed-fast) var(--cysj-ease),
+    background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPSwitchAppearance .sun,
+.VPSwitchAppearance .moon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ---------- VPLocalSearchBox 搜索面板 ---------- */
+.VPLocalSearchBox .shell {
+  border-radius: var(--cysj-radius-xl);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+}
+
+.VPLocalSearchBox .backdrop {
+  background: var(--vp-backdrop-bg-color);
+}
+
+.VPLocalSearchBox .search-input {
+  border-bottom: 1px solid var(--vp-c-divider);
+  padding-bottom: 12px;
+}
+
+.VPLocalSearchBox .results {
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.VPLocalSearchBox .result {
+  padding: 12px 16px;
+  border-radius: var(--cysj-radius-md);
+  transition: background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPLocalSearchBox .result:hover,
+.VPLocalSearchBox .result.selected {
+  background: var(--vp-c-brand-soft);
+}
+
+.VPLocalSearchBox .no-results {
+  padding: 24px 16px;
+  text-align: center;
+  color: var(--vp-c-text-3);
+  font-size: 14px;
+}
+
+.VPLocalSearchBox .search-keyboard-shortcuts {
+  padding: 12px 16px;
+  border-top: 1px solid var(--vp-c-divider);
+  color: var(--vp-c-text-3);
+  font-size: 12px;
+}
+
+/* ---------- VPLocalNav 本地导航 ---------- */
+.VPLocalNav {
+  border-bottom: 1px solid var(--vp-c-divider-light) !important;
+  background: var(--vp-c-bg) !important;
+  padding: 0 32px;
+  height: var(--vp-local-nav-height);
+}
+
+.VPLocalNav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.VPLocalNav .menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--vp-c-text-2);
+  font-size: 14px;
+  font-weight: 600;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPLocalNav .menu:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* ---------- VPLocalNavOutlineDropdown 目录下拉 ---------- */
+.VPLocalNavOutlineDropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 60;
+  width: 240px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: var(--cysj-radius-lg);
+  box-shadow: none;
+  padding: 8px 0;
+}
+
+.VPLocalNavOutlineDropdown .header {
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--vp-c-text-3);
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.VPLocalNavOutlineDropdown .items {
+  padding: 4px 0;
+}
+
+.VPLocalNavOutlineDropdown .outline-link {
+  padding: 6px 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.VPLocalNavOutlineDropdown .outline-link:hover,
+.VPLocalNavOutlineDropdown .outline-link.active {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+}
+
+/* ---------- VPNavScreen 移动端全屏菜单 ---------- */
+.VPNavScreen {
+  border-top: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg);
+  padding: 16px 32px;
+}
+
+.VPNavScreen .container {
+  padding-bottom: 16px;
+}
+
+.VPNavScreenMenuLink {
+  display: block;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavScreenMenuLink:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.VPNavScreenMenuGroup .button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--vp-c-divider-light);
+  cursor: pointer;
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavScreenMenuGroup .button:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.VPNavScreenMenuGroup .items {
+  padding: 4px 0 12px 16px;
+}
+
+.VPNavScreenMenuGroup.open .button {
+  color: var(--vp-c-brand-1);
+}
+
+.VPNavScreenTranslations {
+  padding: 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  border-bottom: 1px solid var(--vp-c-divider-light);
+}
+
+/* ---------- VPNavBarTranslations 多语言切换 ---------- */
+.VPNavBarTranslations .title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavBarTranslations .title:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* ---------- VPNavBarExtra 额外菜单 ---------- */
+.VPNavBarExtra {
+  color: var(--vp-c-text-2);
+  transition: color var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavBarExtra:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.VPNavBarExtra .trans-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+}
+
+/* ---------- VPNavBarHamburger 汉堡按钮 ---------- */
+.VPNavBarHamburger .container {
+  width: 20px;
+  height: 14px;
+  position: relative;
+}
+
+.VPNavBarHamburger .top,
+.VPNavBarHamburger .middle,
+.VPNavBarHamburger .bottom {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background: var(--vp-c-text-1);
+  border-radius: 2px;
+  transition: transform var(--cysj-speed-fast) var(--cysj-ease),
+    background var(--cysj-speed-fast) var(--cysj-ease);
+}
+
+.VPNavBarHamburger .top { top: 0; }
+.VPNavBarHamburger .middle { top: 6px; }
+.VPNavBarHamburger .bottom { top: 12px; }
+
+.VPNavBarHamburger.active .top {
+  transform: rotate(45deg);
+  top: 6px;
+}
+
+.VPNavBarHamburger.active .middle {
+  opacity: 0;
+}
+
+.VPNavBarHamburger.active .bottom {
+  transform: rotate(-45deg);
+  top: 6px;
+}
+
+/* ---------- VPLink 外链图标 ---------- */
+.vp-external-link-icon {
+  display: inline-flex;
+  vertical-align: -2px;
+  margin-left: 2px;
+  width: 11px;
+  height: 11px;
+  color: var(--vp-c-text-3);
+}
+
+/* ---------- VPDocAsideSponsors 旁栏赞助 ---------- */
+.VPDocAsideSponsors {
+  margin-top: 16px;
+}
+
+/* ---------- VPSponsors 赞助组件 ---------- */
+.vp-sponsor {
+  border-radius: var(--cysj-radius-lg);
+  overflow: hidden;
+}
+
+.vp-sponsor.aside {
+  border-radius: var(--cysj-radius-md);
+}
+
+.vp-sponsor-tier {
+  margin: 0 0 4px !important;
+  text-align: center;
+  letter-spacing: 1px !important;
+  line-height: 24px;
+  width: 100%;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-bg-soft);
+  padding: 9px 0 7px;
+  font-size: 12px;
+}
+
+.vp-sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.vp-sponsor-grid-item {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: var(--vp-c-bg-soft);
+  transition: background-color 0.25s;
+  border-radius: var(--cysj-radius-sm);
+  overflow: hidden;
+}
+
+.vp-sponsor-grid-item:hover {
+  background-color: var(--vp-c-default-soft);
+}
+
+.vp-sponsor-grid-image {
+  max-width: 100%;
+  filter: grayscale(1);
+  transition: filter 0.25s;
+}
+
+.dark .vp-sponsor-grid-image {
+  filter: grayscale(1) invert(1);
+}
+
+.vp-sponsor-grid-item:hover .vp-sponsor-grid-image {
+  filter: grayscale(0) invert(0);
+}
