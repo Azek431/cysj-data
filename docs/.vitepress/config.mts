@@ -140,13 +140,14 @@ export default defineConfig({
 
     editLink: {
       pattern: 'https://github.com/Azek431/cysj-data/edit/main/docs/:path',
-      text: '编辑此页'
+      text: '在 GitHub 上编辑此页'
     },
 
     lastUpdated: {
       text: '更新于',
       formatOptions: {
-        dateStyle: 'medium'
+        dateStyle: 'medium',
+        timeStyle: 'short'
       }
     },
 
