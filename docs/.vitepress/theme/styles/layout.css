@@ -290,11 +290,11 @@
 
 /* ---------- VPDocFooter 编辑链接 & 最后更新时间 ---------- */
 .VPDocFooter {
-  margin-top: 56px;
+  margin-top: 48px;
 }
 
 .VPDocFooter .edit-info {
-  padding-bottom: 16px;
+  padding-bottom: 14px;
 }
 
 @media (min-width: 640px) {
@@ -302,7 +302,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
   }
 }
 
@@ -351,7 +351,7 @@
 /* 分页容器 */
 .VPDocFooter .prev-next {
   border-top: 1px solid var(--vp-c-divider);
-  padding-top: 20px;
+  padding-top: 18px;
   display: grid;
   grid-row-gap: 8px;
   margin-top: 0;
