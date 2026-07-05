@@ -3,24 +3,6 @@
 
 export const generatedSidebar = [
   {
-    "text": "开始阅读",
-    "collapsed": false,
-    "items": [
-      {
-        "text": "404 - 页面未找到",
-        "link": "/404"
-      },
-      {
-        "text": "关于",
-        "link": "/关于"
-      },
-      {
-        "text": "Azek创游世界文档",
-        "link": "/"
-      }
-    ]
-  },
-  {
     "text": "总索引与导航",
     "collapsed": false,
     "items": [

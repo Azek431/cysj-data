@@ -98,14 +98,23 @@ const status = computed(() => frontmatter.value.status || '')
 const difficulty = computed(() => frontmatter.value.difficulty || '')
 const evidence = computed(() => frontmatter.value.evidence || '')
 
+function handleAuthorClick() {
+  authorCardOpen.value = !authorCardOpen.value
+}
+
 function handleAuthorFocus() {
   authorCardOpen.value = true
 }
 
-function handleAuthorBlur(event: FocusEvent) {
-  const next = event.relatedTarget as HTMLElement | null
-  if (next && next.closest('.cysj-author-meta')) return
+function handleAuthorBlur() {
   authorCardOpen.value = false
+}
+
+function handleAuthorKeydown(e: KeyboardEvent) {
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault()
+    handleAuthorClick()
+  }
 }
 
 onMounted(() => {
@@ -145,13 +154,21 @@ watch(
       tabindex="0"
       role="button"
       :aria-expanded="authorCardOpen"
-      :aria-label="`维护者 ${author}，按回车查看联系方式`"
+      :aria-controls="authorCardOpen ? 'author-card-tooltip' : undefined"
+      :aria-label="`维护者 ${author}，按回车或点击查看联系方式`"
+      @click.stop="handleAuthorClick"
       @focus="handleAuthorFocus"
       @blur="handleAuthorBlur"
+      @keydown="handleAuthorKeydown"
     >
       维护者：{{ author }}
 
-      <span class="cysj-author-card" role="tooltip">
+      <span
+        v-show="authorCardOpen"
+        id="author-card-tooltip"
+        class="cysj-author-card"
+        role="tooltip"
+      >
         <span class="cysj-author-card__avatar" aria-hidden="true">
           {{ authorInitial }}
         </span>

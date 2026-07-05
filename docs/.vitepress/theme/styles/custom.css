@@ -42,38 +42,46 @@
 /* ---------- 作者悬浮卡片 ---------- */
 .cysj-author-meta {
   position: relative;
-  cursor: help;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .cysj-author-card {
   position: absolute;
   left: 0;
   top: calc(100% + 8px);
-  z-index: 50;
+  z-index: 100;
   display: grid;
   min-width: 220px;
   max-width: 280px;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 32px));
   gap: 8px;
   padding: 14px;
   border: 1px solid var(--vp-c-divider);
   border-radius: var(--cysj-radius-lg);
   background: var(--vp-c-bg-elv);
   color: var(--vp-c-text-1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10),
+              0 1px 3px rgba(0, 0, 0, 0.08);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   transition: opacity var(--cysj-speed-normal) var(--cysj-ease),
     visibility var(--cysj-speed-normal) var(--cysj-ease),
     transform var(--cysj-speed-normal) var(--cysj-ease);
 }
 
 .cysj-author-meta:hover .cysj-author-card,
-.cysj-author-meta:focus-within .cysj-author-card {
+.cysj-author-meta:focus-within .cysj-author-card,
+.cysj-author-meta[aria-expanded="true"] .cysj-author-card {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
 }
 
+/* 卡片箭头 */
 .cysj-author-card::before {
   content: '';
   position: absolute;
@@ -85,6 +93,15 @@
   border-top: 1px solid var(--vp-c-divider);
   background: var(--vp-c-bg-elv);
   transform: rotate(45deg);
+  pointer-events: none;
+}
+
+/* 箭头在卡片溢出视口右边缘时翻转 */
+@media (max-width: 640px) {
+  .cysj-author-card::before {
+    left: auto;
+    right: 20px;
+  }
 }
 
 .cysj-author-card__avatar {
@@ -99,6 +116,7 @@
   font-size: 13px;
   font-weight: 800;
   letter-spacing: -0.02em;
+  flex-shrink: 0;
 }
 
 .cysj-author-card__name {
@@ -140,7 +158,8 @@
     background var(--cysj-speed-fast) var(--cysj-ease);
 }
 
-.cysj-author-card__links a:hover {
+.cysj-author-card__links a:hover,
+.cysj-author-card__links a:focus-visible {
   border-color: var(--vp-c-brand-1);
   color: var(--vp-c-brand-1);
   text-decoration: none;
@@ -151,11 +170,16 @@
   border-top: 1px dashed var(--vp-c-divider-light);
   color: var(--vp-c-text-2);
   font-size: 11px;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .cysj-author-card__contact strong {
   color: var(--vp-c-text-1);
   font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 /* ---------- 页面底部贡献模块 ---------- */
@@ -401,11 +425,6 @@
     left: auto;
     right: 0;
     min-width: 200px;
-  }
-
-  .cysj-author-card::before {
-    left: auto;
-    right: 20px;
   }
 }
 
