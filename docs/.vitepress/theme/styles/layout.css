@@ -506,12 +506,12 @@
 
 /* Hero */
 .cysj-home-page .VPHomeHero {
-  padding-top: clamp(56px, 8vw, 96px);
-  padding-bottom: clamp(32px, 5vw, 64px);
+  padding-top: clamp(64px, 9vw, 108px);
+  padding-bottom: clamp(36px, 5.5vw, 72px);
 }
 
 .cysj-home-page .VPHomeHero .container {
-  gap: clamp(28px, 5vw, 52px);
+  gap: clamp(32px, 5.5vw, 60px);
 }
 
 .cysj-home-page .VPHomeHero .main {
@@ -522,9 +522,9 @@
   display: inline-block;
   max-width: 100%;
   white-space: nowrap;
-  font-size: clamp(2.2rem, 1.5rem + 3vw, 4rem);
+  font-size: clamp(2.4rem, 1.6rem + 3.2vw, 4.2rem);
   line-height: 1.06;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.058em;
   font-weight: 880;
   text-wrap: nowrap;
   color: var(--vp-home-hero-name-color);
@@ -532,26 +532,26 @@
 }
 
 .cysj-home-page .VPHomeHero .text {
-  max-width: 840px;
-  margin-top: 12px;
+  max-width: 860px;
+  margin-top: 14px;
   color: var(--vp-c-text-1);
-  font-size: clamp(1.3rem, 1.08rem + 1.2vw, 2.2rem);
-  line-height: 1.26;
-  letter-spacing: -0.032em;
+  font-size: clamp(1.35rem, 1.12rem + 1.25vw, 2.35rem);
+  line-height: 1.28;
+  letter-spacing: -0.034em;
   font-weight: 760;
 }
 
 .cysj-home-page .VPHomeHero .tagline {
-  max-width: 760px;
-  margin-top: 18px;
+  max-width: 780px;
+  margin-top: 20px;
   color: var(--vp-c-text-2);
-  font-size: clamp(0.98rem, 0.94rem + 0.22vw, 1.12rem);
-  line-height: 1.8;
+  font-size: clamp(1rem, 0.96rem + 0.22vw, 1.14rem);
+  line-height: 1.82;
 }
 
 .cysj-home-page .VPHomeHero .actions {
   gap: 12px;
-  padding-top: 14px;
+  padding-top: 16px;
 }
 
 .cysj-home-page .VPHomeHero .action {
@@ -561,7 +561,7 @@
 /* Hero 按钮 */
 .cysj-home-page .VPHomeHero .VPButton {
   min-height: 42px;
-  padding: 0 20px;
+  padding: 0 22px;
   border-radius: var(--cysj-radius-pill);
   font-size: 14px;
   font-weight: 760;
@@ -613,8 +613,8 @@
 
 /* Features 区段 */
 .cysj-home-page .VPFeatures {
-  padding-top: 8px;
-  padding-bottom: clamp(56px, 7vw, 88px);
+  padding-top: 12px;
+  padding-bottom: clamp(64px, 8vw, 96px);
 }
 
 .cysj-home-page .VPFeatures .container {
@@ -641,7 +641,7 @@
 }
 
 .cysj-home-page .VPFeature .box {
-  padding: 22px;
+  padding: 24px;
   position: relative;
   z-index: 1;
 }
@@ -649,12 +649,12 @@
 .cysj-home-page .VPFeature .icon {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 16px;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 18px;
   border-radius: var(--cysj-radius-md);
   background: var(--vp-c-brand-soft);
-  font-size: 22px;
+  font-size: 24px;
   transition: background var(--cysj-speed-fast) var(--cysj-ease);
 }
 
@@ -673,8 +673,8 @@
 .cysj-home-page .VPFeature .title {
   color: var(--vp-c-text-1);
   font-size: 17px;
-  line-height: 1.38;
-  letter-spacing: -0.018em;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
   font-weight: 780;
 }
 
