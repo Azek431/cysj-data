@@ -19,6 +19,8 @@ const guardFiles = new Set([
   "scripts/check-doc-links-light.mjs",
   "scripts/audit-repo-health.mjs",
   "scripts/check-search-indexing.mjs",
+  "scripts/clean-sync-temp.mjs",
+  "scripts/prune-unused-docs.mjs",
   "docs/维护与报告/仓库健康巡检报告.md",
 ]);
 
@@ -58,7 +60,9 @@ const suspiciousPatterns = [
   },
   {
     name: "冲突文件痕迹",
-    pattern: /sync-conflict|<<<<<<<|=======|>>>>>>>/i,
+    // 精确匹配 Git 冲突标记（<<<<<< 和 >>>>>>>）和 sync-conflict 文件名
+    // 不再匹配 ======= 分隔线，避免 CSS 注释/注释分隔线误报
+    pattern: /sync-conflict|<{7}\s|\>{7}\s/i,
     level: "高",
   },
 ];

@@ -119,6 +119,11 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+# JVM 崩溃报告（hs_err_pid*.log / replay_pid*.log）
+# 来自 Java 工具（OCR / 图片处理脚本等），本地诊断用，不提交
+hs_err_pid*.log
+replay_pid*.log
+
 
 # =========================================================
 # 7. 环境变量与敏感配置
@@ -202,7 +207,9 @@ secrets.*
 .stfolder.removed-*
 .stversions/
 .sync/
-.stignore
+
+# .stignore 作为模板保留（每台设备实际使用时应维护自己的副本）
+!.stignore
 
 .sync-conflict-*
 *.sync-conflict-*
@@ -403,5 +410,6 @@ pack-interrupt-backup-*/
 /.verify-*.log
 /dist/
 /.astro/
-/docs/.vitepress/cache/
-/docs/.vitepress/dist/
+
+# 旧服务器配置残留（Apache/Nginx 的 open_basedir 设置）
+.user.ini

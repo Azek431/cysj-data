@@ -133,8 +133,11 @@ function getTopDirs() {
 }
 
 function getRootFiles() {
+  // 排除不需要出现在侧边栏的根目录文件
+  const excluded = new Set(['404.md', 'index.md', '关于.md'])
+
   return safeReadDir(docsDir)
-    .filter((entry) => entry.isFile() && isMarkdown(entry.name))
+    .filter((entry) => entry.isFile() && isMarkdown(entry.name) && !excluded.has(entry.name))
     .sort((a, b) => collator.compare(a.name, b.name))
     .map((entry) => {
       const abs = path.join(docsDir, entry.name)
