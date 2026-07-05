@@ -1,9 +1,16 @@
 ---
+title: OCR 未完成内容补齐报告 V3
+description: 记录 OCR 未完成内容的补齐过程、发现的问题和后续优化建议。
 updatedAt: 2026-05-16T20:31:05+08:00
 updated: 2026-05-16
 createdAt: 2026-05-13T18:49:45+08:00
 created: 2026-05-13
 search: false
+tags:
+  - 创游世界
+  - OCR
+  - 维护
+  - 归档
 ---
 
 # OCR 未完成内容补齐报告 V3
