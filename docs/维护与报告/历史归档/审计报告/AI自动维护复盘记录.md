@@ -17,6 +17,7 @@ tags:
   - 复盘记录
   - 维护报告
   - AI维护
+search: false
 ---
 
 # AI自动维护复盘记录
