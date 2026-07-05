@@ -316,6 +316,7 @@
   font-weight: 500;
   color: var(--vp-c-text-3);
   transition: color var(--cysj-speed-fast) var(--cysj-ease);
+  white-space: nowrap;
 }
 
 .VPDocFooter .edit-link-button:hover {
