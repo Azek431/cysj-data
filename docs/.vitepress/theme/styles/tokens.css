@@ -56,10 +56,10 @@
   --vp-c-bg-elv: #141414;
   --vp-c-bg-soft: #141414;
 
-  /* 文本色 — 柔和白色 */
+  /* 文本色 — 提升暗色对比度 */
   --vp-c-text-1: #ededed;
-  --vp-c-text-2: #aaaaaa;
-  --vp-c-text-3: #777777;
+  --vp-c-text-2: #b8b8b8;
+  --vp-c-text-3: #888888;
 
   /* 边框色 */
   --vp-c-border: #222222;
